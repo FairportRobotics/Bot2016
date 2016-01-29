@@ -25,6 +25,9 @@ public class DriveSubsystem extends Subsystem {
 		leftSlave= new CANTalon(RobotMap.LEFT_SLAVE);
 		
 		rightMaster.setSafetyEnabled(true);
+		rightSlave.setSafetyEnabled(true);
+		leftMaster.setSafetyEnabled(true);
+		leftSlave.setSafetyEnabled(true);
 	}
 
 }
