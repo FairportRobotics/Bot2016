@@ -33,6 +33,9 @@ public class DriveSubsystem extends Subsystem {
 		rightSlave.setExpiration(.25);
 		leftMaster.setExpiration(.25);
 		leftSlave.setExpiration(.25);
+		
+		rightMaster.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+		leftMaster.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 	}
 
 }
