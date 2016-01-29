@@ -36,6 +36,12 @@ public class DriveSubsystem extends Subsystem {
 		
 		rightMaster.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 		leftMaster.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+		
+		rightSlave.changeControlMode(CANTalon.TalonControlMode.Follower);
+		leftSlave.changeControlMode(CANTalon.TalonControlMode.Follower);
+		
+		rightSlave.set(RobotMap.RIGHT_MASTER);
+		leftSlave.set(RobotMap.LEFT_MASTER);
 	}
 
 }
