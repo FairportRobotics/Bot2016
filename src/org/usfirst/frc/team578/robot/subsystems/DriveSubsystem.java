@@ -28,6 +28,11 @@ public class DriveSubsystem extends Subsystem {
 		rightSlave.setSafetyEnabled(true);
 		leftMaster.setSafetyEnabled(true);
 		leftSlave.setSafetyEnabled(true);
+		
+		rightMaster.setExpiration(.25);
+		rightSlave.setExpiration(.25);
+		leftMaster.setExpiration(.25);
+		leftSlave.setExpiration(.25);
 	}
 
 }
