@@ -40,13 +40,13 @@ public class DriveSubsystem extends Subsystem {
 		rightSlave.changeControlMode(CANTalon.TalonControlMode.Follower);
 		leftSlave.changeControlMode(CANTalon.TalonControlMode.Follower);
 
-		rightSlave.set(RobotMap.RIGHT_MASTER);
-		leftSlave.set(RobotMap.LEFT_MASTER);
-
 		leftMaster.enableControl();
 		leftSlave.enableControl();
 		rightMaster.enableControl();
 		rightSlave.enableControl();
+
+		rightSlave.set(RobotMap.RIGHT_MASTER);
+		leftSlave.set(RobotMap.LEFT_MASTER);
 
 		rightMaster.set(0);
 		leftMaster.set(0);
