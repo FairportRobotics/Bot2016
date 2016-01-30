@@ -2,7 +2,7 @@ package org.usfirst.frc.team578.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class Drive extends Command {
+public class DriveCommand extends Command {
 
 	@Override
 	protected void initialize() {
