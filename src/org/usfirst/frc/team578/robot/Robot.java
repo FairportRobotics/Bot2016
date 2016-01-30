@@ -1,5 +1,6 @@
 package org.usfirst.frc.team578.robot;
 
+import org.usfirst.frc.team578.robot.commands.DriveCommand;
 import org.usfirst.frc.team578.robot.commands.ExampleCommand;
 import org.usfirst.frc.team578.robot.subsystems.DriveSubsystem;
 import org.usfirst.frc.team578.robot.subsystems.ExampleSubsystem;
@@ -74,6 +75,8 @@ public class Robot extends IterativeRobot {
 	 * This function is called periodically during operator control
 	 */
 	public void teleopPeriodic() {
+		DriveCommand driveCommand = new DriveCommand();
+		driveCommand.start();
 		Scheduler.getInstance().run();
 	}
 
