@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -20,6 +21,9 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static DriveSubsystem driveSubsystem;
 
+	private SendableChooser StartingPositionChooser;
+	private SendableChooser DefenseChooser;
+	private SendableChooser ScoringPositionChooser;
 	Command autonomousCommand;
 
 	/**
@@ -31,6 +35,10 @@ public class Robot extends IterativeRobot {
 		// instantiate the command used for the autonomous period
 		driveSubsystem = new DriveSubsystem();
 		driveSubsystem.initialize();
+	}
+
+	private void initializeStartingPositionChooser() {
+
 	}
 
 	public void disabledPeriodic() {
@@ -81,5 +89,7 @@ public class Robot extends IterativeRobot {
 	 */
 	public void testPeriodic() {
 		LiveWindow.run();
+
 	}
+
 }
