@@ -1,8 +1,14 @@
 package org.usfirst.frc.team578.robot.commands;
 
+import org.usfirst.frc.team578.robot.Robot;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 public class DriveCommand extends Command {
+
+	public DriveCommand() {
+		requires(Robot.driveSubsystem);
+	}
 
 	@Override
 	protected void initialize() {
@@ -31,6 +37,10 @@ public class DriveCommand extends Command {
 	@Override
 	protected void interrupted() {
 		// TODO Auto-generated method stub
+
+	}
+
+	public static void main(String[] args) {
 
 	}
 
