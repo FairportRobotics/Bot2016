@@ -1,9 +1,7 @@
 package org.usfirst.frc.team578.robot;
 
 import org.usfirst.frc.team578.robot.commands.DriveCommand;
-import org.usfirst.frc.team578.robot.commands.ExampleCommand;
 import org.usfirst.frc.team578.robot.subsystems.DriveSubsystem;
-import org.usfirst.frc.team578.robot.subsystems.ExampleSubsystem;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -19,7 +17,6 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  */
 public class Robot extends IterativeRobot {
 
-	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static OI oi;
 	public static DriveSubsystem driveSubsystem;
 
@@ -32,7 +29,6 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		oi = new OI();
 		// instantiate the command used for the autonomous period
-		autonomousCommand = new ExampleCommand();
 		driveSubsystem = new DriveSubsystem();
 		driveSubsystem.initialize();
 	}
