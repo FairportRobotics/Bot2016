@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -35,6 +36,7 @@ public class Robot extends IterativeRobot {
 		// instantiate the command used for the autonomous period
 		driveSubsystem = new DriveSubsystem();
 		driveSubsystem.initialize();
+		initializeStartingPositionChooser();
 	}
 
 	private void initializeStartingPositionChooser() {
@@ -45,6 +47,7 @@ public class Robot extends IterativeRobot {
 		StartingPositionChooser.addObject("3 Center", new Object());
 		StartingPositionChooser.addObject("4 Mid Right", new Object());
 		StartingPositionChooser.addObject("5 Right", new Object());
+		SmartDashboard.putData("Starting Position", StartingPositionChooser);
 	}
 
 	public void disabledPeriodic() {
