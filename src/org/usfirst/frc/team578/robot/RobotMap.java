@@ -17,10 +17,10 @@ public class RobotMap {
 	// public static int rangefinderPort = 1;
 	// public static int rangefinderModule = 1;
 
-	public static final int RIGHT_MASTER = 1;
-	public static final int RIGHT_SLAVE = 3;
+	public static final int RIGHT_MASTER = 15;
+	public static final int RIGHT_SLAVE = 16;
 	public static final int LEFT_MASTER = 13;
-	public static final int LEFT_SLAVE = 16;
+	public static final int LEFT_SLAVE = 14;
 
 	public static final int LEFT_JOYSTICK = 0;
 	public static final int RIGHT_JOYSTICK = 1;

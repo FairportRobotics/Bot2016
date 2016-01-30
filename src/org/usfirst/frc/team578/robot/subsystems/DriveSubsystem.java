@@ -54,7 +54,7 @@ public class DriveSubsystem extends Subsystem {
 
 	public void drive(double left, double right) {
 
-		leftMaster.set(left);
+		leftMaster.set(-left);
 		rightMaster.set(right);
 
 	}
