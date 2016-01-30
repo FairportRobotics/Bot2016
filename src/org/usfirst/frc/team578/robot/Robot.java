@@ -39,6 +39,12 @@ public class Robot extends IterativeRobot {
 
 	private void initializeStartingPositionChooser() {
 
+		StartingPositionChooser = new SendableChooser();
+		StartingPositionChooser.addDefault("1 Left", new Object());
+		StartingPositionChooser.addObject("2 Mid Left", new Object());
+		StartingPositionChooser.addObject("3 Center", new Object());
+		StartingPositionChooser.addObject("4 Mid Right", new Object());
+		StartingPositionChooser.addObject("5 Right", new Object());
 	}
 
 	public void disabledPeriodic() {
