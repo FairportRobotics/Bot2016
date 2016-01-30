@@ -34,6 +34,15 @@ public class OI {
 	// Start the command when the button is released and let it run the command
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
+
 	Joystick leftJoystick = new Joystick(RobotMap.LEFT_JOYSTICK);
 	Joystick rightJoystick = new Joystick(RobotMap.RIGHT_JOYSTICK);
+
+	public double getLeft() {
+		return leftJoystick.getY();
+	}
+
+	public double getRight() {
+		return rightJoystick.getY();
+	}
 }
