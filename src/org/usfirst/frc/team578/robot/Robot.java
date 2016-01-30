@@ -61,6 +61,16 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Defense Chooser", DefenseChooser);
 	}
 
+	private void ScoringPositionChooser() {
+
+		ScoringPositionChooser = new SendableChooser();
+		ScoringPositionChooser.addDefault("Left", new Object());
+		ScoringPositionChooser.addObject("Right", new Object());
+		ScoringPositionChooser.addObject("None", new Object());
+		SmartDashboard.putData("Scoring Position", ScoringPositionChooser);
+
+	}
+
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
 	}
