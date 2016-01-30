@@ -50,6 +50,17 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Starting Position", StartingPositionChooser);
 	}
 
+	private void initalizeDefenseChooser() {
+
+		DefenseChooser = new SendableChooser();
+		DefenseChooser.addDefault("Lowbar", new Object());
+		DefenseChooser.addObject("Moat", new Object());
+		DefenseChooser.addObject("Ramparts", new Object());
+		DefenseChooser.addObject("Rock Wall", new Object());
+		DefenseChooser.addObject("Rough Terrain", new Object());
+		SmartDashboard.putData("Defense Chooser", DefenseChooser);
+	}
+
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
 	}
