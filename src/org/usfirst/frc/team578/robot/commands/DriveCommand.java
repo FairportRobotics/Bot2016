@@ -20,6 +20,11 @@ public class DriveCommand extends Command {
 	protected void execute() {
 		// TODO Auto-generated method stub
 
+		double leftJoystickValue = Robot.oi.getLeft();
+		double rightJoystickValue = Robot.oi.getRight();
+
+		Robot.driveSubsystem.drive(leftJoystickValue, rightJoystickValue);
+
 	}
 
 	@Override
