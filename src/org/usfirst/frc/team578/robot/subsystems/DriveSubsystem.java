@@ -47,6 +47,9 @@ public class DriveSubsystem extends Subsystem {
 		leftSlave.enableControl();
 		rightMaster.enableControl();
 		rightSlave.enableControl();
+
+		rightMaster.set(0);
+		leftMaster.set(0);
 	}
 
 }
