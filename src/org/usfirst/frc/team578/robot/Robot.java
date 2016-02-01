@@ -22,9 +22,9 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static DriveSubsystem driveSubsystem;
 
-	private SendableChooser StartingPositionChooser;
-	private SendableChooser DefenseChooser;
-	private SendableChooser ScoringPositionChooser;
+	private SendableChooser startingPositionChooser;
+	private SendableChooser defenseChooser;
+	private SendableChooser scoringPositionChooser;
 	Command autonomousCommand;
 
 	/**
@@ -36,38 +36,38 @@ public class Robot extends IterativeRobot {
 		// instantiate the command used for the autonomous period
 		driveSubsystem = new DriveSubsystem();
 		driveSubsystem.initialize();
-		initializeStartingPositionChooser();
+		initializestartingPositionChooser();
 	}
 
-	private void initializeStartingPositionChooser() {
+	private void initializestartingPositionChooser() {
 
-		StartingPositionChooser = new SendableChooser();
-		StartingPositionChooser.addDefault("1 Left", new Object());
-		StartingPositionChooser.addObject("2 Mid Left", new Object());
-		StartingPositionChooser.addObject("3 Center", new Object());
-		StartingPositionChooser.addObject("4 Mid Right", new Object());
-		StartingPositionChooser.addObject("5 Right", new Object());
-		SmartDashboard.putData("Starting Position", StartingPositionChooser);
+		startingPositionChooser = new SendableChooser();
+		startingPositionChooser.addDefault("1 Left", new Object());
+		startingPositionChooser.addObject("2 Mid Left", new Object());
+		startingPositionChooser.addObject("3 Center", new Object());
+		startingPositionChooser.addObject("4 Mid Right", new Object());
+		startingPositionChooser.addObject("5 Right", new Object());
+		SmartDashboard.putData("Starting Position", startingPositionChooser);
 	}
 
-	private void initalizeDefenseChooser() {
+	private void initalizedefenseChooser() {
 
-		DefenseChooser = new SendableChooser();
-		DefenseChooser.addDefault("Lowbar", new Object());
-		DefenseChooser.addObject("Moat", new Object());
-		DefenseChooser.addObject("Ramparts", new Object());
-		DefenseChooser.addObject("Rock Wall", new Object());
-		DefenseChooser.addObject("Rough Terrain", new Object());
-		SmartDashboard.putData("Defense Chooser", DefenseChooser);
+		defenseChooser = new SendableChooser();
+		defenseChooser.addDefault("Lowbar", new Object());
+		defenseChooser.addObject("Moat", new Object());
+		defenseChooser.addObject("Ramparts", new Object());
+		defenseChooser.addObject("Rock Wall", new Object());
+		defenseChooser.addObject("Rough Terrain", new Object());
+		SmartDashboard.putData("Defense Chooser", defenseChooser);
 	}
 
-	private void ScoringPositionChooser() {
+	private void initalizescoringPositionChooser() {
 
-		ScoringPositionChooser = new SendableChooser();
-		ScoringPositionChooser.addDefault("Left", new Object());
-		ScoringPositionChooser.addObject("Right", new Object());
-		ScoringPositionChooser.addObject("None", new Object());
-		SmartDashboard.putData("Scoring Position", ScoringPositionChooser);
+		scoringPositionChooser = new SendableChooser();
+		scoringPositionChooser.addDefault("Left", new Object());
+		scoringPositionChooser.addObject("Right", new Object());
+		scoringPositionChooser.addObject("None", new Object());
+		SmartDashboard.putData("Scoring Position", scoringPositionChooser);
 
 	}
 
