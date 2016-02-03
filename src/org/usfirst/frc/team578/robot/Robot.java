@@ -5,12 +5,13 @@ import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousCrossingLowBa
 import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousCrossingMoat;
 import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousCrossingRamparts;
 import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousCrossingRockWall;
+import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousCrossingRoughTerrain;
 import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousLeftToRally;
+import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousMaster;
 import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousMidRightToRally;
 import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousMiddleLeftToRally;
 import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousMiddleToRally;
 import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousRightToRally;
-import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousCrossingRoughTerrain;
 import org.usfirst.frc.team578.robot.subsystems.DriveSubsystem;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -53,11 +54,16 @@ public class Robot extends IterativeRobot {
 	private void initializestartingPositionChooser() {
 
 		startingPositionChooser = new SendableChooser();
-		startingPositionChooser.addDefault("1 Left", new AutonomousLeftToRally());
-		startingPositionChooser.addObject("2 Mid Left", new AutonomousMiddleLeftToRally());
-		startingPositionChooser.addObject("3 Center", new AutonomousMiddleToRally());
-		startingPositionChooser.addObject("4 Mid Right", new AutonomousMidRightToRally());
-		startingPositionChooser.addObject("5 Right", new AutonomousRightToRally());
+		startingPositionChooser.addDefault("1 Left",
+				new AutonomousLeftToRally());
+		startingPositionChooser.addObject("2 Mid Left",
+				new AutonomousMiddleLeftToRally());
+		startingPositionChooser.addObject("3 Center",
+				new AutonomousMiddleToRally());
+		startingPositionChooser.addObject("4 Mid Right",
+				new AutonomousMidRightToRally());
+		startingPositionChooser.addObject("5 Right",
+				new AutonomousRightToRally());
 		SmartDashboard.putData("Starting Position", startingPositionChooser);
 	}
 
@@ -89,7 +95,11 @@ public class Robot extends IterativeRobot {
 
 	public void autonomousInit() {
 		// schedule the autonomous command (example)
-		autonomousCommand = (Command) defenseChooser.getSelected();
+		Command autoDef = (Command) defenseChooser.getSelected();
+		Command autoRally = (Command) startingPositionChooser.getSelected();
+		Command autoScore = (Command) scoringPositionChooser.getSelected();
+		autonomousCommand = new AutonomousMaster(autoDef, autoRally, autoScore);
+
 		if (autonomousCommand != null)
 			autonomousCommand.start();
 	}
@@ -125,7 +135,7 @@ public class Robot extends IterativeRobot {
 		DriveCommand driveCommand = new DriveCommand();
 		driveCommand.start();
 		Scheduler.getInstance().run();
-	}b
+	}
 
 	/**
 	 * This function is called periodically during test mode
