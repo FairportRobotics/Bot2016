@@ -4,9 +4,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class AutonomousCrossingLowBar extends CommandGroup {
 
-	public AutonomousCrossingLowBar(double left, double right, double time) {
+	public AutonomousCrossingLowBar() {
 
-		addSequential(new AutonomousDriveCommand(left, right, time));
+		addSequential(new AutonomousDriveCommand(1, 1, 1.75));
 	}
 
 }
