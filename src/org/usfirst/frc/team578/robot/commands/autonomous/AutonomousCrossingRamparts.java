@@ -4,9 +4,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class AutonomousCrossingRamparts extends CommandGroup {
 
-	public AutonomousCrossingRamparts(double left, double right, double time) {
+	public AutonomousCrossingRamparts() {
 
-		addSequential(new AutonomousDriveCommand(left, right, time));
+		addSequential(new AutonomousDriveCommand(1, 1, 1.75));
 	}
 
 }
