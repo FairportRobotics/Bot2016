@@ -4,9 +4,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class AutonomousCrossingRockWall extends CommandGroup {
 
-	public AutonomousCrossingRockWall(double left, double right, double time) {
+	public AutonomousCrossingRockWall() {
 
-		addSequential(new AutonomousDriveCommand(left, right, time));
+		addSequential(new AutonomousDriveCommand(1, 1, 1.75));
 	}
 
 }
