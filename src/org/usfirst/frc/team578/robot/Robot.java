@@ -5,6 +5,11 @@ import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousCrossingLowBa
 import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousCrossingMoat;
 import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousCrossingRamparts;
 import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousCrossingRockWall;
+import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousLeftToRally;
+import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousMidRightToRally;
+import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousMiddleLeftToRally;
+import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousMiddleToRally;
+import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousRightToRally;
 import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousCrossingRoughTerrain;
 import org.usfirst.frc.team578.robot.subsystems.DriveSubsystem;
 
@@ -48,11 +53,11 @@ public class Robot extends IterativeRobot {
 	private void initializestartingPositionChooser() {
 
 		startingPositionChooser = new SendableChooser();
-		startingPositionChooser.addDefault("1 Left", new Object());
-		startingPositionChooser.addObject("2 Mid Left", new Object());
-		startingPositionChooser.addObject("3 Center", new Object());
-		startingPositionChooser.addObject("4 Mid Right", new Object());
-		startingPositionChooser.addObject("5 Right", new Object());
+		startingPositionChooser.addDefault("1 Left", new AutonomousLeftToRally());
+		startingPositionChooser.addObject("2 Mid Left", new AutonomousMiddleLeftToRally());
+		startingPositionChooser.addObject("3 Center", new AutonomousMiddleToRally());
+		startingPositionChooser.addObject("4 Mid Right", new AutonomousMidRightToRally());
+		startingPositionChooser.addObject("5 Right", new AutonomousRightToRally());
 		SmartDashboard.putData("Starting Position", startingPositionChooser);
 	}
 
@@ -120,7 +125,7 @@ public class Robot extends IterativeRobot {
 		DriveCommand driveCommand = new DriveCommand();
 		driveCommand.start();
 		Scheduler.getInstance().run();
-	}
+	}b
 
 	/**
 	 * This function is called periodically during test mode
