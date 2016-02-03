@@ -4,7 +4,6 @@ import org.usfirst.frc.team578.robot.commands.DriveCommand;
 import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousCrossingLowBar;
 import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousCrossingMoat;
 import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousCrossingRamparts;
-import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousCrossingRockWall;
 import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousCrossingRoughTerrain;
 import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousLeftToRally;
 import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousMaster;
@@ -44,8 +43,7 @@ public class Robot extends IterativeRobot {
 	 */
 	public void robotInit() {
 		oi = new OI();
-		// instantiate the command used for public void drivethe autonomous
-		// period
+		// instantiate the command used for the autonomous period
 		driveSubsystem = new DriveSubsystem();
 		driveSubsystem.initialize();
 		initializestartingPositionChooser();
@@ -70,10 +68,10 @@ public class Robot extends IterativeRobot {
 	private void initalizedefenseChooser() {
 
 		defenseChooser = new SendableChooser();
-		defenseChooser.addDefault("Lowbar", new AutonomousCrossingLowBar());
+		defenseChooser.addDefault("Lowbar", new Object());
 		defenseChooser.addObject("Moat", new AutonomousCrossingMoat());
 		defenseChooser.addObject("Ramparts", new AutonomousCrossingRamparts());
-		defenseChooser.addObject("Rock Wall", new AutonomousCrossingRockWall());
+		defenseChooser.addObject("Rock Wall", new Object());
 		defenseChooser.addObject("Rough Terrain",
 				new AutonomousCrossingRoughTerrain());
 		SmartDashboard.putData("Defense Chooser", defenseChooser);
@@ -113,9 +111,9 @@ public class Robot extends IterativeRobot {
 
 	public void teleopInit() {
 		// This makes sure that the autonomous stops running when
-		// teleop starts running. If you wapublic void drivent the autonomous to
+		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
-		// this line or comment it out.public void drive
+		// this line or comment it out.
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 	}
