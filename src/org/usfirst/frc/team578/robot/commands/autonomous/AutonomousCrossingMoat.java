@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class AutonomousCrossingMoat extends CommandGroup {
 
-	public AutonomousCrossingMoat(double left, double right, double time) {
+	public AutonomousCrossingMoat() {
 
 		addSequential(new AutonomousDriveCommand(1, 1, 1.75));
 	}
