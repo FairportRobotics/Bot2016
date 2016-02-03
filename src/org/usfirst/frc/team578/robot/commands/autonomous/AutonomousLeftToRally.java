@@ -10,7 +10,7 @@ public class AutonomousLeftToRally extends CommandGroup {
 		// point on the field and be ready for next phase
 
 		addSequential(new AutonomousDriveCommand(1, -1, .1));
-		addSequential(new AutonomousDriveCommand(1, 1, 1.066));
+		addSequential(new AutonomousDriveCommand(1, 1, 1.07));
 		addSequential(new AutonomousDriveCommand(-1, 1, .1));
 	}
 
