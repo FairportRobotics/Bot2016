@@ -2,8 +2,8 @@ package org.usfirst.frc.team578.robot;
 
 import org.usfirst.frc.team578.robot.commands.DriveCommand;
 import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousCrossingLowBar;
-import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousCrossingMoat;
 import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousCrossingRamparts;
+import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousCrossingRockWall;
 import org.usfirst.frc.team578.robot.subsystems.DriveSubsystem;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -36,7 +36,8 @@ public class Robot extends IterativeRobot {
 	 */
 	public void robotInit() {
 		oi = new OI();
-		// instantiate the command used for the autonomous period
+		// instantiate the command used for public void drivethe autonomous
+		// period
 		driveSubsystem = new DriveSubsystem();
 		driveSubsystem.initialize();
 		initializestartingPositionChooser();
@@ -57,9 +58,9 @@ public class Robot extends IterativeRobot {
 
 		defenseChooser = new SendableChooser();
 		defenseChooser.addDefault("Lowbar", new AutonomousCrossingLowBar());
-		defenseChooser.addObject("Moat", new AutonomousCrossingMoat());
+		defenseChooser.addObject("Moat", new Object());
 		defenseChooser.addObject("Ramparts", new AutonomousCrossingRamparts());
-		defenseChooser.addObject("Rock Wall", new Object());
+		defenseChooser.addObject("Rock Wall", new AutonomousCrossingRockWall());
 		defenseChooser.addObject("Rough Terrain", new Object());
 		SmartDashboard.putData("Defense Chooser", defenseChooser);
 	}
@@ -93,9 +94,9 @@ public class Robot extends IterativeRobot {
 
 	public void teleopInit() {
 		// This makes sure that the autonomous stops running when
-		// teleop starts running. If you want the autonomous to
+		// teleop starts running. If you wapublic void drivent the autonomous to
 		// continue until interrupted by another command, remove
-		// this line or comment it out.
+		// this line or comment it out.public void drive
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 	}
