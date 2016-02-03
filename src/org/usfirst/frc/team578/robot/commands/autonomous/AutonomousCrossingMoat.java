@@ -6,7 +6,7 @@ public class AutonomousCrossingMoat extends CommandGroup {
 
 	public AutonomousCrossingMoat(double left, double right, double time) {
 
-		addSequential(new AutonomousDriveCommand(left, right, time));
+		addSequential(new AutonomousDriveCommand(1, 1, 1.75));
 	}
 
 }
