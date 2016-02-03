@@ -1,8 +1,8 @@
 package org.usfirst.frc.team578.robot;
 
 import org.usfirst.frc.team578.robot.commands.DriveCommand;
-import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousCrossingRamparts;
 import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousCrossingMoat;
+import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousCrossingRamparts;
 import org.usfirst.frc.team578.robot.subsystems.DriveSubsystem;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -56,7 +56,7 @@ public class Robot extends IterativeRobot {
 
 		defenseChooser = new SendableChooser();
 		defenseChooser.addDefault("Lowbar", new Object());
-		defenseChooser.addObject("Moat", new Object());
+		defenseChooser.addObject("Moat", new AutonomousCrossingMoat());
 		defenseChooser.addObject("Ramparts", new AutonomousCrossingRamparts());
 		defenseChooser.addObject("Rock Wall", new Object());
 		defenseChooser.addObject("Rough Terrain", new Object());

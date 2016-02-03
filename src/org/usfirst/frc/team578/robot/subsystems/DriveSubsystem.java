@@ -24,9 +24,9 @@ public class DriveSubsystem extends Subsystem {
 		leftMaster = new CANTalon(RobotMap.LEFT_MASTER);
 		leftSlave = new CANTalon(RobotMap.LEFT_SLAVE);
 
-		rightMaster.setSafetyEnabled(false);
+		rightMaster.setSafetyEnabled(true);
 		rightSlave.setSafetyEnabled(false);
-		leftMaster.setSafetyEnabled(false);
+		leftMaster.setSafetyEnabled(true);
 		leftSlave.setSafetyEnabled(false);
 
 		rightMaster.setExpiration(.25);
@@ -40,13 +40,13 @@ public class DriveSubsystem extends Subsystem {
 		rightSlave.changeControlMode(CANTalon.TalonControlMode.Follower);
 		leftSlave.changeControlMode(CANTalon.TalonControlMode.Follower);
 
+		rightSlave.set(RobotMap.RIGHT_MASTER);
+		leftSlave.set(RobotMap.LEFT_MASTER);
+
 		leftMaster.enableControl();
 		leftSlave.enableControl();
 		rightMaster.enableControl();
 		rightSlave.enableControl();
-
-		rightSlave.set(RobotMap.RIGHT_MASTER);
-		leftSlave.set(RobotMap.LEFT_MASTER);
 
 		rightMaster.set(0);
 		leftMaster.set(0);
@@ -54,7 +54,7 @@ public class DriveSubsystem extends Subsystem {
 
 	public void drive(double left, double right) {
 
-		leftMaster.set(-left);
+		leftMaster.set(left);
 		rightMaster.set(right);
 
 	}
