@@ -1,6 +1,11 @@
 package org.usfirst.frc.team578.robot;
 
+import org.usfirst.frc.team578.robot.commands.IntakeCommand;
+import org.usfirst.frc.team578.robot.commands.OutputCommand;
+
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -38,11 +43,30 @@ public class OI {
 	Joystick leftJoystick = new Joystick(RobotMap.LEFT_JOYSTICK);
 	Joystick rightJoystick = new Joystick(RobotMap.RIGHT_JOYSTICK);
 
+	Joystick gamePad = new Joystick(RobotMap.GAMEPAD);
+	Button buttonSix = new JoystickButton(gamePad, 6);
+	Button buttonFive = new JoystickButton(gamePad, 5);
+
+	public void initializeOI() {
+		buttonSix.whileHeld(new IntakeCommand());
+		buttonFive.whileHeld(new OutputCommand());
+	}
+
 	public double getLeft() {
 		return leftJoystick.getY();
 	}
 
 	public double getRight() {
 		return rightJoystick.getY();
+	}
+
+	public boolean getButtonSix() {
+
+		return buttonSix.get();
+
+	}
+
+	public boolean getButtonFive() {
+		return buttonFive.get();
 	}
 }

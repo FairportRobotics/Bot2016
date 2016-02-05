@@ -1,7 +1,6 @@
 package org.usfirst.frc.team578.robot;
 
 import org.usfirst.frc.team578.robot.commands.DriveCommand;
-import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousCrossingLowBar;
 import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousCrossingMoat;
 import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousCrossingRamparts;
 import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousCrossingRoughTerrain;
@@ -12,10 +11,13 @@ import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousMiddleLeftToR
 import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousMiddleToRally;
 import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousRightToRally;
 import org.usfirst.frc.team578.robot.subsystems.DriveSubsystem;
+import org.usfirst.frc.team578.robot.subsystems.IntakeSubsystem;
 
+import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -31,11 +33,14 @@ public class Robot extends IterativeRobot {
 
 	public static OI oi;
 	public static DriveSubsystem driveSubsystem;
+	public static IntakeSubsystem intakeSubsystem;
 
 	private SendableChooser startingPositionChooser;
 	private SendableChooser defenseChooser;
 	private SendableChooser scoringPositionChooser;
 	Command autonomousCommand;
+
+	private Accelerometer accel;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -46,10 +51,14 @@ public class Robot extends IterativeRobot {
 		// instantiate the command used for the autonomous period
 		driveSubsystem = new DriveSubsystem();
 		driveSubsystem.initialize();
-		initializestartingPositionChooser();
+		initializeStartingPositionChooser();
+		initializeScoringPositionChooser();
+		initializeDefenseChooser();
+
+		accel = new BuiltInAccelerometer();
 	}
 
-	private void initializestartingPositionChooser() {
+	private void initializeStartingPositionChooser() {
 
 		startingPositionChooser = new SendableChooser();
 		startingPositionChooser.addDefault("1 Left",
@@ -65,7 +74,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Starting Position", startingPositionChooser);
 	}
 
-	private void initalizedefenseChooser() {
+	private void initializeDefenseChooser() {
 
 		defenseChooser = new SendableChooser();
 		defenseChooser.addDefault("Lowbar", new Object());
@@ -77,7 +86,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Defense Chooser", defenseChooser);
 	}
 
-	private void initalizescoringPositionChooser() {
+	private void initializeScoringPositionChooser() {
 
 		scoringPositionChooser = new SendableChooser();
 		scoringPositionChooser.addDefault("Left", new Object());
@@ -107,6 +116,9 @@ public class Robot extends IterativeRobot {
 	 */
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+		SmartDashboard.putNumber("Accel X", accel.getX());
+		SmartDashboard.putNumber("Accel Y", accel.getY());
+		SmartDashboard.putNumber("Accel Z", accel.getZ());
 	}
 
 	public void teleopInit() {
