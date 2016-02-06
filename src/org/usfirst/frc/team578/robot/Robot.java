@@ -12,6 +12,7 @@ import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousMiddleToRally
 import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousRightToRally;
 import org.usfirst.frc.team578.robot.subsystems.DriveSubsystem;
 import org.usfirst.frc.team578.robot.subsystems.IntakeSubsystem;
+import org.usfirst.frc.team578.robot.subsystems.LoggingSubsystem;
 
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -34,6 +35,7 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static DriveSubsystem driveSubsystem;
 	public static IntakeSubsystem intakeSubsystem;
+	public static LoggingSubsystem loggingSubsystem;
 
 	private SendableChooser startingPositionChooser;
 	private SendableChooser defenseChooser;
@@ -47,6 +49,8 @@ public class Robot extends IterativeRobot {
 	 * used for any initialization code.
 	 */
 	public void robotInit() {
+		loggingSubsystem = new LoggingSubsystem();
+		loggingSubsystem.log("robot startup");
 		oi = new OI();
 		// instantiate the command used for the autonomous period
 		driveSubsystem = new DriveSubsystem();
