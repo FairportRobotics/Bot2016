@@ -5,8 +5,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class AutonomousMaster extends CommandGroup {
 
-	public AutonomousMaster(Command crossing, Command movingToRally,
-			Command scoring) {
+	public AutonomousMaster(Command crossing, Command movingToRally, Command scoring) {
 
 		addSequential(crossing);
 		addSequential(movingToRally);
