@@ -44,9 +44,4 @@ public class DriveCommand extends Command {
 		// TODO Auto-generated method stub
 
 	}
-
-	public static void main(String[] args) {
-
-	}
-
 }

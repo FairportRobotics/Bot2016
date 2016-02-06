@@ -33,6 +33,8 @@ public class ArmCommand extends Command {
 			Robot.armSubsystem.backwards(Math.abs(leftJoystickValue));
 
 		} else {
+			double maxStopBuffer = .3;
+			double minStopBuffer = -.3;
 			// stop
 			Robot.armSubsystem.stop();
 
@@ -54,9 +56,4 @@ public class ArmCommand extends Command {
 	protected void interrupted() {
 
 	}
-
-	public static void main(String[] args) {
-
-	}
-
 }
