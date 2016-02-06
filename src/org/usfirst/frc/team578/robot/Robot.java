@@ -65,6 +65,12 @@ public class Robot extends IterativeRobot {
 		armSubsystem = new ArmSubsystem();
 		armSubsystem.initialize();
 
+		intakeSubsystem = new IntakeSubsystem();
+		intakeSubsystem.initialize();
+
+		winchSubsystem = new WinchSubsystem();
+		winchSubsystem.initialize();
+
 		accel = new BuiltInAccelerometer();
 	}
 

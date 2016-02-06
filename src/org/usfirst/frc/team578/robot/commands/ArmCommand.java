@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ArmCommand extends Command {
 
 	public static final double MAX_STOP_BUFFER = 0.3;
-	public static final double MIN_STOP_BUFFER = 0.3;
+	public static final double MIN_STOP_BUFFER = -0.3;
 
 	public ArmCommand() {
 		requires(Robot.armSubsystem);
@@ -21,20 +21,18 @@ public class ArmCommand extends Command {
 	@Override
 	protected void execute() {
 
-		double leftJoystickValue = Robot.oi.getLeft();
+		double armJoystickValue = Robot.oi.getArmJoystick();
 
-		if (leftJoystickValue > MAX_STOP_BUFFER) {
+		if (armJoystickValue > MAX_STOP_BUFFER) {
 			// forward
-			Robot.armSubsystem.forward(leftJoystickValue);
+			Robot.armSubsystem.forward(armJoystickValue);
 
-		} else if (leftJoystickValue < MIN_STOP_BUFFER) {
+		} else if (armJoystickValue < MIN_STOP_BUFFER) {
 			// backwards will negate any value passed to it
-			// so we need to make sure the joystick value is positivez
-			Robot.armSubsystem.backwards(Math.abs(leftJoystickValue));
+			// so we need to make sure the joystick value is positive
+			Robot.armSubsystem.backwards(Math.abs(armJoystickValue));
 
 		} else {
-			double maxStopBuffer = .3;
-			double minStopBuffer = -.3;
 			// stop
 			Robot.armSubsystem.stop();
 

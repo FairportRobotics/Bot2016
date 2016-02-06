@@ -14,7 +14,7 @@ public class IntakeSubsystem extends Subsystem {
 
 	}
 
-	public void initializeIntakeSubsystem() {
+	public void initialize() {
 		intakeTalon = new CANTalon(RobotMap.INTAKE_TALON);
 		intakeTalon.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 		intakeTalon.enable();
