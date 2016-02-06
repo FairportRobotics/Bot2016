@@ -14,6 +14,8 @@ public class RobotMap {
 	public static final int LEFT_MASTER = 13;
 	public static final int LEFT_SLAVE = 14;
 
+	public static final int WINCH_TALON = 78;
+
 	public static final int INTAKE_TALON = 99;
 
 	public static final int LEFT_JOYSTICK = 0;
