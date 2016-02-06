@@ -10,6 +10,7 @@ import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousMidRightToRal
 import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousMiddleLeftToRally;
 import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousMiddleToRally;
 import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousRightToRally;
+import org.usfirst.frc.team578.robot.subsystems.ArmSubsystem;
 import org.usfirst.frc.team578.robot.subsystems.DriveSubsystem;
 import org.usfirst.frc.team578.robot.subsystems.IntakeSubsystem;
 import org.usfirst.frc.team578.robot.subsystems.LoggingSubsystem;
@@ -38,6 +39,7 @@ public class Robot extends IterativeRobot {
 	public static IntakeSubsystem intakeSubsystem;
 	public static WinchSubsystem winchSubsystem;
 	public static LoggingSubsystem loggingSubsystem;
+	public static ArmSubsystem armSubsystem;
 
 	private SendableChooser startingPositionChooser;
 	private SendableChooser defenseChooser;
@@ -58,6 +60,10 @@ public class Robot extends IterativeRobot {
 		initializeStartingPositionChooser();
 		initializeScoringPositionChooser();
 		initializeDefenseChooser();
+
+		// initialize arm
+		armSubsystem = new ArmSubsystem();
+		armSubsystem.initialize();
 
 		accel = new BuiltInAccelerometer();
 	}

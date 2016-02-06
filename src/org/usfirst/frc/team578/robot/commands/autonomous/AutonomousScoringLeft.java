@@ -21,5 +21,4 @@ public class AutonomousScoringLeft extends CommandGroup {
 		addSequential(new AutonomousDriveCommand(0, 0, .1)); // stop
 
 	}
-
 }

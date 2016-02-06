@@ -16,12 +16,16 @@ public class RobotMap {
 
 	public static final int WINCH_TALON = 78;
 
+	// Intake Subsystem
 	public static final int INTAKE_TALON = 99;
 
+	// Arm Subsystem
+	public static final int ARM_TALON = 99;
+
+	// Driver Station IDs
 	public static final int LEFT_JOYSTICK = 0;
 	public static final int RIGHT_JOYSTICK = 1;
 	public static final int GAMEPAD = 2;
-
 	public static final int INTAKE_BUTTON = 3;
 
 }
