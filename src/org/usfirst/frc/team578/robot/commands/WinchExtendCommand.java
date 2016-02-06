@@ -6,6 +6,8 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class WinchExtendCommand extends Command {
 
+	private double time = 4.0;
+
 	public WinchExtendCommand() {
 		requires(Robot.winchSubsystem);
 	}
@@ -24,7 +26,7 @@ public class WinchExtendCommand extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		return (timeSinceInitialized() >= 4);
+		return (timeSinceInitialized() >= time);
 
 	}
 

@@ -5,6 +5,7 @@ import org.usfirst.frc.team578.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class WinchStopCommand extends Command {
+	private double time = .1;
 
 	public WinchStopCommand() {
 		requires(Robot.winchSubsystem);
@@ -24,7 +25,7 @@ public class WinchStopCommand extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		return (timeSinceInitialized() >= .1);
+		return (timeSinceInitialized() >= time);
 	}
 
 	@Override

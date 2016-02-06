@@ -5,6 +5,7 @@ import org.usfirst.frc.team578.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class WinchRetractCommand extends Command {
+	private double time = 4.0;
 
 	public WinchRetractCommand() {
 		requires(Robot.winchSubsystem);
@@ -22,7 +23,7 @@ public class WinchRetractCommand extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		return (timeSinceInitialized() >= 4);
+		return (timeSinceInitialized() >= time);
 	}
 
 	@Override
