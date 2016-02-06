@@ -3,6 +3,7 @@ package org.usfirst.frc.team578.robot.subsystems;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.Time;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -28,8 +29,10 @@ public class LoggingSubsystem extends Subsystem {
 
 	public void log(String message) {
 		if (Intialized) {
+
 			try {
-				output.write(message);
+				Time now = new Time(System.currentTimeMillis());
+				output.write(now.toString() + ":" + message);
 				output.newLine();
 				output.flush();
 			} catch (IOException e) {
