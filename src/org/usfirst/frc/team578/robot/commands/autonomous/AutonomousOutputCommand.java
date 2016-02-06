@@ -21,18 +21,19 @@ public class AutonomousOutputCommand extends Command {
 	@Override
 	protected void execute() {
 		// TODO Auto-generated method stub
-
+		Robot.intakeSubsystem.spinOutput();
 	}
 
 	@Override
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
-		return false;
+		return (timeSinceInitialized() >= runTime || runTime == 0);
 	}
 
 	@Override
 	protected void end() {
 		// TODO Auto-generated method stub
+		Robot.intakeSubsystem.spinStop();
 
 	}
 
