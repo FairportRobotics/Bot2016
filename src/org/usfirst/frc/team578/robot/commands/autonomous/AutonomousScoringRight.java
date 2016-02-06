@@ -25,6 +25,7 @@ public class AutonomousScoringRight extends CommandGroup {
 																// degrees
 		addSequential(new AutonomousDriveCommand(0, 0, 0));// stops
 		addSequential(new AutonomousDriveCommand(1, 1, .47));// forward 4 feet
+		addSequential(new AutonomousOutputCommand());// shoots out the ball
 		addSequential(new AutonomousDriveCommand(0, 0, 0));// stops
 
 	}
