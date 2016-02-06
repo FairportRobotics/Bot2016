@@ -21,6 +21,7 @@ import org.usfirst.frc.team578.robot.subsystems.LoggingSubsystem;
 import org.usfirst.frc.team578.robot.subsystems.WinchSubsystem;
 
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -51,6 +52,7 @@ public class Robot extends IterativeRobot {
 	private Command autonomousCommand;
 
 	private Accelerometer accel;
+	private CameraServer camera;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -77,6 +79,10 @@ public class Robot extends IterativeRobot {
 		winchSubsystem.initialize();
 
 		accel = new BuiltInAccelerometer();
+
+		camera = CameraServer.getInstance();
+		camera.setQuality(50);
+		camera.startAutomaticCapture("cam0");
 
 		// These need to happen after
 		// the subsystems are initialized
