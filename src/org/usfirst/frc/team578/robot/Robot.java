@@ -44,7 +44,7 @@ public class Robot extends IterativeRobot {
 	private SendableChooser startingPositionChooser;
 	private SendableChooser defenseChooser;
 	private SendableChooser scoringPositionChooser;
-	Command autonomousCommand;
+	private Command autonomousCommand;
 
 	private Accelerometer accel;
 
