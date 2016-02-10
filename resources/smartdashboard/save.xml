@@ -1,0 +1,62 @@
+<xml version="1.0">
+<dashboard>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.WebcamViewerExtension">
+		<location x="750" y="8"/>
+		<width>587</width>
+		<height>486</height>
+	</static-widget>
+	<widget field="beforeScoringDelayValue" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="295" y="51"/>
+	</widget>
+	<widget field="beforeRallyDelayValue" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="308" y="31"/>
+	</widget>
+	<widget field="beforeDefenseDelayValue" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="293" y="9"/>
+	</widget>
+	<widget field="beforeScoringDelay" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.CheckBox">
+		<location x="160" y="51"/>
+	</widget>
+	<widget field="beforeRallyDelay" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.CheckBox">
+		<location x="159" y="30"/>
+	</widget>
+	<widget field="beforeDefenseDelay" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.CheckBox">
+		<location x="159" y="8"/>
+	</widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="181" y="54"/>
+		<property name="Text" value="Before Scoring Delay"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="184" y="32"/>
+		<property name="Text" value="Before Rally Delay"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="185" y="12"/>
+		<property name="Text" value="Before Defense Delay"/>
+	</static-widget>
+	<widget field="Accel Z" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="42"/>
+	</widget>
+	<widget field="Accel Y" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="21"/>
+	</widget>
+	<widget field="Accel X" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="0"/>
+	</widget>
+	<widget field="Defense Chooser" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
+		<location x="521" y="108"/>
+	</widget>
+	<widget field="Scoring Position" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
+		<location x="661" y="126"/>
+	</widget>
+	<widget field="Starting Position" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
+		<location x="430" y="110"/>
+	</widget>
+	<widget field="Autonomous Strategy" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
+		<location x="6" y="461"/>
+	</widget>
+</dashboard>
+<live-window>
+</live-window>
+</xml>
