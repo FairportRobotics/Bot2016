@@ -28,7 +28,6 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -55,7 +54,6 @@ public class Robot extends IterativeRobot {
 	private SendableChooser scoringPositionChooser;
 	private Command autonomousCommand;
 
-	private Accelerometer accel;
 	private CameraServer camera;
 
 	/**
@@ -83,8 +81,6 @@ public class Robot extends IterativeRobot {
 		winchSubsystem.initialize();
 
 		navx = new AHRS(SPI.Port.kMXP);
-
-		// accel = new BuiltInAccelerometer();
 
 		camera = CameraServer.getInstance();
 		camera.setQuality(50);
@@ -167,9 +163,7 @@ public class Robot extends IterativeRobot {
 	 */
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
-		SmartDashboard.putNumber("Accel X", accel.getX());
-		SmartDashboard.putNumber("Accel Y", accel.getY());
-		SmartDashboard.putNumber("Accel Z", accel.getZ());
+		SmartDashboard.putBoolean("navxConnected", navx.isConnected());
 
 		boolean beforeDefenseDelay = SmartDashboard.getBoolean("beforeDefenseDelay");
 		boolean beforeRallyDelay = SmartDashboard.getBoolean("beforeRallyDelay");
