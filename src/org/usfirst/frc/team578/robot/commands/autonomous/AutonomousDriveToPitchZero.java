@@ -6,16 +6,16 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class AutonomousDriveToPitchZero extends Command {
 
-	private int rampcount;
+	private int offrampDetections;
 
 	private double left;
 	private double right;
 
-	private boolean onTheFloor;
-	private boolean onTheRamp;
+	private boolean floorDetected;
+	private boolean offrampDetected;
 
-	private static final int PITCHBOUND = 5;
-	private static final int PITCHCOUNT = 5;
+	private static final int ZERO_PITCH_DEADZONE = 5;
+	private static final int OFFRAMP_DETECTIONS_REQUIRED = 5;
 
 	public AutonomousDriveToPitchZero(double left, double right) {
 		requires(Robot.driveSubsystem);
@@ -25,32 +25,46 @@ public class AutonomousDriveToPitchZero extends Command {
 
 	@Override
 	protected void initialize() {
-		onTheFloor = false;
-		onTheRamp = false;
-		rampcount = 0;
+		floorDetected = false;
+		offrampDetected = false;
+		offrampDetections = 0;
 	}
 
 	@Override
 	protected void execute() {
 
-		if (!onTheFloor) {
-			if (onTheRamp) {
-				if ((Robot.navx.getPitch() > -PITCHBOUND)
-						&& (Robot.navx.getPitch() < PITCHBOUND)) {
-					onTheFloor = true;
+		if (floorDetected) {
+			// Stop the robot when the floor is found
+			Robot.driveSubsystem.drive(0, 0);
+		} else {
+			// no floor yet..
+			if (offrampDetected) {
+				// found the offramp, look for floor
+				if ((Robot.navx.getPitch() > -ZERO_PITCH_DEADZONE) && (Robot.navx.getPitch() < ZERO_PITCH_DEADZONE)) {
+					floorDetected = true;
 					Robot.driveSubsystem.drive(0, 0);
 				} else {
+					// floor not detected, keep driving
 					Robot.driveSubsystem.drive(left, right);
 				}
 			} else {
+				// now search for offramp
+
+				// keep moving..maybe we'll get to the offramp now
 				Robot.driveSubsystem.drive(left, right);
-				if (Robot.navx.getPitch() < -PITCHBOUND) {
-					rampcount++;
+
+				// Check for offramp
+				if (Robot.navx.getPitch() < -ZERO_PITCH_DEADZONE) {
+					// found a possible offramp point
+					offrampDetections++;
 				} else {
-					rampcount = 0;
+					// if we're facing up, we're not on a down ramp
+					offrampDetections = 0;
 				}
-				if (rampcount > PITCHCOUNT) {
-					onTheRamp = true;
+
+				// We found enough indications that we're on the offramp
+				if (offrampDetections > OFFRAMP_DETECTIONS_REQUIRED) {
+					offrampDetected = true;
 				}
 			}
 		}
@@ -58,7 +72,7 @@ public class AutonomousDriveToPitchZero extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		return onTheFloor;
+		return floorDetected;
 
 	}
 
