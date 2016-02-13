@@ -24,7 +24,7 @@ public class AutonomousTurntoZeroCommand extends Command {
 				|| Robot.navx.getFusedHeading() < 0 + error) {
 			Robot.driveSubsystem.drive(0, 0);
 		} else if (Robot.navx.getFusedHeading() <= 360 - error
-				|| Robot.navx.getFusedHeading() > 180) {
+				&& Robot.navx.getFusedHeading() > 180) {
 			Robot.driveSubsystem.drive(1, -1);
 		} else {
 			Robot.driveSubsystem.drive(-1, 1);
