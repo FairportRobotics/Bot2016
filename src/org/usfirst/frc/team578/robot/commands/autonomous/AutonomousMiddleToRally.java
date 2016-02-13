@@ -6,9 +6,9 @@ public class AutonomousMiddleToRally extends CommandGroup {
 
 	public AutonomousMiddleToRally() {
 
-		addSequential(new AutonomousDriveCommand(1, -1, .1));
+		addSequential(new AutonomousTurnRight());
 		addSequential(new AutonomousDriveCommand(1, 1, .21317829));
-		addSequential(new AutonomousDriveCommand(-1, 1, .1));
+		addSequential(new AutonomousTurntoZeroCommand());
 
 		// The idea here is to move to a common (known)
 		// point on the field and be ready for next phase
