@@ -9,7 +9,7 @@ public class AutonomousCrossingRockWall extends CommandGroup {
 		addSequential(new AutonomousDriveToPitchZero(1, 1));
 		// moves from edge of O.W. to Alignment Line [down]
 		addSequential(new AutonomousDriveCommand(1, 1, .173));
-		// sets robot roll to 0 degrees [down]
+		// sets robot yaw to 0 degrees [down]
 		addSequential(new AutonomousTurntoZeroCommand());
 	}
 
