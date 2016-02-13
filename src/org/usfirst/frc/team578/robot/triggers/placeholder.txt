@@ -1,1 +1,19 @@
-the quick red fox jumped over a lazy brown dog qwertyuiop
+
+Things we need to test
+- climbing winch
+- ball intake and output
+- autonomous mode movements (all of them)
+-- distance
+-- turning radius
+-- break down into motions and test individually (which implies testing each defense)
+-- UI works as expected
+-- pitch stuff is working
+- teleop driving
+- testing the arm
+- fully integrated autonomous mode (start to end)
+- camera functionality (which way should the camera face)
+- validate the addresses of every talon (RobotMap)
+- establish any calibration routines
+- clean UI (get competition involved)
+- ?
+- profit
