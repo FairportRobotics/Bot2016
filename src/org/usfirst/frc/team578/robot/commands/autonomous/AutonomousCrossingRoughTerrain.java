@@ -6,7 +6,7 @@ public class AutonomousCrossingRoughTerrain extends CommandGroup {
 
 	public AutonomousCrossingRoughTerrain() {
 
-		addSequential(new AutonomousDriveCommand(1, 1, 1.75));
+		addSequential(new AutonomousDriveToPitchZero(1, 1));
 		addSequential(new AutonomousTurntoZeroCommand());
 	}
 
