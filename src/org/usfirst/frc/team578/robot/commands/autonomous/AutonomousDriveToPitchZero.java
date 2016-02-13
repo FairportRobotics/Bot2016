@@ -34,8 +34,6 @@ public class AutonomousDriveToPitchZero extends Command {
 	protected void execute() {
 
 		if (!onTheFloor) {
-			Robot.driveSubsystem.drive(left, right);
-		} else {
 			if (onTheRamp) {
 				if ((Robot.navx.getPitch() > -PITCHBOUND)
 						&& (Robot.navx.getPitch() < PITCHBOUND)) {
