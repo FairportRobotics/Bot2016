@@ -20,9 +20,11 @@ import org.usfirst.frc.team578.robot.subsystems.IntakeSubsystem;
 import org.usfirst.frc.team578.robot.subsystems.LoggingSubsystem;
 import org.usfirst.frc.team578.robot.subsystems.WinchSubsystem;
 
-import edu.wpi.first.wpilibj.BuiltInAccelerometer;
+import com.kauailabs.navx.frc.AHRS;
+
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
@@ -45,6 +47,7 @@ public class Robot extends IterativeRobot {
 	public static WinchSubsystem winchSubsystem;
 	public static LoggingSubsystem loggingSubsystem;
 	public static ArmSubsystem armSubsystem;
+	public static AHRS navx;
 
 	private SendableChooser startingPositionChooser;
 	private SendableChooser defenseChooser;
@@ -78,7 +81,9 @@ public class Robot extends IterativeRobot {
 		winchSubsystem = new WinchSubsystem();
 		winchSubsystem.initialize();
 
-		accel = new BuiltInAccelerometer();
+		navx = new AHRS(SPI.Port.kMXP);
+
+		// accel = new BuiltInAccelerometer();
 
 		camera = CameraServer.getInstance();
 		camera.setQuality(50);
@@ -106,11 +111,16 @@ public class Robot extends IterativeRobot {
 	private void initializeStartingPositionChooser() {
 
 		startingPositionChooser = new SendableChooser();
-		startingPositionChooser.addDefault("1 Left", new AutonomousLeftToRally());
-		startingPositionChooser.addObject("2 Mid Left", new AutonomousMiddleLeftToRally());
-		startingPositionChooser.addObject("3 Center", new AutonomousMiddleToRally());
-		startingPositionChooser.addObject("4 Mid Right", new AutonomousMidRightToRally());
-		startingPositionChooser.addObject("5 Right", new AutonomousRightToRally());
+		startingPositionChooser.addDefault("1 Left",
+				new AutonomousLeftToRally());
+		startingPositionChooser.addObject("2 Mid Left",
+				new AutonomousMiddleLeftToRally());
+		startingPositionChooser.addObject("3 Center",
+				new AutonomousMiddleToRally());
+		startingPositionChooser.addObject("4 Mid Right",
+				new AutonomousMidRightToRally());
+		startingPositionChooser.addObject("5 Right",
+				new AutonomousRightToRally());
 		SmartDashboard.putData("Starting Position", startingPositionChooser);
 	}
 
@@ -121,7 +131,8 @@ public class Robot extends IterativeRobot {
 		defenseChooser.addObject("Moat", new AutonomousCrossingMoat());
 		defenseChooser.addObject("Ramparts", new AutonomousCrossingRamparts());
 		defenseChooser.addObject("Rock Wall", new AutonomousCrossingRockWall());
-		defenseChooser.addObject("Rough Terrain", new AutonomousCrossingRoughTerrain());
+		defenseChooser.addObject("Rough Terrain",
+				new AutonomousCrossingRoughTerrain());
 		SmartDashboard.putData("Defense Chooser", defenseChooser);
 	}
 
@@ -160,16 +171,23 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Accel Y", accel.getY());
 		SmartDashboard.putNumber("Accel Z", accel.getZ());
 
-		boolean beforeDefenseDelay = SmartDashboard.getBoolean("beforeDefenseDelay");
-		boolean beforeRallyDelay = SmartDashboard.getBoolean("beforeRallyDelay");
-		boolean beforeScoringDelay = SmartDashboard.getBoolean("beforeScoringDelay");
+		boolean beforeDefenseDelay = SmartDashboard
+				.getBoolean("beforeDefenseDelay");
+		boolean beforeRallyDelay = SmartDashboard
+				.getBoolean("beforeRallyDelay");
+		boolean beforeScoringDelay = SmartDashboard
+				.getBoolean("beforeScoringDelay");
 
-		int beforeDefenseDelayValue = SmartDashboard.getInt("beforeDefenseDelayValue");
-		int beforeRallyDelayValue = SmartDashboard.getInt("beforeRallyDelayValue");
-		int beforeScoringDelayValue = SmartDashboard.getInt("beforeScoringDelayValue");
+		int beforeDefenseDelayValue = SmartDashboard
+				.getInt("beforeDefenseDelayValue");
+		int beforeRallyDelayValue = SmartDashboard
+				.getInt("beforeRallyDelayValue");
+		int beforeScoringDelayValue = SmartDashboard
+				.getInt("beforeScoringDelayValue");
 
 		if (beforeDefenseDelay) {
-			System.err.println("beforeDefenseDelayValue : " + beforeDefenseDelayValue);
+			System.err.println("beforeDefenseDelayValue : "
+					+ beforeDefenseDelayValue);
 		}
 
 		if (beforeRallyDelay) {
@@ -177,7 +195,8 @@ public class Robot extends IterativeRobot {
 		}
 
 		if (beforeScoringDelay) {
-			System.err.println("beforeScoringDelay : " + beforeScoringDelayValue);
+			System.err.println("beforeScoringDelay : "
+					+ beforeScoringDelayValue);
 		}
 	}
 
