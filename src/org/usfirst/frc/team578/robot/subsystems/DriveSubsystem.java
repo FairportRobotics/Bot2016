@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class DriveSubsystem extends Subsystem {
-
+	// variables for talons
 	private CANTalon rightMaster;
 	private CANTalon rightSlave;
 	private CANTalon leftMaster;
@@ -18,6 +18,7 @@ public class DriveSubsystem extends Subsystem {
 
 	}
 
+	// assigns the talon variables to an ID from RobotMap.java
 	public void initialize() {
 		rightMaster = new CANTalon(RobotMap.RIGHT_MASTER);
 		rightSlave = new CANTalon(RobotMap.RIGHT_SLAVE);

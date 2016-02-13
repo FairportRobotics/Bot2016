@@ -1,6 +1,8 @@
 package org.usfirst.frc.team578.robot;
 
 import org.usfirst.frc.team578.robot.commands.DriveCommand;
+import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousAwayFromGoalLeft;
+import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousAwayFromGoalRight;
 import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousCrossingLowBar;
 import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousCrossingMoat;
 import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousCrossingRamparts;
@@ -37,7 +39,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * functions corresponding to each mode, as described in the IterativeRobot
  * documentITableation. If you change the name of this class or the package
  * after creating this project, you must also update the manifest file in the
- * resource directory.
+ * resource directory.time
  */
 public class Robot extends IterativeRobot {
 
@@ -92,6 +94,7 @@ public class Robot extends IterativeRobot {
 		initializeScoringPositionChooser();
 		initializeDefenseChooser();
 		initializeDelayChooser();
+		initializeScoringBackAwayChooser();
 	}
 
 	private void initializeDelayChooser() {
@@ -108,11 +111,16 @@ public class Robot extends IterativeRobot {
 	private void initializeStartingPositionChooser() {
 
 		startingPositionChooser = new SendableChooser();
-		startingPositionChooser.addDefault("1 Left", new AutonomousLeftToRally());
-		startingPositionChooser.addObject("2 Mid Left", new AutonomousMiddleLeftToRally());
-		startingPositionChooser.addObject("3 Center", new AutonomousMiddleToRally());
-		startingPositionChooser.addObject("4 Mid Right", new AutonomousMidRightToRally());
-		startingPositionChooser.addObject("5 Right", new AutonomousRightToRally());
+		startingPositionChooser.addDefault("1 Left",
+				new AutonomousLeftToRally());
+		startingPositionChooser.addObject("2 Mid Left",
+				new AutonomousMiddleLeftToRally());
+		startingPositionChooser.addObject("3 Center",
+				new AutonomousMiddleToRally());
+		startingPositionChooser.addObject("4 Mid Right",
+				new AutonomousMidRightToRally());
+		startingPositionChooser.addObject("5 Right",
+				new AutonomousRightToRally());
 
 		SmartDashboard.putData("Starting Position", startingPositionChooser);
 	}
@@ -124,7 +132,8 @@ public class Robot extends IterativeRobot {
 		defenseChooser.addObject("Moat", new AutonomousCrossingMoat());
 		defenseChooser.addObject("Ramparts", new AutonomousCrossingRamparts());
 		defenseChooser.addObject("Rock Wall", new AutonomousCrossingRockWall());
-		defenseChooser.addObject("Rough Terrain", new AutonomousCrossingRoughTerrain());
+		defenseChooser.addObject("Rough Terrain",
+				new AutonomousCrossingRoughTerrain());
 		SmartDashboard.putData("Defense Chooser", defenseChooser);
 	}
 
@@ -138,6 +147,11 @@ public class Robot extends IterativeRobot {
 
 	}
 
+	private void initializeScoringBackAwayChooser() {
+		SmartDashboard.putBoolean("backFromGoal", false);
+
+	}
+
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
 	}
@@ -147,12 +161,28 @@ public class Robot extends IterativeRobot {
 		Command autoDef = (Command) defenseChooser.getSelected();
 		Command autoRally = (Command) startingPositionChooser.getSelected();
 		Command autoScore = (Command) scoringPositionChooser.getSelected();
+		Command autoBack = null;
 
-		Integer beforeDefenseDelayValue = SmartDashboard.getInt("beforeDefenseDelayValue", 0);
-		Integer beforeRallyDelayValue = SmartDashboard.getInt("beforeRallyDelayValue", 0);
-		Integer beforeScoringDelayValue = SmartDashboard.getInt("beforeScoringDelayValue", 0);
+		if (SmartDashboard.getBoolean("backFromGoal")) {
+			if (autoScore.getClass().getSimpleName()
+					.equals("AutonomousScoringLeft")) {
+				autoBack = new AutonomousAwayFromGoalLeft();
+			} else if (autoScore.getClass().getSimpleName()
+					.equals("AutonomousScoringRight")) {
+				autoBack = new AutonomousAwayFromGoalRight();
+			}
+		}
 
-		autonomousCommand = new AutonomousMaster(autoDef, autoRally, autoScore, beforeDefenseDelayValue, beforeRallyDelayValue, beforeScoringDelayValue);
+		Integer beforeDefenseDelayValue = SmartDashboard.getInt(
+				"beforeDefenseDelayValue", 0);
+		Integer beforeRallyDelayValue = SmartDashboard.getInt(
+				"beforeRallyDelayValue", 0);
+		Integer beforeScoringDelayValue = SmartDashboard.getInt(
+				"beforeScoringDelayValue", 0);
+
+		autonomousCommand = new AutonomousMaster(autoDef, autoRally, autoScore,
+				beforeDefenseDelayValue, beforeRallyDelayValue,
+				beforeScoringDelayValue, autoBack);
 
 		if (autonomousCommand != null)
 			autonomousCommand.start();
@@ -165,16 +195,23 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().run();
 		SmartDashboard.putBoolean("navxConnected", navx.isConnected());
 
-		boolean beforeDefenseDelay = SmartDashboard.getBoolean("beforeDefenseDelay");
-		boolean beforeRallyDelay = SmartDashboard.getBoolean("beforeRallyDelay");
-		boolean beforeScoringDelay = SmartDashboard.getBoolean("beforeScoringDelay");
+		boolean beforeDefenseDelay = SmartDashboard
+				.getBoolean("beforeDefenseDelay");
+		boolean beforeRallyDelay = SmartDashboard
+				.getBoolean("beforeRallyDelay");
+		boolean beforeScoringDelay = SmartDashboard
+				.getBoolean("beforeScoringDelay");
 
-		int beforeDefenseDelayValue = SmartDashboard.getInt("beforeDefenseDelayValue");
-		int beforeRallyDelayValue = SmartDashboard.getInt("beforeRallyDelayValue");
-		int beforeScoringDelayValue = SmartDashboard.getInt("beforeScoringDelayValue");
+		int beforeDefenseDelayValue = SmartDashboard
+				.getInt("beforeDefenseDelayValue");
+		int beforeRallyDelayValue = SmartDashboard
+				.getInt("beforeRallyDelayValue");
+		int beforeScoringDelayValue = SmartDashboard
+				.getInt("beforeScoringDelayValue");
 
 		if (beforeDefenseDelay) {
-			System.err.println("beforeDefenseDelayValue : " + beforeDefenseDelayValue);
+			System.err.println("beforeDefenseDelayValue : "
+					+ beforeDefenseDelayValue);
 		}
 
 		if (beforeRallyDelay) {
@@ -182,7 +219,8 @@ public class Robot extends IterativeRobot {
 		}
 
 		if (beforeScoringDelay) {
-			System.err.println("beforeScoringDelay : " + beforeScoringDelayValue);
+			System.err.println("beforeScoringDelay : "
+					+ beforeScoringDelayValue);
 		}
 	}
 

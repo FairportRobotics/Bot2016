@@ -35,7 +35,6 @@ public class ArmCommand extends Command {
 		} else {
 			// stop
 			Robot.armSubsystem.stop();
-
 		}
 
 	}
