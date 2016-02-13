@@ -17,7 +17,7 @@ public class AutonomousDriveToPitchZero extends Command {
 	private static final int PITCHBOUND = 5;
 	private static final int PITCHCOUNT = 5;
 
-	private AutonomousDriveToPitchZero(double left, double right) {
+	public AutonomousDriveToPitchZero(double left, double right) {
 		requires(Robot.driveSubsystem);
 		this.left = left;
 		this.right = right;
