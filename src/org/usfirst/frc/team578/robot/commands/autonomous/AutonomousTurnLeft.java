@@ -8,7 +8,7 @@ public class AutonomousTurnLeft extends Command {
 	private double error = 2.0;
 
 	public AutonomousTurnLeft() {
-		requires(Robot.driveSubsystem)
+		requires(Robot.driveSubsystem);
 	}
 
 	@Override
