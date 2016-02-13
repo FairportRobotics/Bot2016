@@ -33,39 +33,43 @@ public class AutonomousDriveToPitchZero extends Command {
 	@Override
 	protected void execute() {
 
+		// This is a catchall...it should already be set
+		// in isFinished()
 		if (floorDetected) {
 			// Stop the robot when the floor is found
 			Robot.driveSubsystem.drive(0, 0);
-		} else {
-			// no floor yet..
-			if (offrampDetected) {
-				// found the offramp, look for floor
-				if ((Robot.navx.getPitch() > -ZERO_PITCH_DEADZONE) && (Robot.navx.getPitch() < ZERO_PITCH_DEADZONE)) {
-					floorDetected = true;
-					Robot.driveSubsystem.drive(0, 0);
-				} else {
-					// floor not detected, keep driving
-					Robot.driveSubsystem.drive(left, right);
-				}
+			return;
+		}
+
+		// The most likely case
+		if (!offrampDetected) {
+			// search for offramp
+
+			// keep moving..maybe we'll get to the offramp now
+			Robot.driveSubsystem.drive(left, right);
+
+			// Check for offramp
+			if (Robot.navx.getPitch() < -ZERO_PITCH_DEADZONE) {
+				// found a possible offramp point
+				offrampDetections++;
 			} else {
-				// now search for offramp
+				// if we're facing up, we're not on a down ramp
+				offrampDetections = 0;
+			}
 
-				// keep moving..maybe we'll get to the offramp now
+			// We found enough indications that we're on the offramp
+			if (offrampDetections > OFFRAMP_DETECTIONS_REQUIRED) {
+				offrampDetected = true;
+			}
+		} else {
+
+			// found the offramp, look for floor
+			if ((Robot.navx.getPitch() > -ZERO_PITCH_DEADZONE) && (Robot.navx.getPitch() < ZERO_PITCH_DEADZONE)) {
+				floorDetected = true;
+				Robot.driveSubsystem.drive(0, 0);
+			} else {
+				// floor not detected, keep driving
 				Robot.driveSubsystem.drive(left, right);
-
-				// Check for offramp
-				if (Robot.navx.getPitch() < -ZERO_PITCH_DEADZONE) {
-					// found a possible offramp point
-					offrampDetections++;
-				} else {
-					// if we're facing up, we're not on a down ramp
-					offrampDetections = 0;
-				}
-
-				// We found enough indications that we're on the offramp
-				if (offrampDetections > OFFRAMP_DETECTIONS_REQUIRED) {
-					offrampDetected = true;
-				}
 			}
 		}
 	}
