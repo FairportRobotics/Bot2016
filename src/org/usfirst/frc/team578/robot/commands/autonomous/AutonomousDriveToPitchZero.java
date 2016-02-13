@@ -6,6 +6,8 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class AutonomousDriveToPitchZero extends Command {
 
+	private int rampcount;
+
 	private double left;
 	private double right;
 
@@ -13,6 +15,7 @@ public class AutonomousDriveToPitchZero extends Command {
 	private boolean onTheRamp;
 
 	private static final int PITCHBOUND = 5;
+	private static final int PITCHCOUNT = 5;
 
 	private AutonomousDriveToPitchZero(double left, double right) {
 		requires(Robot.driveSubsystem);
@@ -24,7 +27,7 @@ public class AutonomousDriveToPitchZero extends Command {
 	protected void initialize() {
 		onTheFloor = false;
 		onTheRamp = false;
-
+		rampcount = 0;
 	}
 
 	@Override
@@ -44,9 +47,13 @@ public class AutonomousDriveToPitchZero extends Command {
 			} else {
 				Robot.driveSubsystem.drive(left, right);
 				if (Robot.navx.getPitch() < -PITCHBOUND) {
+					rampcount++;
+				} else {
+					rampcount = 0;
+				}
+				if (rampcount > PITCHCOUNT) {
 					onTheRamp = true;
 				}
-
 			}
 		}
 	}
