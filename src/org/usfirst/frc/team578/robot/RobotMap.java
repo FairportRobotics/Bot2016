@@ -16,6 +16,7 @@ public class RobotMap {
 
 	public static final int WINCH_TALON_FRONT = 99;
 	public static final int WINCH_TALON_BACK = 99;
+	public static final int WINCH_BRAKE_RELAY = 1;
 
 	// Intake Subsystem
 	public static final int INTAKE_TALON = 99;
