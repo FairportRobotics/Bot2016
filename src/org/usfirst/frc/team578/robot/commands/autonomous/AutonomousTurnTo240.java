@@ -16,11 +16,9 @@ public class AutonomousTurnTo240 extends Command {
 	@Override
 	protected void execute() {
 		// TODO Auto-generated method stub
-		if (Robot.navx.getFusedHeading() > 240 - error
-				&& Robot.navx.getFusedHeading() < 240 + error) {
+		if (Robot.navx.getFusedHeading() > 240 - error && Robot.navx.getFusedHeading() < 240 + error) {
 			Robot.driveSubsystem.drive(0, 0);
-		} else if (Robot.navx.getFusedHeading() >= 240 + error
-				|| Robot.navx.getFusedHeading() < 60) {
+		} else if (Robot.navx.getFusedHeading() >= 240 + error || Robot.navx.getFusedHeading() < 60) {
 			Robot.driveSubsystem.drive(1, -1);
 		} else {
 			Robot.driveSubsystem.drive(-1, 1);
@@ -30,8 +28,7 @@ public class AutonomousTurnTo240 extends Command {
 	@Override
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
-		return (Robot.navx.getFusedHeading() > 240 - error && Robot.navx
-				.getFusedHeading() < 240 + error);
+		return (Robot.navx.getFusedHeading() > 240 - error && Robot.navx.getFusedHeading() < 240 + error);
 	}
 
 	@Override

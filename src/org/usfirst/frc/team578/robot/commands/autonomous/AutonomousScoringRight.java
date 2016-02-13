@@ -21,7 +21,7 @@ public class AutonomousScoringRight extends CommandGroup {
 		addSequential(new AutonomousDriveCommand(1, 1, .88));// forward 7.54
 																// feet
 		// addSequential(new AutonomousDriveCommand(0, 0, 0));// stops
-		addSequential(new Turnto120());// turn left 60
+		addSequential(new AutonomousTurnTo120());// turn left 60
 										// degrees
 		// addSequential(new AutonomousDriveCommand(0, 0, 0));// stops
 		addSequential(new AutonomousDriveCommand(-1, -1, .47));// forward 4 feet

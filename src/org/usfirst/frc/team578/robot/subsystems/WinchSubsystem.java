@@ -20,8 +20,7 @@ public class WinchSubsystem extends Subsystem {
 
 	public void initialize() {
 		winchTalonFront = new CANTalon(RobotMap.WINCH_TALON_FRONT);
-		winchTalonFront
-				.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+		winchTalonFront.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 		winchTalonFront.enable();
 
 		winchTalonBack = new CANTalon(RobotMap.WINCH_TALON_BACK);

@@ -21,11 +21,9 @@ public class AutonomousTurnRight extends Command {
 	@Override
 	protected void execute() {
 		// TODO Auto-generated method stub
-		if (Robot.navx.getFusedHeading() > 90 - error
-				&& Robot.navx.getFusedHeading() < 90 + error) {
+		if (Robot.navx.getFusedHeading() > 90 - error && Robot.navx.getFusedHeading() < 90 + error) {
 			Robot.driveSubsystem.drive(0, 0);
-		} else if (Robot.navx.getFusedHeading() <= 90 - error
-				|| Robot.navx.getFusedHeading() > 270) {
+		} else if (Robot.navx.getFusedHeading() <= 90 - error || Robot.navx.getFusedHeading() > 270) {
 			Robot.driveSubsystem.drive(1, -1);
 		} else {
 			Robot.driveSubsystem.drive(-1, 1);
@@ -35,8 +33,7 @@ public class AutonomousTurnRight extends Command {
 	@Override
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
-		return (Robot.navx.getFusedHeading() > 90 - error && Robot.navx
-				.getFusedHeading() < 90 + error);
+		return (Robot.navx.getFusedHeading() > 90 - error && Robot.navx.getFusedHeading() < 90 + error);
 	}
 
 	@Override

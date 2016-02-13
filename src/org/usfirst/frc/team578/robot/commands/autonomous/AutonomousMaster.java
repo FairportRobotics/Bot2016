@@ -5,10 +5,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class AutonomousMaster extends CommandGroup {
 
-	public AutonomousMaster(Command crossing, Command movingToRally,
-			Command scoring, Integer beforeDefenseDelayValue,
-			Integer beforeRallyDelayValue, Integer beforeScoringDelayValue,
-			Command autoBack) {
+	public AutonomousMaster(Command crossing, Command movingToRally, Command scoring, Integer beforeDefenseDelayValue, Integer beforeRallyDelayValue,
+			Integer beforeScoringDelayValue, Command autoBack) {
 
 		// Just stop doing anything
 		addSequential(new AutonomousDriveCommand(0, 0, beforeDefenseDelayValue));
