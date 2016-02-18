@@ -21,11 +21,11 @@ public class IntakeSubsystem extends Subsystem {
 	}
 
 	public void spinIntake() {
-		intakeTalon.set(1 * scaleFactor);
+		intakeTalon.set(-1 * scaleFactor);
 	}
 
 	public void spinOutput() {
-		intakeTalon.set(-1 * scaleFactor);
+		intakeTalon.set(1 * scaleFactor);
 	}
 
 	public void spinStop() {

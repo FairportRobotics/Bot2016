@@ -68,6 +68,7 @@ public class Robot extends IterativeRobot {
 		loggingSubsystem.log("robot startup");
 
 		oi = new OI();
+
 		// instantiate the command used for the autonomous period
 		driveSubsystem = new DriveSubsystem();
 		driveSubsystem.initialize();
@@ -87,6 +88,8 @@ public class Robot extends IterativeRobot {
 		camera = CameraServer.getInstance();
 		camera.setQuality(50);
 		camera.startAutomaticCapture("cam0");
+
+		oi.initialize();
 
 		// These need to happen after
 		// the subsystems are initialized
