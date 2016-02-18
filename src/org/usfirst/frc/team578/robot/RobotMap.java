@@ -9,20 +9,20 @@ package org.usfirst.frc.team578.robot;
 public class RobotMap {
 
 	// Drive subsytem
-	public static final int RIGHT_MASTER = 15;
-	public static final int RIGHT_SLAVE = 16;
-	public static final int LEFT_MASTER = 13;
-	public static final int LEFT_SLAVE = 14;
+	public static final int RIGHT_MASTER = 3;
+	public static final int RIGHT_SLAVE = 2;
+	public static final int LEFT_MASTER = 16;
+	public static final int LEFT_SLAVE = 15;
 
-	public static final int WINCH_TALON_FRONT = 99;
-	public static final int WINCH_TALON_BACK = 99;
+	public static final int WINCH_TALON_FRONT = 14;
+	public static final int WINCH_TALON_BACK = 4;
 	public static final int WINCH_BRAKE_RELAY = 1;
 
 	// Intake Subsystem
-	public static final int INTAKE_TALON = 99;
+	public static final int INTAKE_TALON = 1;
 
 	// Arm Subsystem
-	public static final int ARM_TALON = 99;
+	public static final int ARM_TALON = 13;
 
 	// Driver Station IDs
 	public static final int LEFT_JOYSTICK = 0;
