@@ -1,6 +1,7 @@
 package org.usfirst.frc.team578.robot.subsystems;
 
 import org.usfirst.frc.team578.robot.RobotMap;
+import org.usfirst.frc.team578.robot.commands.ArmCommand;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -16,8 +17,10 @@ public class ArmSubsystem extends Subsystem {
 	public void initialize() {
 		armTalon = new CANTalon(RobotMap.ARM_TALON);
 		armTalon.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
-		armTalon.ConfigFwdLimitSwitchNormallyOpen(false);
+		armTalon.ConfigFwdLimitSwitchNormallyOpen(true);
+		armTalon.ConfigRevLimitSwitchNormallyOpen(true);
 		armTalon.enable();
+
 	}
 
 	public void forward(double value) {
@@ -34,6 +37,7 @@ public class ArmSubsystem extends Subsystem {
 
 	@Override
 	protected void initDefaultCommand() {
+		setDefaultCommand(new ArmCommand());
 
 	}
 
