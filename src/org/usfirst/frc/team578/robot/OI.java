@@ -1,6 +1,5 @@
 package org.usfirst.frc.team578.robot;
 
-import org.usfirst.frc.team578.robot.commands.ClimbWallCommandGroup;
 import org.usfirst.frc.team578.robot.commands.IntakeCommand;
 import org.usfirst.frc.team578.robot.commands.OutputCommand;
 import org.usfirst.frc.team578.robot.commands.WinchTestExtendCommand;
@@ -69,7 +68,7 @@ public class OI {
 	public void initialize() {
 		buttonFive.whileHeld(new OutputCommand());
 		buttonSix.whileHeld(new IntakeCommand());
-		buttonFour.whenPressed(new ClimbWallCommandGroup());
+		// buttonFour.whenPressed(new ClimbWallCommandGroup());
 		buttonThree.whileHeld(new WinchTestExtendCommand());
 		buttonTwo.whileHeld(new WinchTestRetractCommand());
 	}

@@ -16,12 +16,13 @@ public class RobotMap {
 
 	public static final int WINCH_TALON_FRONT = 14;
 	public static final int WINCH_TALON_BACK = 4;
-	public static final int WINCH_BRAKE_RELAY = 1;
+	public static final int WINCH_BRAKE_RELAY1 = 0;
+	public static final int WINCH_BRAKE_RELAY2 = 1;
 
 	// Intake Subsystem
 	public static final int INTAKE_TALON = 1;
 
-	public static final int BALL_SENSOR = 8;
+	public static final int BALL_SENSOR = 0;
 
 	// Arm Subsystem
 	public static final int ARM_TALON = 13;

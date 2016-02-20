@@ -10,7 +10,8 @@ public class WinchSubsystem extends Subsystem {
 
 	private CANTalon winchTalonFront;
 	private CANTalon winchTalonBack;
-	private Relay winchBrakeRelay;
+	private Relay winchBrakeRelay1;
+	private Relay winchBrakeRelay2;
 	private double scaleFactorFront = 1;
 	private double scaleFactorBack = 1;
 
@@ -27,8 +28,11 @@ public class WinchSubsystem extends Subsystem {
 		winchTalonBack.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 		winchTalonBack.enable();
 
-		winchBrakeRelay = new Relay(RobotMap.WINCH_BRAKE_RELAY);
-		winchBrakeRelay.set(Relay.Value.kOn);
+		winchBrakeRelay1 = new Relay(RobotMap.WINCH_BRAKE_RELAY1);
+		winchBrakeRelay1.set(Relay.Value.kOn);
+
+		winchBrakeRelay2 = new Relay(RobotMap.WINCH_BRAKE_RELAY2);
+		winchBrakeRelay2.set(Relay.Value.kOn);
 
 	}
 
@@ -48,7 +52,8 @@ public class WinchSubsystem extends Subsystem {
 	}
 
 	public void stop() {
-		winchBrakeRelay.set(Relay.Value.kOff);
+		winchBrakeRelay1.set(Relay.Value.kOff);
+		winchBrakeRelay2.set(Relay.Value.kOff);
 		winchTalonFront.set(0);
 		winchTalonBack.set(0);
 	}
