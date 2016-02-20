@@ -3,6 +3,8 @@ package org.usfirst.frc.team578.robot;
 import org.usfirst.frc.team578.robot.commands.ClimbWallCommandGroup;
 import org.usfirst.frc.team578.robot.commands.IntakeCommand;
 import org.usfirst.frc.team578.robot.commands.OutputCommand;
+import org.usfirst.frc.team578.robot.commands.WinchTestExtendCommand;
+import org.usfirst.frc.team578.robot.commands.WinchTestRetractCommand;
 
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.Joystick;
@@ -49,6 +51,8 @@ public class OI {
 	JoystickButton buttonSix = new JoystickButton(gamepad, 6);
 	JoystickButton buttonFive = new JoystickButton(gamepad, 5);
 	JoystickButton buttonFour = new JoystickButton(gamepad, 4);
+	JoystickButton buttonThree = new JoystickButton(gamepad, 3);
+	JoystickButton buttonTwo = new JoystickButton(gamepad, 2);
 
 	public double getArmJoystick() {
 		return gamepad.getY(Hand.kLeft);
@@ -66,5 +70,7 @@ public class OI {
 		buttonFive.whileHeld(new OutputCommand());
 		buttonSix.whileHeld(new IntakeCommand());
 		buttonFour.whenPressed(new ClimbWallCommandGroup());
+		buttonThree.whileHeld(new WinchTestExtendCommand());
+		buttonTwo.whileHeld(new WinchTestRetractCommand());
 	}
 }
