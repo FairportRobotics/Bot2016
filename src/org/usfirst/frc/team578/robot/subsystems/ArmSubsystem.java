@@ -24,11 +24,11 @@ public class ArmSubsystem extends Subsystem {
 	}
 
 	public void forward(double value) {
-		armTalon.set(value * scaleFactor);
+		armTalon.set(-value * scaleFactor);
 	}
 
 	public void backwards(double value) {
-		armTalon.set(-value * scaleFactor);
+		armTalon.set(value * scaleFactor);
 	}
 
 	public void stop() {
