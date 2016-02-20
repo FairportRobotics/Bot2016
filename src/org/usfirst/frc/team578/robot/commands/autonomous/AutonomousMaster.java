@@ -21,6 +21,6 @@ public class AutonomousMaster extends CommandGroup {
 
 		addSequential(scoring);
 
-		addSequential(autoBack);
+		// addSequential(autoBack);
 	}
 }

@@ -6,11 +6,13 @@ public class AutonomousCrossingRoughTerrain extends CommandGroup {
 
 	public AutonomousCrossingRoughTerrain() {
 		// moves until flat detected [down]
-		addSequential(new AutonomousDriveToPitchZero(1, 1));
+		addSequential(new AutonomousDriveToPitchZero(.5, .5));
 		// moves from edge of O.W. to Alignment Line [down]
-		addSequential(new AutonomousDriveCommand(1, 1, .173));
+		addSequential(new AutonomousTurnto180());
+
+		addSequential(new AutonomousDriveCommand(.75, .75, .173));
 		// sets robot yaw to 0 degrees [down]
-		addSequential(new AutonomousTurntoZeroCommand());
+		addSequential(new AutonomousTurnto180());
 	}
 
 }

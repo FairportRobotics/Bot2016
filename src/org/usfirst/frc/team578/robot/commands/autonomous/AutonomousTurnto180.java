@@ -20,12 +20,12 @@ public class AutonomousTurnto180 extends Command {
 	@Override
 	protected void execute() {
 		// TODO Auto-generated method stub
-		if (Robot.navx.getFusedHeading() > 0 - error && Robot.navx.getFusedHeading() < 180 + error) {
+		if (Robot.navx.getFusedHeading() > 180 - error && Robot.navx.getFusedHeading() < 180 + error) {
 			Robot.driveSubsystem.drive(0, 0);
-		} else if (Robot.navx.getFusedHeading() <= 180 - error || Robot.navx.getFusedHeading() > 0) {
-			Robot.driveSubsystem.drive(1, -1);
+		} else if (Robot.navx.getFusedHeading() <= 180 - error || Robot.navx.getFusedHeading() > 180 + error) {
+			Robot.driveSubsystem.drive(.25, -.25);
 		} else {
-			Robot.driveSubsystem.drive(-1, 1);
+			Robot.driveSubsystem.drive(-.25, .25);
 		}
 	}
 

@@ -19,8 +19,8 @@ public class AutonomousDriveToPitchZero extends Command {
 
 	public AutonomousDriveToPitchZero(double left, double right) {
 		requires(Robot.driveSubsystem);
-		this.left = left;
-		this.right = right;
+		this.left = -left;
+		this.right = -right;
 	}
 
 	@Override
@@ -32,7 +32,9 @@ public class AutonomousDriveToPitchZero extends Command {
 
 	@Override
 	protected void execute() {
-
+		System.err.println("Pitch: " + Robot.navx.getPitch());
+		System.err.println("floor detected: " + floorDetected);
+		System.err.println("offrampDetected: " + offrampDetected);
 		// This is a catchall...it should already be set
 		// in isFinished()
 		if (floorDetected) {
@@ -49,7 +51,7 @@ public class AutonomousDriveToPitchZero extends Command {
 			Robot.driveSubsystem.drive(left, right);
 
 			// Check for offramp
-			if (Robot.navx.getPitch() < -ZERO_PITCH_DEADZONE) {
+			if (Robot.navx.getPitch() > (2 * ZERO_PITCH_DEADZONE)) {
 				// found a possible offramp point
 				offrampDetections++;
 			} else {

@@ -16,8 +16,9 @@ public class LoggingSubsystem extends Subsystem {
 
 		try {
 
-			output = new BufferedWriter(new FileWriter("/Logs/RobotLog.txt", true));
+			output = new BufferedWriter(new FileWriter("/tmp/RobotLog.txt", true));
 			intialized = true;
+			this.log("-------Logging Subsystem Initialized-------");
 
 		} catch (Exception e) {
 

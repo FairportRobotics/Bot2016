@@ -5,7 +5,7 @@ import org.usfirst.frc.team578.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class AutonomousTurntoZeroCommand extends Command {
-	private double error = 2.0;
+	private double error = 5.0;
 
 	public AutonomousTurntoZeroCommand() {
 		requires(Robot.driveSubsystem);
@@ -20,19 +20,19 @@ public class AutonomousTurntoZeroCommand extends Command {
 	@Override
 	protected void execute() {
 		// TODO Auto-generated method stub
-		if (Robot.navx.getFusedHeading() > 360 - error || Robot.navx.getFusedHeading() < 0 + error) {
+		if ((Robot.navx.getFusedHeading() > (360 - error)) || (Robot.navx.getFusedHeading() < (0 + error))) {
 			Robot.driveSubsystem.drive(0, 0);
-		} else if (Robot.navx.getFusedHeading() <= 360 - error && Robot.navx.getFusedHeading() > 180) {
-			Robot.driveSubsystem.drive(1, -1);
+		} else if (Robot.navx.getFusedHeading() >= 180) {
+			Robot.driveSubsystem.drive(.5, -.5);
 		} else {
-			Robot.driveSubsystem.drive(-1, 1);
+			Robot.driveSubsystem.drive(-.5, 5);
 		}
 	}
 
 	@Override
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
-		return (Robot.navx.getFusedHeading() > 360 - error || Robot.navx.getFusedHeading() < 0 + error);
+		return (Robot.navx.getFusedHeading() > (360 - error) || Robot.navx.getFusedHeading() < (0 + error));
 	}
 
 	@Override

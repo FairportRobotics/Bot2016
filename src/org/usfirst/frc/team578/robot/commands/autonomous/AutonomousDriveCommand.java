@@ -12,8 +12,8 @@ public class AutonomousDriveCommand extends Command {
 
 	public AutonomousDriveCommand(double left, double right, double time) {
 		requires(Robot.driveSubsystem);
-		this.left = left;
-		this.right = right;
+		this.left = -left;
+		this.right = -right;
 		this.time = time;
 	}
 

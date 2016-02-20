@@ -89,10 +89,10 @@ public class Robot extends IterativeRobot {
 		camera.setQuality(50);
 		camera.startAutomaticCapture("cam0");
 
-		oi.initialize();
-
 		// These need to happen after
 		// the subsystems are initialized
+		oi.initialize();
+
 		initializeStartingPositionChooser();
 		initializeScoringPositionChooser();
 		initializeDefenseChooser();
