@@ -17,9 +17,8 @@ public class BallSensorCommand extends Command {
 
 	@Override
 	protected void execute() {
-
-		boolean BallSensor = Robot.ballSensorSubsystem.get();
-		SmartDashboard.putBoolean("Ball Sensor", BallSensor);
+		boolean ballSensor = Robot.ballSensorSubsystem.get();
+		SmartDashboard.putBoolean("Ball Sensor", ballSensor);
 	}
 
 	@Override

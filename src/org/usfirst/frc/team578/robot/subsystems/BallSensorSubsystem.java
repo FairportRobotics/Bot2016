@@ -15,7 +15,6 @@ public class BallSensorSubsystem extends Subsystem {
 
 	public void initialize() {
 		ballSensor = new DigitalInput(RobotMap.BALL_SENSOR);
-		ballSensor.get();
 	}
 
 	public boolean get() {
