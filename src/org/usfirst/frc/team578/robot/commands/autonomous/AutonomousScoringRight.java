@@ -22,7 +22,7 @@ public class AutonomousScoringRight extends CommandGroup {
 																// feet
 		// addSequential(new AutonomousDriveCommand(0, 0, 0));// stops
 		addSequential(new AutonomousTurnTo120());// turn left 60
-										// degrees
+		// degrees
 		// addSequential(new AutonomousDriveCommand(0, 0, 0));// stops
 		addSequential(new AutonomousDriveCommand(-1, -1, .47));// forward 4 feet
 		addSequential(new AutonomousOutputCommand());// shoots out the ball
