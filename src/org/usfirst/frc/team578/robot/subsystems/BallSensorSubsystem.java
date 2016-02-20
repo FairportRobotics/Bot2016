@@ -17,6 +17,10 @@ public class BallSensorSubsystem extends Subsystem {
 		ballSensor.get();
 	}
 
+	public boolean get() {
+		return ballSensor.get();
+	}
+
 	@Override
 	protected void initDefaultCommand() {
 		// TODO Auto-generated method stub
