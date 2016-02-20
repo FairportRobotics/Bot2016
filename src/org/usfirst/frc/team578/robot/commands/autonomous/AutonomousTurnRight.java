@@ -47,16 +47,6 @@ public class AutonomousTurnRight extends Command {
 			// heading
 		}
 
-		// TODO Auto-generated method stub
-		// if ((Robot.navx.getFusedHeading() > (90 - error)) &&
-		// (Robot.navx.getFusedHeading() < (90 + error))) {
-		// Robot.driveSubsystem.drive(0, 0);
-		// } else if ((Robot.navx.getFusedHeading() <= (90 - error)) ||
-		// (Robot.navx.getFusedHeading() > 270)) {
-		// Robot.driveSubsystem.drive(-1, 1);
-		// } else {
-		// Robot.driveSubsystem.drive(1, -1);
-		// }
 	}
 
 	@Override

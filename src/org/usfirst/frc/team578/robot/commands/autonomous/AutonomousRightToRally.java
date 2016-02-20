@@ -11,7 +11,7 @@ public class AutonomousRightToRally extends CommandGroup {
 
 		// addSequential(new AutonomousDriveCommand(.5, .5, 5)
 		addSequential(new AutonomousTurnLeft());
-		addSequential(new AutonomousDriveCommand(1, 1, 1.17));
+		addSequential(new AutonomousDriveCommand(1, 1, .68)); // 3 x middle
 		addSequential(new AutonomousTurntoZeroCommand());
 	}
 

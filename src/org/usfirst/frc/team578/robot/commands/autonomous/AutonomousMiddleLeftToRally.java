@@ -11,7 +11,7 @@ public class AutonomousMiddleLeftToRally extends CommandGroup {
 
 		// addSequential(new AutonomousDriveCommand(.5, .5, 5));
 		addSequential(new AutonomousTurnRight());
-		addSequential(new AutonomousDriveCommand(1, 1, .8));
+		addSequential(new AutonomousDriveCommand(1, 1, .68)); // 3 x middle
 		addSequential(new AutonomousTurntoZeroCommand());
 
 	}

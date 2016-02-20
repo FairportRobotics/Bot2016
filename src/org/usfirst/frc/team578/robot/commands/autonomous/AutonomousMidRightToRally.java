@@ -13,7 +13,7 @@ public class AutonomousMidRightToRally extends CommandGroup {
 		// turn left 90 degrees then move forward 22 inches then turn right 90
 		// degrees
 		addSequential(new AutonomousTurnLeft());
-		addSequential(new AutonomousDriveCommand(1, 1, .21));
+		addSequential(new AutonomousDriveCommand(1, 1, .21317829));
 		addSequential(new AutonomousTurntoZeroCommand());
 	}
 

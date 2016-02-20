@@ -5,7 +5,8 @@ import org.usfirst.frc.team578.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class AutonomousTurnLeft extends Command {
-	private double error = 2.0;
+	private double error = .25;
+	private boolean zeroFound = false;
 
 	public AutonomousTurnLeft() {
 		requires(Robot.driveSubsystem);
@@ -19,21 +20,34 @@ public class AutonomousTurnLeft extends Command {
 
 	@Override
 	protected void execute() {
-		// TODO Auto-generated method stub
-		if ((Robot.navx.getFusedHeading() > (270 - error)) && (Robot.navx.getFusedHeading() < (270 + error))) {
+		double currentHeading = Robot.navx.getFusedHeading();
+		double MIN_LEFT_VAL = 270 - error;
+		double MIN_RIGHT_VAL = 270 + error;
+
+		System.err.println("heading : " + currentHeading + " : " + zeroFound);
+
+		if (zeroFound) {
 			Robot.driveSubsystem.drive(0, 0);
-		} else if ((Robot.navx.getFusedHeading() <= (270 - error)) && (Robot.navx.getFusedHeading() > 90)) {
-			Robot.driveSubsystem.drive(1, -1);
+			return;
+		}
+
+		if (currentHeading > MIN_LEFT_VAL && currentHeading < MIN_RIGHT_VAL) {
+			Robot.driveSubsystem.drive(0, 0);
+			zeroFound = true;
+
+		} else if (currentHeading > 90 && currentHeading < 270) {
+			Robot.driveSubsystem.drive(-.25, .25); // right turn - increase
+			// heading
+
 		} else {
-			Robot.driveSubsystem.drive(-1, 1);
+			Robot.driveSubsystem.drive(.25, -.25); // left turn - decrease
+			// heading
 		}
 	}
 
 	@Override
 	protected boolean isFinished() {
-		// TODO Auto-generated method stub
-		return ((Robot.navx.getFusedHeading() > (270 - error)) && (Robot.navx.getFusedHeading() < (270 + error)));
-
+		return zeroFound;
 	}
 
 	@Override
