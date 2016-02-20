@@ -17,9 +17,9 @@ public class AutonomousTurnTo120 extends Command {
 
 	@Override
 	protected void execute() {
-		if (Robot.navx.getFusedHeading() > 120 - error && Robot.navx.getFusedHeading() < 120 + error) {
+		if ((Robot.navx.getFusedHeading() > (120 - error)) && (Robot.navx.getFusedHeading() < (120 + error))) {
 			Robot.driveSubsystem.drive(0, 0);
-		} else if (Robot.navx.getFusedHeading() <= 300 || Robot.navx.getFusedHeading() > 120 + error) {
+		} else if ((Robot.navx.getFusedHeading() <= 300)) {
 			Robot.driveSubsystem.drive(1, -1);
 		} else {
 			Robot.driveSubsystem.drive(-1, 1);
@@ -28,7 +28,7 @@ public class AutonomousTurnTo120 extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		return (Robot.navx.getFusedHeading() > 120 - error && Robot.navx.getFusedHeading() < 120 + error);
+		return ((Robot.navx.getFusedHeading() > (120 - error)) && (Robot.navx.getFusedHeading() < (120 + error)));
 	}
 
 	@Override

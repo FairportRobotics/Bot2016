@@ -22,7 +22,7 @@ public class AutonomousTurnto180 extends Command {
 		// TODO Auto-generated method stub
 		if (Robot.navx.getFusedHeading() > 180 - error && Robot.navx.getFusedHeading() < 180 + error) {
 			Robot.driveSubsystem.drive(0, 0);
-		} else if (Robot.navx.getFusedHeading() <= 180 - error || Robot.navx.getFusedHeading() > 180 + error) {
+		} else if (Robot.navx.getFusedHeading() < 350) {
 			Robot.driveSubsystem.drive(.25, -.25);
 		} else {
 			Robot.driveSubsystem.drive(-.25, .25);
