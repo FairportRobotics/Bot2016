@@ -14,7 +14,7 @@ public class AutonomousDriveToPitchZero extends Command {
 	private boolean floorDetected;
 	private boolean offrampDetected;
 
-	private static final int ZERO_PITCH_DEADZONE = 5;
+	private static final int ZERO_PITCH_DEADZONE = 2;
 	private static final int OFFRAMP_DETECTIONS_REQUIRED = 5;
 
 	public AutonomousDriveToPitchZero(double left, double right) {

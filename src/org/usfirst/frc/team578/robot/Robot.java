@@ -151,6 +151,7 @@ public class Robot extends IterativeRobot {
 
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
+		navx.zeroYaw();
 	}
 
 	public void autonomousInit() {
@@ -205,6 +206,8 @@ public class Robot extends IterativeRobot {
 		if (beforeScoringDelay) {
 			System.err.println("beforeScoringDelay : " + beforeScoringDelayValue);
 		}
+
+		System.err.println("HEADING : " + navx.getFusedHeading());
 	}
 
 	public void teleopInit() {

@@ -10,9 +10,9 @@ public class AutonomousCrossingMoat extends CommandGroup {
 		addSequential(new AutonomousDriveToPitchZero(.6, .6));
 		// Moves from the edge of the defense to the Alignment line
 		addSequential(new AutonomousTurntoZeroCommand());
-		addSequential(new AutonomousDriveCommand(.5, .5, .173));
+		// addSequential(new AutonomousDriveCommand(.5, .5, .173));
 		// Resets robot to face zero
-		addSequential(new AutonomousTurnto180());
+		// addSequential(new AutonomousTurnto180());
 
 	}
 }
