@@ -21,7 +21,7 @@ public class RobotMap {
 	// Intake Subsystem
 	public static final int INTAKE_TALON = 1;
 
-	public static final int BRAKE_SENSOR = 1;
+	public static final int BALL_SENSOR = 8;
 
 	// Arm Subsystem
 	public static final int ARM_TALON = 13;
