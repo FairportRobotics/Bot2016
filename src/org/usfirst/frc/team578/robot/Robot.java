@@ -58,7 +58,7 @@ public class Robot extends IterativeRobot {
 	private SendableChooser scoringPositionChooser;
 	private Command autonomousCommand;
 
-	private CameraServer camera;
+	private CameraServer cameraServer;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -90,9 +90,10 @@ public class Robot extends IterativeRobot {
 
 		navx = new AHRS(SPI.Port.kMXP);
 
-		camera = CameraServer.getInstance();
-		camera.setQuality(50);
-		camera.startAutomaticCapture("cam0");
+		cameraServer = CameraServer.getInstance();
+		cameraServer.setQuality(50);
+		cameraServer.startAutomaticCapture("cam0");
+		cameraServer.startAutomaticCapture("cam1");
 
 		// These need to happen after
 		// the subsystems are initialized
