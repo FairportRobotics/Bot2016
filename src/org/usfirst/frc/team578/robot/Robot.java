@@ -18,6 +18,7 @@ import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousScoringLeft;
 import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousScoringNone;
 import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousScoringRight;
 import org.usfirst.frc.team578.robot.subsystems.ArmSubsystem;
+import org.usfirst.frc.team578.robot.subsystems.BallSensorSubsystem;
 import org.usfirst.frc.team578.robot.subsystems.DriveSubsystem;
 import org.usfirst.frc.team578.robot.subsystems.IntakeSubsystem;
 import org.usfirst.frc.team578.robot.subsystems.LoggingSubsystem;
@@ -49,6 +50,7 @@ public class Robot extends IterativeRobot {
 	public static WinchSubsystem winchSubsystem;
 	public static LoggingSubsystem loggingSubsystem;
 	public static ArmSubsystem armSubsystem;
+	public static BallSensorSubsystem ballSensorSubsystem;
 	public static AHRS navx;
 
 	private SendableChooser startingPositionChooser;
@@ -83,6 +85,9 @@ public class Robot extends IterativeRobot {
 		winchSubsystem = new WinchSubsystem();
 		winchSubsystem.initialize();
 
+		ballSensorSubsystem = new BallSensorSubsystem();
+		ballSensorSubsystem.initialize();
+
 		navx = new AHRS(SPI.Port.kMXP);
 
 		camera = CameraServer.getInstance();
@@ -114,11 +119,16 @@ public class Robot extends IterativeRobot {
 	private void initializeStartingPositionChooser() {
 
 		startingPositionChooser = new SendableChooser();
-		startingPositionChooser.addDefault("1 Left", new AutonomousLeftToRally());
-		startingPositionChooser.addObject("2 Mid Left", new AutonomousMiddleLeftToRally());
-		startingPositionChooser.addObject("3 Center", new AutonomousMiddleToRally());
-		startingPositionChooser.addObject("4 Mid Right", new AutonomousMidRightToRally());
-		startingPositionChooser.addObject("5 Right", new AutonomousRightToRally());
+		startingPositionChooser.addDefault("1 Left",
+				new AutonomousLeftToRally());
+		startingPositionChooser.addObject("2 Mid Left",
+				new AutonomousMiddleLeftToRally());
+		startingPositionChooser.addObject("3 Center",
+				new AutonomousMiddleToRally());
+		startingPositionChooser.addObject("4 Mid Right",
+				new AutonomousMidRightToRally());
+		startingPositionChooser.addObject("5 Right",
+				new AutonomousRightToRally());
 
 		SmartDashboard.putData("Starting Position", startingPositionChooser);
 	}
@@ -130,7 +140,8 @@ public class Robot extends IterativeRobot {
 		defenseChooser.addObject("Moat", new AutonomousCrossingMoat());
 		defenseChooser.addObject("Ramparts", new AutonomousCrossingRamparts());
 		defenseChooser.addObject("Rock Wall", new AutonomousCrossingRockWall());
-		defenseChooser.addObject("Rough Terrain", new AutonomousCrossingRoughTerrain());
+		defenseChooser.addObject("Rough Terrain",
+				new AutonomousCrossingRoughTerrain());
 		SmartDashboard.putData("Defense Chooser", defenseChooser);
 	}
 
@@ -162,19 +173,25 @@ public class Robot extends IterativeRobot {
 		Command autoBack = null;
 
 		if (SmartDashboard.getBoolean("backFromGoal")) {
-			if (autoScore.getClass().getSimpleName().equals("AutonomousScoringLeft")) {
+			if (autoScore.getClass().getSimpleName()
+					.equals("AutonomousScoringLeft")) {
 				autoBack = new AutonomousAwayFromGoalLeft();
-			} else if (autoScore.getClass().getSimpleName().equals("AutonomousScoringRight")) {
+			} else if (autoScore.getClass().getSimpleName()
+					.equals("AutonomousScoringRight")) {
 				autoBack = new AutonomousAwayFromGoalRight();
 			}
 		}
 
-		Integer beforeDefenseDelayValue = SmartDashboard.getInt("beforeDefenseDelayValue", 0);
-		Integer beforeRallyDelayValue = SmartDashboard.getInt("beforeRallyDelayValue", 0);
-		Integer beforeScoringDelayValue = SmartDashboard.getInt("beforeScoringDelayValue", 0);
+		Integer beforeDefenseDelayValue = SmartDashboard.getInt(
+				"beforeDefenseDelayValue", 0);
+		Integer beforeRallyDelayValue = SmartDashboard.getInt(
+				"beforeRallyDelayValue", 0);
+		Integer beforeScoringDelayValue = SmartDashboard.getInt(
+				"beforeScoringDelayValue", 0);
 
-		autonomousCommand = new AutonomousMaster(autoDef, autoRally, autoScore, beforeDefenseDelayValue, beforeRallyDelayValue, beforeScoringDelayValue,
-				autoBack);
+		autonomousCommand = new AutonomousMaster(autoDef, autoRally, autoScore,
+				beforeDefenseDelayValue, beforeRallyDelayValue,
+				beforeScoringDelayValue, autoBack);
 
 		if (autonomousCommand != null)
 			autonomousCommand.start();
@@ -187,16 +204,23 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().run();
 		SmartDashboard.putBoolean("navxConnected", navx.isConnected());
 
-		boolean beforeDefenseDelay = SmartDashboard.getBoolean("beforeDefenseDelay");
-		boolean beforeRallyDelay = SmartDashboard.getBoolean("beforeRallyDelay");
-		boolean beforeScoringDelay = SmartDashboard.getBoolean("beforeScoringDelay");
+		boolean beforeDefenseDelay = SmartDashboard
+				.getBoolean("beforeDefenseDelay");
+		boolean beforeRallyDelay = SmartDashboard
+				.getBoolean("beforeRallyDelay");
+		boolean beforeScoringDelay = SmartDashboard
+				.getBoolean("beforeScoringDelay");
 
-		int beforeDefenseDelayValue = SmartDashboard.getInt("beforeDefenseDelayValue");
-		int beforeRallyDelayValue = SmartDashboard.getInt("beforeRallyDelayValue");
-		int beforeScoringDelayValue = SmartDashboard.getInt("beforeScoringDelayValue");
+		int beforeDefenseDelayValue = SmartDashboard
+				.getInt("beforeDefenseDelayValue");
+		int beforeRallyDelayValue = SmartDashboard
+				.getInt("beforeRallyDelayValue");
+		int beforeScoringDelayValue = SmartDashboard
+				.getInt("beforeScoringDelayValue");
 
 		if (beforeDefenseDelay) {
-			System.err.println("beforeDefenseDelayValue : " + beforeDefenseDelayValue);
+			System.err.println("beforeDefenseDelayValue : "
+					+ beforeDefenseDelayValue);
 		}
 
 		if (beforeRallyDelay) {
@@ -204,7 +228,8 @@ public class Robot extends IterativeRobot {
 		}
 
 		if (beforeScoringDelay) {
-			System.err.println("beforeScoringDelay : " + beforeScoringDelayValue);
+			System.err.println("beforeScoringDelay : "
+					+ beforeScoringDelayValue);
 		}
 
 		System.err.println("HEADING : " + navx.getFusedHeading());
