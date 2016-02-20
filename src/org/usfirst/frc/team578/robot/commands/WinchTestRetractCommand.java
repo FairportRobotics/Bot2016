@@ -37,7 +37,7 @@ public class WinchTestRetractCommand extends Command {
 	@Override
 	protected void interrupted() {
 		// TODO Auto-generated method stub
-
+		Robot.winchSubsystem.stop();
 	}
 
 }

@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class AutonomousCrossingLowBar extends CommandGroup {
 
+	// DONE
 	public AutonomousCrossingLowBar() {
 
 		// Moves until flat surface detected
@@ -11,7 +12,7 @@ public class AutonomousCrossingLowBar extends CommandGroup {
 		// Moves from the edge of the defense to the Alignment line
 		addSequential(new AutonomousTurntoZeroCommand());
 
-		addSequential(new AutonomousDriveCommand(1, 1, .173));
+		addSequential(new AutonomousDriveCommand(.5, .5, 1.2));
 		// Resets robot to face zero
 		addSequential(new AutonomousTurntoZeroCommand());
 

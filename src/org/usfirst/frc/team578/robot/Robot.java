@@ -93,7 +93,7 @@ public class Robot extends IterativeRobot {
 		cameraServer = CameraServer.getInstance();
 		cameraServer.setQuality(50);
 		cameraServer.startAutomaticCapture("cam0");
-		cameraServer.startAutomaticCapture("cam1");
+		// cameraServer.startAutomaticCapture("cam1");
 
 		// These need to happen after
 		// the subsystems are initialized

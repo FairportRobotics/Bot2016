@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class AutonomousCrossingRockWall extends CommandGroup {
 
+	// DONE
 	public AutonomousCrossingRockWall() {
 		// moves until flat detected [down]
 		addSequential(new AutonomousDriveToPitchZero(.3, .3));

@@ -12,8 +12,8 @@ public class WinchSubsystem extends Subsystem {
 	private CANTalon winchTalonBack;
 	private Relay winchBrakeRelay1;
 	private Relay winchBrakeRelay2;
-	private double scaleFactorFront = 1;
-	private double scaleFactorBack = 1;
+	private double scaleFactorFront = -1;
+	private double scaleFactorBack = -1;
 
 	public WinchSubsystem() {
 
