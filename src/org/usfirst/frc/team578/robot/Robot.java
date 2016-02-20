@@ -92,8 +92,8 @@ public class Robot extends IterativeRobot {
 
 		cameraServer = CameraServer.getInstance();
 		cameraServer.setQuality(50);
-		cameraServer.startAutomaticCapture("cam0");
-		// cameraServer.startAutomaticCapture("cam1");
+		// cameraServer.startAutomaticCapture("cam0");
+		cameraServer.startAutomaticCapture("cam1");
 
 		// These need to happen after
 		// the subsystems are initialized
@@ -178,6 +178,10 @@ public class Robot extends IterativeRobot {
 		Integer beforeDefenseDelayValue = SmartDashboard.getInt("beforeDefenseDelayValue", 0);
 		Integer beforeRallyDelayValue = SmartDashboard.getInt("beforeRallyDelayValue", 0);
 		Integer beforeScoringDelayValue = SmartDashboard.getInt("beforeScoringDelayValue", 0);
+
+		// TESTING ONLY
+		autoDef = new AutonomousCrossingLowBar();
+		beforeScoringDelayValue = 1500;
 
 		autonomousCommand = new AutonomousMaster(autoDef, autoRally, autoScore, beforeDefenseDelayValue, beforeRallyDelayValue, beforeScoringDelayValue,
 				autoBack);

@@ -5,8 +5,10 @@ import org.usfirst.frc.team578.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class AutonomousTurnRight extends Command {
-	private double error = 2.0;
+	private double error = .25;
+	private boolean zeroFound = false;
 
+	// DONE
 	public AutonomousTurnRight() {
 		requires(Robot.driveSubsystem);
 	}
@@ -20,20 +22,46 @@ public class AutonomousTurnRight extends Command {
 
 	@Override
 	protected void execute() {
-		// TODO Auto-generated method stub
-		if ((Robot.navx.getFusedHeading() > (90 - error)) && (Robot.navx.getFusedHeading() < (90 + error))) {
+
+		double currentHeading = Robot.navx.getFusedHeading();
+		double MIN_LEFT_VAL = 90 - error;
+		double MIN_RIGHT_VAL = 90 + error;
+
+		System.err.println("heading : " + currentHeading + " : " + zeroFound);
+
+		if (zeroFound) {
 			Robot.driveSubsystem.drive(0, 0);
-		} else if ((Robot.navx.getFusedHeading() <= (90 - error)) || (Robot.navx.getFusedHeading() > 270)) {
-			Robot.driveSubsystem.drive(-1, 1);
-		} else {
-			Robot.driveSubsystem.drive(1, -1);
+			return;
 		}
+
+		if (currentHeading > MIN_LEFT_VAL && currentHeading < MIN_RIGHT_VAL) {
+			Robot.driveSubsystem.drive(0, 0);
+			zeroFound = true;
+
+		} else if (currentHeading > 270 || currentHeading < 90) {
+			Robot.driveSubsystem.drive(-.25, .25); // right turn - increase
+			// heading
+
+		} else {
+			Robot.driveSubsystem.drive(.25, -.25); // left turn - decrease
+			// heading
+		}
+
+		// TODO Auto-generated method stub
+		// if ((Robot.navx.getFusedHeading() > (90 - error)) &&
+		// (Robot.navx.getFusedHeading() < (90 + error))) {
+		// Robot.driveSubsystem.drive(0, 0);
+		// } else if ((Robot.navx.getFusedHeading() <= (90 - error)) ||
+		// (Robot.navx.getFusedHeading() > 270)) {
+		// Robot.driveSubsystem.drive(-1, 1);
+		// } else {
+		// Robot.driveSubsystem.drive(1, -1);
+		// }
 	}
 
 	@Override
 	protected boolean isFinished() {
-		// TODO Auto-generated method stub
-		return ((Robot.navx.getFusedHeading() > (90 - error)) && (Robot.navx.getFusedHeading() < (90 + error)));
+		return zeroFound;
 	}
 
 	@Override
