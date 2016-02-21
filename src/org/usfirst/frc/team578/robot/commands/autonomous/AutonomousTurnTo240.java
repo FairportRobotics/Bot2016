@@ -19,9 +19,9 @@ public class AutonomousTurnTo240 extends Command {
 		if ((Robot.navx.getFusedHeading() > (240 - error)) && (Robot.navx.getFusedHeading() < (240 + error))) {
 			Robot.driveSubsystem.drive(0, 0);
 		} else if ((Robot.navx.getFusedHeading() >= (240 + error)) || (Robot.navx.getFusedHeading() < 60)) {
-			Robot.driveSubsystem.drive(1, -1);
+			Robot.driveSubsystem.drive(.4, -.4);
 		} else {
-			Robot.driveSubsystem.drive(-1, 1);
+			Robot.driveSubsystem.drive(-.4, .4);
 		}
 	}
 

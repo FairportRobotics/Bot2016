@@ -37,10 +37,10 @@ public class AutonomousTurntoZeroCommand extends Command {
 			zeroFound = true;
 
 		} else if (currentHeading < 180) {
-			Robot.driveSubsystem.drive(.25, -.25); // left turn - decrease
+			Robot.driveSubsystem.drive(.4, -.4); // left turn - decrease
 													// heading
 		} else {
-			Robot.driveSubsystem.drive(-.25, .25); // right turn - increase
+			Robot.driveSubsystem.drive(-.4, .4); // right turn - increase
 													// heading
 		}
 		// // TODO Auto-generated method stub

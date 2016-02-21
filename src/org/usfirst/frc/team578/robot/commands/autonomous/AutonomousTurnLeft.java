@@ -36,11 +36,11 @@ public class AutonomousTurnLeft extends Command {
 			zeroFound = true;
 
 		} else if (currentHeading > 90 && currentHeading < 270) {
-			Robot.driveSubsystem.drive(-.25, .25); // right turn - increase
+			Robot.driveSubsystem.drive(-.4, .4); // right turn - increase
 			// heading
 
 		} else {
-			Robot.driveSubsystem.drive(.25, -.25); // left turn - decrease
+			Robot.driveSubsystem.drive(.4, -.4); // left turn - decrease
 			// heading
 		}
 	}
