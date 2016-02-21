@@ -13,7 +13,7 @@ public class AutonomousCrossingRamparts extends CommandGroup {
 		addSequential(new AutonomousTurntoZeroCommand());
 
 		// Moves from the edge of the defense to the Alignment line
-		addSequential(new AutonomousDriveCommand(.5, .5, 1.2));
+		addSequential(new AutonomousDriveCommand(1, 1, .6));
 		// Resets robot to face zero
 		addSequential(new AutonomousTurntoZeroCommand());
 

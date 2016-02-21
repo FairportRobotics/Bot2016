@@ -21,7 +21,7 @@ public class AutonomousTurnTo240 extends Command {
 		double MIN_LEFT_VAL = 240 - error;
 		double MIN_RIGHT_VAL = 240 + error;
 
-		System.err.println("heading : " + currentHeading + " : " + zeroFound);
+		System.err.println(this.getName() + " :heading : " + currentHeading + " : " + zeroFound);
 
 		if (zeroFound) {
 			Robot.driveSubsystem.drive(0, 0);
@@ -33,10 +33,10 @@ public class AutonomousTurnTo240 extends Command {
 			zeroFound = true;
 
 		} else if (currentHeading > 60 && currentHeading < 240) {
-			Robot.driveSubsystem.drive(.4, -.4); // left turn - increase
+			Robot.driveSubsystem.drive(.6, -.6); // left turn - increase
 			// heading
 		} else {
-			Robot.driveSubsystem.drive(-.4, .4); // right turn - decrease
+			Robot.driveSubsystem.drive(-.6, .6); // right turn - decrease
 			// heading
 		}
 		// // TODO Auto-generated method stub

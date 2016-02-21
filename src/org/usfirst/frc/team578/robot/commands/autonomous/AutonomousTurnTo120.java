@@ -23,7 +23,7 @@ public class AutonomousTurnTo120 extends Command {
 		double MIN_LEFT_VAL = 120 - error;
 		double MIN_RIGHT_VAL = 120 + error;
 
-		System.err.println("heading : " + currentHeading + " : " + zeroFound);
+		System.err.println(this.getName() + " :heading : " + currentHeading + " : " + zeroFound);
 
 		if (zeroFound) {
 			Robot.driveSubsystem.drive(0, 0);
@@ -35,10 +35,10 @@ public class AutonomousTurnTo120 extends Command {
 			zeroFound = true;
 
 		} else if (currentHeading > 300 || currentHeading < 120) {
-			Robot.driveSubsystem.drive(-.4, .4); // right turn - increase
+			Robot.driveSubsystem.drive(-.6, .6); // right turn - increase
 			// heading
 		} else {
-			Robot.driveSubsystem.drive(.4, -.4); // left turn - decrease
+			Robot.driveSubsystem.drive(.6, -.6); // left turn - decrease
 			// heading
 		}
 
