@@ -52,6 +52,7 @@ public class OI {
 	JoystickButton buttonFour = new JoystickButton(gamepad, 4);
 	JoystickButton buttonThree = new JoystickButton(gamepad, 3);
 	JoystickButton buttonTwo = new JoystickButton(gamepad, 2);
+	JoystickButton buttonNine = new JoystickButton(gamepad, 9);
 
 	public double getArmJoystick() {
 		return gamepad.getY(Hand.kLeft);
@@ -71,5 +72,9 @@ public class OI {
 		// buttonFour.whenPressed(new ClimbWallCommandGroup());
 		buttonThree.whileHeld(new WinchTestExtendCommand());
 		buttonTwo.whileHeld(new WinchTestRetractCommand());
+	}
+
+	public boolean getHighSpeed() {
+		return buttonNine.get();
 	}
 }

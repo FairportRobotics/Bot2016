@@ -25,7 +25,7 @@ public class DriveCommand extends Command {
 
 		Robot.driveSubsystem.drive(leftJoystickValue, rightJoystickValue);
 
-		System.out.println("pitch : " + Robot.navx.getPitch());
+		// System.out.println("pitch : " + Robot.navx.getPitch());
 
 	}
 
