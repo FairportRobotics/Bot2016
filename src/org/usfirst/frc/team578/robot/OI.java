@@ -4,6 +4,7 @@ import org.usfirst.frc.team578.robot.commands.IntakeCommand;
 import org.usfirst.frc.team578.robot.commands.OutputCommand;
 import org.usfirst.frc.team578.robot.commands.WinchTestExtendCommand;
 import org.usfirst.frc.team578.robot.commands.WinchTestRetractCommand;
+import org.usfirst.frc.team578.robot.commands.WinchTestRetractSingleCommand;
 
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.Joystick;
@@ -52,6 +53,7 @@ public class OI {
 	JoystickButton buttonFour = new JoystickButton(gamepad, 4);
 	JoystickButton buttonThree = new JoystickButton(gamepad, 3);
 	JoystickButton buttonTwo = new JoystickButton(gamepad, 2);
+	JoystickButton buttonOne = new JoystickButton(gamepad, 1);
 	JoystickButton buttonNine = new JoystickButton(gamepad, 9);
 
 	public double getArmJoystick() {
@@ -72,6 +74,7 @@ public class OI {
 		// buttonFour.whenPressed(new ClimbWallCommandGroup());
 		buttonThree.whileHeld(new WinchTestExtendCommand());
 		buttonTwo.whileHeld(new WinchTestRetractCommand());
+		buttonOne.whileHeld(new WinchTestRetractSingleCommand());
 	}
 
 	public boolean getHighSpeed() {

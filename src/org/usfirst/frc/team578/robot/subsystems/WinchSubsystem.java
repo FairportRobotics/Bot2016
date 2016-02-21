@@ -42,13 +42,17 @@ public class WinchSubsystem extends Subsystem {
 	}
 
 	public void extend() {
-		winchTalonFront.set(1 * scaleFactorFront);
+		// winchTalonFront.set(1 * scaleFactorFront);
 		winchTalonBack.set(1 * scaleFactorBack);
 	}
 
 	public void retract() {
 		winchTalonFront.set(-1 * scaleFactorFront);
 		winchTalonBack.set(-1 * scaleFactorBack);
+	}
+
+	public void retractSingle() {
+		winchTalonFront.set(-1 * scaleFactorBack);
 	}
 
 	public void stop() {
