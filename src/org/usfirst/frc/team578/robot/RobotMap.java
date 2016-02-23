@@ -33,7 +33,7 @@ public class RobotMap {
 	public static final int GAMEPAD = 2;
 	public static final int INTAKE_BUTTON = 3;
 
-	// These are the default speeds used to turn
+	// These are the default speeds used to turn the wheels
 	public static final double DEFAULT_LEFT_WHEEL_TURN_SPEED = 0.6;
 	public static final double DEFAULT_RIGHT_WHEEL_TURN_SPEED = 0.6;
 
