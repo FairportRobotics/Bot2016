@@ -1,31 +1,27 @@
-package org.usfirst.frc.team578.robot.commands.autonomous;
+package org.usfirst.frc.team578.robot.commands.autonomous.turns;
 
 import org.usfirst.frc.team578.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class AutonomousTurnRight extends Command {
+public class AutonomousTurnTo120 extends Command {
 	private double error = .25;
 	private boolean zeroFound = false;
 
-	// DONE
-	public AutonomousTurnRight() {
+	public AutonomousTurnTo120() {
 		requires(Robot.driveSubsystem);
 	}
 
 	@Override
 	protected void initialize() {
-
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	protected void execute() {
 
 		double currentHeading = Robot.navx.getFusedHeading();
-		double MIN_LEFT_VAL = 90 - error;
-		double MIN_RIGHT_VAL = 90 + error;
+		double MIN_LEFT_VAL = 120 - error;
+		double MIN_RIGHT_VAL = 120 + error;
 
 		System.err.println(this.getName() + " :heading : " + currentHeading + " : " + zeroFound);
 
@@ -38,15 +34,22 @@ public class AutonomousTurnRight extends Command {
 			Robot.driveSubsystem.drive(0, 0);
 			zeroFound = true;
 
-		} else if (currentHeading > 270 || currentHeading < 90) {
+		} else if (currentHeading > 300 || currentHeading < 120) {
 			Robot.driveSubsystem.drive(-.6, .6); // right turn - increase
 			// heading
-
 		} else {
 			Robot.driveSubsystem.drive(.6, -.6); // left turn - decrease
 			// heading
 		}
 
+		// if ((Robot.navx.getFusedHeading() > (120 - error)) &&
+		// (Robot.navx.getFusedHeading() < (120 + error))) {
+		// Robot.driveSubsystem.drive(0, 0);
+		// } else if ((Robot.navx.getFusedHeading() <= 300)) {
+		// Robot.driveSubsystem.drive(1, -1);
+		// } else {
+		// Robot.driveSubsystem.drive(-1, 1);
+		// }
 	}
 
 	@Override
@@ -56,14 +59,10 @@ public class AutonomousTurnRight extends Command {
 
 	@Override
 	protected void end() {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	protected void interrupted() {
-		// TODO Auto-generated method stub
-
 	}
 
 }

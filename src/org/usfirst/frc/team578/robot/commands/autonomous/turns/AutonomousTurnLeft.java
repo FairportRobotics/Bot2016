@@ -1,12 +1,16 @@
-package org.usfirst.frc.team578.robot.commands.autonomous;
+package org.usfirst.frc.team578.robot.commands.autonomous.turns;
 
 import org.usfirst.frc.team578.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class AutonomousTurnTo240 extends Command {
+public class AutonomousTurnLeft extends Command {
 	private double error = .25;
 	private boolean zeroFound = false;
+
+	public AutonomousTurnLeft() {
+		requires(Robot.driveSubsystem);
+	}
 
 	@Override
 	protected void initialize() {
@@ -16,10 +20,9 @@ public class AutonomousTurnTo240 extends Command {
 
 	@Override
 	protected void execute() {
-
 		double currentHeading = Robot.navx.getFusedHeading();
-		double MIN_LEFT_VAL = 240 - error;
-		double MIN_RIGHT_VAL = 240 + error;
+		double MIN_LEFT_VAL = 270 - error;
+		double MIN_RIGHT_VAL = 270 + error;
 
 		System.err.println(this.getName() + " :heading : " + currentHeading + " : " + zeroFound);
 
@@ -32,28 +35,18 @@ public class AutonomousTurnTo240 extends Command {
 			Robot.driveSubsystem.drive(0, 0);
 			zeroFound = true;
 
-		} else if (currentHeading > 60 && currentHeading < 240) {
-			Robot.driveSubsystem.drive(.6, -.6); // left turn - increase
+		} else if (currentHeading > 90 && currentHeading < 270) {
+			Robot.driveSubsystem.drive(-.6, .6); // right turn - increase
 			// heading
+
 		} else {
-			Robot.driveSubsystem.drive(-.6, .6); // right turn - decrease
+			Robot.driveSubsystem.drive(.6, -.6); // left turn - decrease
 			// heading
 		}
-		// // TODO Auto-generated method stub
-		// if ((Robot.navx.getFusedHeading() > (240 - error)) &&
-		// (Robot.navx.getFusedHeading() < (240 + error))) {
-		// Robot.driveSubsystem.drive(0, 0);
-		// } else if ((Robot.navx.getFusedHeading() >= (240 + error)) ||
-		// (Robot.navx.getFusedHeading() < 60)) {
-		// Robot.driveSubsystem.drive(.4, -.4);
-		// } else {
-		// Robot.driveSubsystem.drive(-.4, .4);
-		// }
 	}
 
 	@Override
 	protected boolean isFinished() {
-		// TODO Auto-generated method stub
 		return zeroFound;
 	}
 

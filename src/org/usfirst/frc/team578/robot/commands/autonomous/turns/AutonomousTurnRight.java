@@ -1,28 +1,31 @@
-package org.usfirst.frc.team578.robot.commands.autonomous;
+package org.usfirst.frc.team578.robot.commands.autonomous.turns;
 
 import org.usfirst.frc.team578.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class AutonomousTurnLeft extends Command {
+public class AutonomousTurnRight extends Command {
 	private double error = .25;
 	private boolean zeroFound = false;
 
-	public AutonomousTurnLeft() {
+	// DONE
+	public AutonomousTurnRight() {
 		requires(Robot.driveSubsystem);
 	}
 
 	@Override
 	protected void initialize() {
+
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	protected void execute() {
+
 		double currentHeading = Robot.navx.getFusedHeading();
-		double MIN_LEFT_VAL = 270 - error;
-		double MIN_RIGHT_VAL = 270 + error;
+		double MIN_LEFT_VAL = 90 - error;
+		double MIN_RIGHT_VAL = 90 + error;
 
 		System.err.println(this.getName() + " :heading : " + currentHeading + " : " + zeroFound);
 
@@ -35,7 +38,7 @@ public class AutonomousTurnLeft extends Command {
 			Robot.driveSubsystem.drive(0, 0);
 			zeroFound = true;
 
-		} else if (currentHeading > 90 && currentHeading < 270) {
+		} else if (currentHeading > 270 || currentHeading < 90) {
 			Robot.driveSubsystem.drive(-.6, .6); // right turn - increase
 			// heading
 
@@ -43,6 +46,7 @@ public class AutonomousTurnLeft extends Command {
 			Robot.driveSubsystem.drive(.6, -.6); // left turn - decrease
 			// heading
 		}
+
 	}
 
 	@Override

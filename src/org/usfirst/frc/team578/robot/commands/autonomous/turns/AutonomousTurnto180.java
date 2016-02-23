@@ -1,27 +1,29 @@
-package org.usfirst.frc.team578.robot.commands.autonomous;
+package org.usfirst.frc.team578.robot.commands.autonomous.turns;
 
 import org.usfirst.frc.team578.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class AutonomousTurnTo120 extends Command {
+public class AutonomousTurnto180 extends Command {
 	private double error = .25;
 	private boolean zeroFound = false;
 
-	public AutonomousTurnTo120() {
+	public AutonomousTurnto180() {
 		requires(Robot.driveSubsystem);
 	}
 
 	@Override
 	protected void initialize() {
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override
 	protected void execute() {
 
 		double currentHeading = Robot.navx.getFusedHeading();
-		double MIN_LEFT_VAL = 120 - error;
-		double MIN_RIGHT_VAL = 120 + error;
+		double MIN_LEFT_VAL = 180 - error;
+		double MIN_RIGHT_VAL = 180 + error;
 
 		System.err.println(this.getName() + " :heading : " + currentHeading + " : " + zeroFound);
 
@@ -34,21 +36,23 @@ public class AutonomousTurnTo120 extends Command {
 			Robot.driveSubsystem.drive(0, 0);
 			zeroFound = true;
 
-		} else if (currentHeading > 300 || currentHeading < 120) {
+		} else if (currentHeading > 0) {
 			Robot.driveSubsystem.drive(-.6, .6); // right turn - increase
 			// heading
+
 		} else {
 			Robot.driveSubsystem.drive(.6, -.6); // left turn - decrease
 			// heading
 		}
 
-		// if ((Robot.navx.getFusedHeading() > (120 - error)) &&
-		// (Robot.navx.getFusedHeading() < (120 + error))) {
+		// TODO Auto-generated method stub
+		// if (Robot.navx.getFusedHeading() > 180 - error &&
+		// Robot.navx.getFusedHeading() < 180 + error) {
 		// Robot.driveSubsystem.drive(0, 0);
-		// } else if ((Robot.navx.getFusedHeading() <= 300)) {
-		// Robot.driveSubsystem.drive(1, -1);
+		// } else if (Robot.navx.getFusedHeading() < 350) {
+		// Robot.driveSubsystem.drive(.25, -.25);
 		// } else {
-		// Robot.driveSubsystem.drive(-1, 1);
+		// Robot.driveSubsystem.drive(-.25, .25);
 		// }
 	}
 
@@ -59,10 +63,14 @@ public class AutonomousTurnTo120 extends Command {
 
 	@Override
 	protected void end() {
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override
 	protected void interrupted() {
+		// TODO Auto-generated method stub
+
 	}
 
 }
