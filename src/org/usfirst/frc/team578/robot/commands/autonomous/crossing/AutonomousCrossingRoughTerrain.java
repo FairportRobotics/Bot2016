@@ -14,11 +14,11 @@ public class AutonomousCrossingRoughTerrain extends CommandGroup {
 		// moves until flat detected [down]
 		addSequential(new AutonomousDriveToPitchZero(.5, .5));
 		// moves from edge of O.W. to Alignment Line [down]
-		addSequential(new AutonomousTurntoZeroCommand(RobotMap.DEFAULT_LEFT_TURN_SPEED, RobotMap.DEFAULT_RIGHT_TURN_SPEED));
+		addSequential(new AutonomousTurntoZeroCommand(RobotMap.DEFAULT_LEFT_WHEEL_TURN_SPEED, RobotMap.DEFAULT_RIGHT_WHEEL_TURN_SPEED));
 
 		addSequential(new AutonomousDriveCommand(1, 1, .6));
 		// sets robot yaw to 0 degrees [down]
-		addSequential(new AutonomousTurntoZeroCommand(RobotMap.DEFAULT_LEFT_TURN_SPEED, RobotMap.DEFAULT_RIGHT_TURN_SPEED));
+		addSequential(new AutonomousTurntoZeroCommand(RobotMap.DEFAULT_LEFT_WHEEL_TURN_SPEED, RobotMap.DEFAULT_RIGHT_WHEEL_TURN_SPEED));
 	}
 
 }

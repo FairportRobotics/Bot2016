@@ -15,10 +15,10 @@ public class AutonomousCrossingMoat extends CommandGroup {
 		// Moves until flat surface detected
 		addSequential(new AutonomousDriveToPitchZero(.6, .6));
 		// Moves from the edge of the defense to the Alignment line
-		addSequential(new AutonomousTurntoZeroCommand(RobotMap.DEFAULT_LEFT_TURN_SPEED, RobotMap.DEFAULT_RIGHT_TURN_SPEED));
+		addSequential(new AutonomousTurntoZeroCommand(RobotMap.DEFAULT_LEFT_WHEEL_TURN_SPEED, RobotMap.DEFAULT_RIGHT_WHEEL_TURN_SPEED));
 		addSequential(new AutonomousDriveCommand(1, 1, .6));
 		// Resets robot to face zero
-		addSequential(new AutonomousTurntoZeroCommand(RobotMap.DEFAULT_LEFT_TURN_SPEED, RobotMap.DEFAULT_RIGHT_TURN_SPEED));
+		addSequential(new AutonomousTurntoZeroCommand(RobotMap.DEFAULT_LEFT_WHEEL_TURN_SPEED, RobotMap.DEFAULT_RIGHT_WHEEL_TURN_SPEED));
 
 	}
 }

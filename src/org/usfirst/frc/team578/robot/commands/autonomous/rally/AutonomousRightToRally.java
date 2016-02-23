@@ -15,9 +15,9 @@ public class AutonomousRightToRally extends CommandGroup {
 		// point on the field and be ready for next phase
 
 		// addSequential(new AutonomousDriveCommand(.5, .5, 5)
-		addSequential(new AutonomousTurnLeft(RobotMap.DEFAULT_LEFT_TURN_SPEED, RobotMap.DEFAULT_RIGHT_TURN_SPEED));
+		addSequential(new AutonomousTurnLeft(RobotMap.DEFAULT_LEFT_WHEEL_TURN_SPEED, RobotMap.DEFAULT_RIGHT_WHEEL_TURN_SPEED));
 		addSequential(new AutonomousDriveCommand(1, 1, .68)); // 3 x middle
-		addSequential(new AutonomousTurntoZeroCommand(RobotMap.DEFAULT_LEFT_TURN_SPEED, RobotMap.DEFAULT_RIGHT_TURN_SPEED));
+		addSequential(new AutonomousTurntoZeroCommand(RobotMap.DEFAULT_LEFT_WHEEL_TURN_SPEED, RobotMap.DEFAULT_RIGHT_WHEEL_TURN_SPEED));
 	}
 
 }

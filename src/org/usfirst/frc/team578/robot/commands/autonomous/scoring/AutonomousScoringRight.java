@@ -17,14 +17,14 @@ public class AutonomousScoringRight extends CommandGroup {
 		// point on the field and be ready for next phase
 
 		// addSequential(new AutonomousDriveCommand(.5, .5, 5));
-		addSequential(new AutonomousTurnRight(RobotMap.DEFAULT_LEFT_TURN_SPEED, RobotMap.DEFAULT_RIGHT_TURN_SPEED));// turn
+		addSequential(new AutonomousTurnRight(RobotMap.DEFAULT_LEFT_WHEEL_TURN_SPEED, RobotMap.DEFAULT_RIGHT_WHEEL_TURN_SPEED));// turn
 																													// right
 																													// 90
 		// degrees
 		// addSequential(new AutonomousDriveCommand(0, 0, 0));// stops
 		addSequential(new AutonomousDriveCommand(1, 1, .86));// forward 6.5 feet
 		addSequential(new AutonomousDriveCommand(0, 0, 0));// stops
-		addSequential(new AutonomousTurntoZeroCommand(RobotMap.DEFAULT_LEFT_TURN_SPEED, RobotMap.DEFAULT_RIGHT_TURN_SPEED));// turn
+		addSequential(new AutonomousTurntoZeroCommand(RobotMap.DEFAULT_LEFT_WHEEL_TURN_SPEED, RobotMap.DEFAULT_RIGHT_WHEEL_TURN_SPEED));// turn
 																															// left
 																															// 90
 		// degrees
@@ -32,7 +32,7 @@ public class AutonomousScoringRight extends CommandGroup {
 		addSequential(new AutonomousDriveCommand(1, 1, .88));// forward 7.54
 																// feet
 		// addSequential(new AutonomousDriveCommand(0, 0, 0));// stops
-		addSequential(new AutonomousTurnTo120(RobotMap.DEFAULT_LEFT_TURN_SPEED, RobotMap.DEFAULT_RIGHT_TURN_SPEED));// turn
+		addSequential(new AutonomousTurnTo120(RobotMap.DEFAULT_LEFT_WHEEL_TURN_SPEED, RobotMap.DEFAULT_RIGHT_WHEEL_TURN_SPEED));// turn
 																													// left
 																													// 60
 		// degrees
