@@ -7,9 +7,13 @@ import edu.wpi.first.wpilibj.command.Command;
 public class AutonomousTurnTo120 extends Command {
 	private double error = .25;
 	private boolean zeroFound = false;
+	private double leftTurnSpeed;
+	private double rightTurnSpeed;
 
-	public AutonomousTurnTo120() {
+	public AutonomousTurnTo120(double leftTurnSpeed, double rightTurnSpeed) {
 		requires(Robot.driveSubsystem);
+		this.leftTurnSpeed = leftTurnSpeed;
+		this.rightTurnSpeed = rightTurnSpeed;
 	}
 
 	@Override
@@ -35,21 +39,18 @@ public class AutonomousTurnTo120 extends Command {
 			zeroFound = true;
 
 		} else if (currentHeading > 300 || currentHeading < 120) {
-			Robot.driveSubsystem.drive(-.6, .6); // right turn - increase
+			Robot.driveSubsystem.drive(-leftTurnSpeed, rightTurnSpeed); // right
+																		// turn
+																		// -
+																		// increase
 			// heading
 		} else {
-			Robot.driveSubsystem.drive(.6, -.6); // left turn - decrease
+			Robot.driveSubsystem.drive(leftTurnSpeed, -rightTurnSpeed); // left
+																		// turn
+																		// -
+																		// decrease
 			// heading
 		}
-
-		// if ((Robot.navx.getFusedHeading() > (120 - error)) &&
-		// (Robot.navx.getFusedHeading() < (120 + error))) {
-		// Robot.driveSubsystem.drive(0, 0);
-		// } else if ((Robot.navx.getFusedHeading() <= 300)) {
-		// Robot.driveSubsystem.drive(1, -1);
-		// } else {
-		// Robot.driveSubsystem.drive(-1, 1);
-		// }
 	}
 
 	@Override

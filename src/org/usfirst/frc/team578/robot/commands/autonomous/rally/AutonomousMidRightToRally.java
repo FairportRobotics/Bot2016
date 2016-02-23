@@ -1,5 +1,6 @@
 package org.usfirst.frc.team578.robot.commands.autonomous.rally;
 
+import org.usfirst.frc.team578.robot.RobotMap;
 import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousDriveCommand;
 import org.usfirst.frc.team578.robot.commands.autonomous.turns.AutonomousTurnLeft;
 import org.usfirst.frc.team578.robot.commands.autonomous.turns.AutonomousTurntoZeroCommand;
@@ -16,9 +17,9 @@ public class AutonomousMidRightToRally extends CommandGroup {
 		// addSequential(new AutonomousDriveCommand(.5, .5, 5));
 		// turn left 90 degrees then move forward 22 inches then turn right 90
 		// degrees
-		addSequential(new AutonomousTurnLeft());
+		addSequential(new AutonomousTurnLeft(RobotMap.DEFAULT_LEFT_TURN_SPEED, RobotMap.DEFAULT_RIGHT_TURN_SPEED));
 		addSequential(new AutonomousDriveCommand(1, 1, .21317829));
-		addSequential(new AutonomousTurntoZeroCommand());
+		addSequential(new AutonomousTurntoZeroCommand(RobotMap.DEFAULT_LEFT_TURN_SPEED, RobotMap.DEFAULT_RIGHT_TURN_SPEED));
 	}
 
 }

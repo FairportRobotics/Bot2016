@@ -1,5 +1,6 @@
 package org.usfirst.frc.team578.robot.commands.autonomous.rally;
 
+import org.usfirst.frc.team578.robot.RobotMap;
 import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousDriveCommand;
 import org.usfirst.frc.team578.robot.commands.autonomous.turns.AutonomousTurnRight;
 import org.usfirst.frc.team578.robot.commands.autonomous.turns.AutonomousTurntoZeroCommand;
@@ -14,9 +15,9 @@ public class AutonomousMiddleLeftToRally extends CommandGroup {
 		// point on the field and be ready for next phase
 
 		// addSequential(new AutonomousDriveCommand(.5, .5, 5));
-		addSequential(new AutonomousTurnRight());
+		addSequential(new AutonomousTurnRight(RobotMap.DEFAULT_LEFT_TURN_SPEED, RobotMap.DEFAULT_RIGHT_TURN_SPEED));
 		addSequential(new AutonomousDriveCommand(1, 1, .68)); // 3 x middle
-		addSequential(new AutonomousTurntoZeroCommand());
+		addSequential(new AutonomousTurntoZeroCommand(RobotMap.DEFAULT_LEFT_TURN_SPEED, RobotMap.DEFAULT_RIGHT_TURN_SPEED));
 
 	}
 

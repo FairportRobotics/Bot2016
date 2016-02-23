@@ -7,9 +7,13 @@ import edu.wpi.first.wpilibj.command.Command;
 public class AutonomousTurnto180 extends Command {
 	private double error = .25;
 	private boolean zeroFound = false;
+	private double leftTurnSpeed;
+	private double rightTurnSpeed;
 
-	public AutonomousTurnto180() {
+	public AutonomousTurnto180(double leftTurnSpeed, double rightTurnSpeed) {
 		requires(Robot.driveSubsystem);
+		this.leftTurnSpeed = leftTurnSpeed;
+		this.rightTurnSpeed = rightTurnSpeed;
 	}
 
 	@Override
@@ -37,23 +41,19 @@ public class AutonomousTurnto180 extends Command {
 			zeroFound = true;
 
 		} else if (currentHeading > 0) {
-			Robot.driveSubsystem.drive(-.6, .6); // right turn - increase
+			Robot.driveSubsystem.drive(-leftTurnSpeed, rightTurnSpeed); // right
+																		// turn
+																		// -
+																		// increase
 			// heading
 
 		} else {
-			Robot.driveSubsystem.drive(.6, -.6); // left turn - decrease
+			Robot.driveSubsystem.drive(rightTurnSpeed, -rightTurnSpeed); // left
+																			// turn
+																			// -
+																			// decrease
 			// heading
 		}
-
-		// TODO Auto-generated method stub
-		// if (Robot.navx.getFusedHeading() > 180 - error &&
-		// Robot.navx.getFusedHeading() < 180 + error) {
-		// Robot.driveSubsystem.drive(0, 0);
-		// } else if (Robot.navx.getFusedHeading() < 350) {
-		// Robot.driveSubsystem.drive(.25, -.25);
-		// } else {
-		// Robot.driveSubsystem.drive(-.25, .25);
-		// }
 	}
 
 	@Override

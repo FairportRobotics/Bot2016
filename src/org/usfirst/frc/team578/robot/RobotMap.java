@@ -33,4 +33,7 @@ public class RobotMap {
 	public static final int GAMEPAD = 2;
 	public static final int INTAKE_BUTTON = 3;
 
+	public static final double DEFAULT_LEFT_TURN_SPEED = 0.6;
+	public static final double DEFAULT_RIGHT_TURN_SPEED = 0.6;
+
 }

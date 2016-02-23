@@ -7,9 +7,13 @@ import edu.wpi.first.wpilibj.command.Command;
 public class AutonomousTurntoZeroCommand extends Command {
 	private double error = .25;
 	private boolean zeroFound = false;
+	private double leftTurnSpeed;
+	private double rightTurnSpeed;
 
-	public AutonomousTurntoZeroCommand() {
+	public AutonomousTurntoZeroCommand(double leftTurnSpeed, double rightTurnSpeed) {
 		requires(Robot.driveSubsystem);
+		this.leftTurnSpeed = leftTurnSpeed;
+		this.rightTurnSpeed = rightTurnSpeed;
 	}
 
 	@Override
@@ -37,21 +41,18 @@ public class AutonomousTurntoZeroCommand extends Command {
 			zeroFound = true;
 
 		} else if (currentHeading < 180) {
-			Robot.driveSubsystem.drive(.6, -.6); // left turn - decrease
-													// heading
+			Robot.driveSubsystem.drive(leftTurnSpeed, -rightTurnSpeed); // left
+																		// turn
+																		// -
+																		// decrease
+			// heading
 		} else {
-			Robot.driveSubsystem.drive(-.6, .6); // right turn - increase
-													// heading
+			Robot.driveSubsystem.drive(-leftTurnSpeed, rightTurnSpeed); // right
+																		// turn
+																		// -
+																		// increase
+			// heading
 		}
-		// // TODO Auto-generated method stub
-		// if ((Robot.navx.getFusedHeading() > (360 - error)) ||
-		// (Robot.navx.getFusedHeading() < (0 + error))) {
-		// Robot.driveSubsystem.drive(0, 0);
-		// } else if (Robot.navx.getFusedHeading() <= 180) {
-		// Robot.driveSubsystem.drive(.5, -.5);
-		// } else {
-		// Robot.driveSubsystem.drive(-.5, 5);
-		// }
 	}
 
 	@Override

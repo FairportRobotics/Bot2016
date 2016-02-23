@@ -7,6 +7,14 @@ import edu.wpi.first.wpilibj.command.Command;
 public class AutonomousTurnTo240 extends Command {
 	private double error = .25;
 	private boolean zeroFound = false;
+	private double leftTurnSpeed;
+	private double rightTurnSpeed;
+
+	public AutonomousTurnTo240(double leftTurnSpeed, double rightTurnSpeed) {
+		requires(Robot.driveSubsystem);
+		this.leftTurnSpeed = leftTurnSpeed;
+		this.rightTurnSpeed = rightTurnSpeed;
+	}
 
 	@Override
 	protected void initialize() {
@@ -33,27 +41,22 @@ public class AutonomousTurnTo240 extends Command {
 			zeroFound = true;
 
 		} else if (currentHeading > 60 && currentHeading < 240) {
-			Robot.driveSubsystem.drive(.6, -.6); // left turn - increase
+			Robot.driveSubsystem.drive(leftTurnSpeed, -rightTurnSpeed); // left
+																		// turn
+																		// -
+																		// increase
 			// heading
 		} else {
-			Robot.driveSubsystem.drive(-.6, .6); // right turn - decrease
+			Robot.driveSubsystem.drive(-leftTurnSpeed, rightTurnSpeed); // right
+																		// turn
+																		// -
+																		// decrease
 			// heading
 		}
-		// // TODO Auto-generated method stub
-		// if ((Robot.navx.getFusedHeading() > (240 - error)) &&
-		// (Robot.navx.getFusedHeading() < (240 + error))) {
-		// Robot.driveSubsystem.drive(0, 0);
-		// } else if ((Robot.navx.getFusedHeading() >= (240 + error)) ||
-		// (Robot.navx.getFusedHeading() < 60)) {
-		// Robot.driveSubsystem.drive(.4, -.4);
-		// } else {
-		// Robot.driveSubsystem.drive(-.4, .4);
-		// }
 	}
 
 	@Override
 	protected boolean isFinished() {
-		// TODO Auto-generated method stub
 		return zeroFound;
 	}
 
