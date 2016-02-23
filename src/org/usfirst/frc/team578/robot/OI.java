@@ -3,8 +3,8 @@ package org.usfirst.frc.team578.robot;
 import org.usfirst.frc.team578.robot.commands.ClimbWallCommandGroup;
 import org.usfirst.frc.team578.robot.commands.IntakeCommand;
 import org.usfirst.frc.team578.robot.commands.OutputCommand;
-import org.usfirst.frc.team578.robot.commands.WinchTestExtendCommand;
-import org.usfirst.frc.team578.robot.commands.WinchTestRetractCommand;
+import org.usfirst.frc.team578.robot.commands.WinchExtendCommand;
+import org.usfirst.frc.team578.robot.commands.WinchRetractCommand;
 import org.usfirst.frc.team578.robot.commands.WinchTestRetractSingleCommand;
 
 import edu.wpi.first.wpilibj.GenericHID.Hand;
@@ -73,8 +73,8 @@ public class OI {
 		buttonFive.whileHeld(new OutputCommand());
 		buttonSix.whileHeld(new IntakeCommand());
 		buttonFour.whenPressed(new ClimbWallCommandGroup());
-		buttonThree.whileHeld(new WinchTestExtendCommand());
-		buttonTwo.whileHeld(new WinchTestRetractCommand());
+		buttonThree.whileHeld(new WinchExtendCommand());
+		buttonTwo.whileHeld(new WinchRetractCommand());
 		buttonOne.whileHeld(new WinchTestRetractSingleCommand());
 	}
 

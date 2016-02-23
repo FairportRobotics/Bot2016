@@ -179,10 +179,6 @@ public class Robot extends IterativeRobot {
 		Integer beforeRallyDelayValue = SmartDashboard.getInt("beforeRallyDelayValue", 0);
 		Integer beforeScoringDelayValue = SmartDashboard.getInt("beforeScoringDelayValue", 0);
 
-		// TESTING ONLY
-		// autoDef = new AutonomousCrossingLowBar();
-		// beforeScoringDelayValue = 1500;
-
 		autonomousCommand = new AutonomousMaster(autoDef, autoRally, autoScore, beforeDefenseDelayValue, beforeRallyDelayValue, beforeScoringDelayValue,
 				autoBack);
 
