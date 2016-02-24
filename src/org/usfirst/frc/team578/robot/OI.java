@@ -56,6 +56,8 @@ public class OI {
 	JoystickButton buttonTwo = new JoystickButton(gamepad, 2);
 	JoystickButton buttonOne = new JoystickButton(gamepad, 1);
 	JoystickButton buttonNine = new JoystickButton(gamepad, 9);
+	JoystickButton buttonSeven = new JoystickButton(gamepad, 7);
+	JoystickButton buttonEight = new JoystickButton(gamepad, 8);
 
 	public double getArmJoystick() {
 		return gamepad.getY(Hand.kLeft);
@@ -67,6 +69,14 @@ public class OI {
 
 	public double getRight() {
 		return rightJoystick.getY();
+	}
+
+	public boolean getForwardCamera() {
+		return buttonSeven.get();
+	}
+
+	public boolean getBackwardCamera() {
+		return buttonEight.get();
 	}
 
 	public void initialize() {

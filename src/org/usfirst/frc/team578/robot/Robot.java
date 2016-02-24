@@ -1,5 +1,6 @@
 package org.usfirst.frc.team578.robot;
 
+import org.usfirst.frc.team578.robot.camera.CameraFeeds;
 import org.usfirst.frc.team578.robot.commands.DriveCommand;
 import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousMaster;
 import org.usfirst.frc.team578.robot.commands.autonomous.crossing.AutonomousCrossingLowBar;
@@ -26,7 +27,6 @@ import org.usfirst.frc.team578.robot.subsystems.WinchSubsystem;
 
 import com.kauailabs.navx.frc.AHRS;
 
-import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.command.Command;
@@ -52,13 +52,12 @@ public class Robot extends IterativeRobot {
 	public static ArmSubsystem armSubsystem;
 	public static AHRS navx;
 	public static BallSensorSubsystem ballSensorSubsystem;
+	CameraFeeds cameraFeeds;
 
 	private SendableChooser startingPositionChooser;
 	private SendableChooser defenseChooser;
 	private SendableChooser scoringPositionChooser;
 	private Command autonomousCommand;
-
-	private CameraServer cameraServer;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -90,10 +89,7 @@ public class Robot extends IterativeRobot {
 
 		navx = new AHRS(SPI.Port.kMXP);
 
-		cameraServer = CameraServer.getInstance();
-		cameraServer.setQuality(50);
-		// cameraServer.startAutomaticCapture("cam0");
-		cameraServer.startAutomaticCapture("cam1");
+		cameraFeeds = new CameraFeeds();
 
 		// These need to happen after
 		// the subsystems are initialized
@@ -223,6 +219,8 @@ public class Robot extends IterativeRobot {
 		// this line or comment it out.
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
+
+		cameraFeeds.init();
 	}
 
 	/**
@@ -230,6 +228,8 @@ public class Robot extends IterativeRobot {
 	 * to reset subsystems before shutting down.
 	 */
 	public void disabledInit() {
+
+		cameraFeeds.end();
 
 	}
 
@@ -240,6 +240,8 @@ public class Robot extends IterativeRobot {
 		DriveCommand driveCommand = new DriveCommand();
 		driveCommand.start();
 		Scheduler.getInstance().run();
+
+		cameraFeeds.run();
 	}
 
 	/**
