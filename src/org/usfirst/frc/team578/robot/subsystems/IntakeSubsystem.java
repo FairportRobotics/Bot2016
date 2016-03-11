@@ -8,7 +8,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class IntakeSubsystem extends Subsystem {
 
 	private CANTalon intakeTalon;
-	private int scaleFactor = 1;
+	private double intakeScaleFactor = .7;
+	private double outputScaleFactor = 1;
 
 	public IntakeSubsystem() {
 
@@ -21,11 +22,11 @@ public class IntakeSubsystem extends Subsystem {
 	}
 
 	public void spinIntake() {
-		intakeTalon.set(-1 * scaleFactor);
+		intakeTalon.set(-1 * intakeScaleFactor);
 	}
 
 	public void spinOutput() {
-		intakeTalon.set(1 * scaleFactor);
+		intakeTalon.set(1 * outputScaleFactor);
 	}
 
 	public void spinStop() {
