@@ -27,11 +27,17 @@ public class AutonomousTurnTo120 extends Command {
 		double MIN_LEFT_VAL = 120 - error;
 		double MIN_RIGHT_VAL = 120 + error;
 
-		System.err.println(this.getName() + " :heading : " + currentHeading + " : " + zeroFound);
+		System.err.println(this.getName() + " :heading : " + currentHeading
+				+ " : " + zeroFound);
 
 		if (zeroFound) {
 			Robot.driveSubsystem.drive(0, 0);
 			return;
+		}
+
+		if ((currentHeading < 125) && (currentHeading > 115)) {
+			leftTurnSpeed = .25;
+			rightTurnSpeed = .25;
 		}
 
 		if (currentHeading > MIN_LEFT_VAL && currentHeading < MIN_RIGHT_VAL) {

@@ -31,11 +31,18 @@ public class AutonomousTurnRight extends Command {
 		double MIN_LEFT_VAL = 90 - error;
 		double MIN_RIGHT_VAL = 90 + error;
 
-		System.err.println(this.getName() + " :heading : " + currentHeading + " : " + zeroFound);
+		System.err.println(this.getName() + " :heading : " + currentHeading
+				+ " : " + zeroFound);
 
 		if (zeroFound) {
 			Robot.driveSubsystem.drive(0, 0);
 			return;
+		}
+
+		// slow down in sweet spot
+		if ((currentHeading < 95) && (currentHeading > 85)) {
+			leftTurnSpeed = .25;
+			rightTurnSpeed = .25;
 		}
 
 		if (currentHeading > MIN_LEFT_VAL && currentHeading < MIN_RIGHT_VAL) {
