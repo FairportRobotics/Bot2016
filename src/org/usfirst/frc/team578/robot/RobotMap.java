@@ -39,7 +39,7 @@ public class RobotMap {
 	public static final int imgQuality = 60;
 
 	// These are the default speeds used to turn the wheels
-	public static final double DEFAULT_LEFT_WHEEL_TURN_SPEED = 0.6;
-	public static final double DEFAULT_RIGHT_WHEEL_TURN_SPEED = 0.6;
+	public static final double DEFAULT_LEFT_WHEEL_TURN_SPEED = 1;
+	public static final double DEFAULT_RIGHT_WHEEL_TURN_SPEED = 1;
 
 }
