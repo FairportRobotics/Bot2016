@@ -1,14 +1,14 @@
 <xml version="1.0">
 <dashboard>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.WebcamViewerExtension">
+		<location x="879" y="85"/>
+	</static-widget>
+	<widget field="Logging Level" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
+		<location x="0" y="105"/>
+	</widget>
 	<widget field="navxConnected" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="0" y="131"/>
 	</widget>
-	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.WebcamViewerExtension">
-		<location x="929" y="333"/>
-	</static-widget>
-	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.WebcamViewerExtension">
-		<location x="929" y="65"/>
-	</static-widget>
 	<widget field="Ball Sensor" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="0" y="84"/>
 	</widget>
@@ -67,6 +67,66 @@
 	<widget field="Autonomous Strategy" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
 		<location x="6" y="461"/>
 	</widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="181" y="54"/>
+		<property name="Text" value="Before Scoring Delay"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="184" y="32"/>
+		<property name="Text" value="Before Rally Delay"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="185" y="12"/>
+		<property name="Text" value="Before Defense Delay"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="181" y="54"/>
+		<property name="Text" value="Before Scoring Delay"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="184" y="32"/>
+		<property name="Text" value="Before Rally Delay"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="185" y="12"/>
+		<property name="Text" value="Before Defense Delay"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="181" y="54"/>
+		<property name="Text" value="Before Scoring Delay"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="184" y="32"/>
+		<property name="Text" value="Before Rally Delay"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="185" y="12"/>
+		<property name="Text" value="Before Defense Delay"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="181" y="54"/>
+		<property name="Text" value="Before Scoring Delay"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="184" y="32"/>
+		<property name="Text" value="Before Rally Delay"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="185" y="12"/>
+		<property name="Text" value="Before Defense Delay"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="181" y="54"/>
+		<property name="Text" value="Before Scoring Delay"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="184" y="32"/>
+		<property name="Text" value="Before Rally Delay"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="23" y="112"/>
+		<property name="Text" value="Before Defense Delay"/>
+	</static-widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
 		<location x="181" y="54"/>
 		<property name="Text" value="Before Scoring Delay"/>

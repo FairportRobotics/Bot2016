@@ -3,9 +3,6 @@ package org.usfirst.frc.team578.robot;
 import org.usfirst.frc.team578.robot.commands.ClimbWallCommandGroup;
 import org.usfirst.frc.team578.robot.commands.IntakeCommand;
 import org.usfirst.frc.team578.robot.commands.OutputCommand;
-import org.usfirst.frc.team578.robot.commands.WinchExtendCommand;
-import org.usfirst.frc.team578.robot.commands.WinchRetractCommand;
-import org.usfirst.frc.team578.robot.commands.WinchTestRetractSingleCommand;
 
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.Joystick;
@@ -83,9 +80,9 @@ public class OI {
 		buttonFive.whileHeld(new OutputCommand());
 		buttonSix.whileHeld(new IntakeCommand());
 		buttonFour.whenPressed(new ClimbWallCommandGroup());
-		buttonThree.whileHeld(new WinchExtendCommand());
-		buttonTwo.whileHeld(new WinchRetractCommand());
-		buttonOne.whileHeld(new WinchTestRetractSingleCommand());
+		// buttonThree.whileHeld(new WinchExtendCommand());
+		// buttonTwo.whileHeld(new WinchRetractCommand());
+		// buttonOne.whileHeld(new WinchTestRetractSingleCommand());
 	}
 
 	public boolean getHighSpeed() {

@@ -29,10 +29,8 @@ public class WinchSubsystem extends Subsystem {
 		winchTalonBack.enable();
 
 		winchBrakeRelay1 = new Relay(RobotMap.WINCH_BRAKE_RELAY1);
-		winchBrakeRelay1.set(Relay.Value.kOn);
 
 		winchBrakeRelay2 = new Relay(RobotMap.WINCH_BRAKE_RELAY2);
-		winchBrakeRelay2.set(Relay.Value.kOn);
 
 	}
 
@@ -43,6 +41,7 @@ public class WinchSubsystem extends Subsystem {
 
 	public void extend() {
 		// winchTalonFront.set(1 * scaleFactorFront);
+
 		winchTalonBack.set(1 * scaleFactorBack);
 	}
 
@@ -51,13 +50,22 @@ public class WinchSubsystem extends Subsystem {
 		winchTalonBack.set(-1 * scaleFactorBack);
 	}
 
+	public void initiateBrake() {
+		winchBrakeRelay1.set(Relay.Value.kForward);
+		winchBrakeRelay2.set(Relay.Value.kForward);
+	}
+
+	public void unpowerBrake() {
+		winchBrakeRelay1.set(Relay.Value.kOff);
+		winchBrakeRelay2.set(Relay.Value.kOff);
+	}
+
 	public void retractSingle() {
 		winchTalonFront.set(-1 * scaleFactorBack);
 	}
 
 	public void stop() {
-		winchBrakeRelay1.set(Relay.Value.kOff);
-		winchBrakeRelay2.set(Relay.Value.kOff);
+
 		winchTalonFront.set(0);
 		winchTalonBack.set(0);
 	}
