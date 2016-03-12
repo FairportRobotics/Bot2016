@@ -25,14 +25,14 @@ public class ArmSubsystem extends Subsystem {
 	}
 
 	public void forward(double value) {
-		armTalon.set(value * scaleFactor);
+		armTalon.set(-value * scaleFactor);
 	}
 
 	public void backwards(double value) {
 		if (Robot.oi.getHighSpeed()) {
-			armTalon.set(-value);
+			armTalon.set(value);
 		} else {
-			armTalon.set(-value * scaleFactor);
+			armTalon.set(value * scaleFactor);
 		}
 	}
 

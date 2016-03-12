@@ -25,12 +25,13 @@ public class ArmCommand extends Command {
 
 		if (armJoystickValue > MAX_STOP_BUFFER) {
 			// forward
-			Robot.armSubsystem.forward(armJoystickValue);
+			Robot.armSubsystem.backwards(Math.abs(armJoystickValue));
 
 		} else if (armJoystickValue < MIN_STOP_BUFFER) {
 			// backwards will negate any value passed to it
 			// so we need to make sure the joystick value is positive
-			Robot.armSubsystem.backwards(Math.abs(armJoystickValue));
+
+			Robot.armSubsystem.forward(Math.abs(armJoystickValue));
 
 		} else {
 			// stop

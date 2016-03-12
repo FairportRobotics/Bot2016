@@ -29,8 +29,7 @@ public class AutonomousTurnto180 extends Command {
 		double MIN_LEFT_VAL = 180 - error;
 		double MIN_RIGHT_VAL = 180 + error;
 
-		System.err.println(this.getName() + " :heading : " + currentHeading
-				+ " : " + zeroFound);
+		System.err.println(this.getName() + " :heading : " + currentHeading + " : " + zeroFound);
 
 		if (zeroFound) {
 			Robot.driveSubsystem.drive(0, 0);
@@ -38,8 +37,8 @@ public class AutonomousTurnto180 extends Command {
 		}
 
 		if ((currentHeading < 185) && (currentHeading > 175)) {
-			leftTurnSpeed = .25;
-			rightTurnSpeed = .25;
+			leftTurnSpeed = .4;
+			rightTurnSpeed = .4;
 		}
 
 		if (currentHeading > MIN_LEFT_VAL && currentHeading < MIN_RIGHT_VAL) {

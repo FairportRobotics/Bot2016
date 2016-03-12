@@ -10,8 +10,7 @@ public class AutonomousTurntoZeroCommand extends Command {
 	private double leftTurnSpeed;
 	private double rightTurnSpeed;
 
-	public AutonomousTurntoZeroCommand(double leftTurnSpeed,
-			double rightTurnSpeed) {
+	public AutonomousTurntoZeroCommand(double leftTurnSpeed, double rightTurnSpeed) {
 		requires(Robot.driveSubsystem);
 		this.leftTurnSpeed = leftTurnSpeed;
 		this.rightTurnSpeed = rightTurnSpeed;
@@ -38,13 +37,13 @@ public class AutonomousTurntoZeroCommand extends Command {
 		}
 
 		if (currentHeading > 355 && currentHeading <= 360 - error) {
-			leftTurnSpeed = .25;
-			rightTurnSpeed = .25;
+			leftTurnSpeed = .4;
+			rightTurnSpeed = .4;
 		}
 
 		if (currentHeading < 5 && currentHeading > error) {
-			leftTurnSpeed = .25;
-			rightTurnSpeed = .25;
+			leftTurnSpeed = .4;
+			rightTurnSpeed = .4;
 		}
 
 		if (currentHeading > MIN_LEFT_VAL || currentHeading < MIN_RIGHT_VAL) {
