@@ -14,6 +14,11 @@ import org.usfirst.frc.team578.robot.commands.autonomous.dualrally.left.Autonomo
 import org.usfirst.frc.team578.robot.commands.autonomous.dualrally.left.AutonomousMiddleRightToLeftRally;
 import org.usfirst.frc.team578.robot.commands.autonomous.dualrally.left.AutonomousMiddleToLeftRally;
 import org.usfirst.frc.team578.robot.commands.autonomous.dualrally.left.AutonomousRightToLeftRally;
+import org.usfirst.frc.team578.robot.commands.autonomous.dualrally.right.AutonomousLeftToRightRally;
+import org.usfirst.frc.team578.robot.commands.autonomous.dualrally.right.AutonomousMiddleLeftToRightRally;
+import org.usfirst.frc.team578.robot.commands.autonomous.dualrally.right.AutonomousMiddleRightToRightRally;
+import org.usfirst.frc.team578.robot.commands.autonomous.dualrally.right.AutonomousMiddleToRightRally;
+import org.usfirst.frc.team578.robot.commands.autonomous.dualrally.right.AutonomousRightToRightRally;
 import org.usfirst.frc.team578.robot.commands.autonomous.scoring.AutonomousAwayFromGoalLeft;
 import org.usfirst.frc.team578.robot.commands.autonomous.scoring.AutonomousAwayFromGoalRight;
 import org.usfirst.frc.team578.robot.commands.autonomous.scoring.AutonomousScoringLeft;
@@ -177,8 +182,8 @@ public class Robot extends IterativeRobot {
 		Integer beforeScoringDelayValue = SmartDashboard.getInt("beforeScoringDelayValue", 0);
 
 		// Default
-		// TODO : Does this mean stop or noop?
 		Command autoRally = new AutonomousScoringNone();
+
 		if (autoScore.getClass().getSimpleName().equals("AutonomousScoringLeft")) {
 			if (positionEnum == PositionEnum.RIGHT) {
 				autoRally = new AutonomousRightToLeftRally();
@@ -193,7 +198,17 @@ public class Robot extends IterativeRobot {
 			}
 			// TODO : note that right to right should be a noop.
 		} else if (autoScore.getClass().getSimpleName().equals("AutonomousScoringRight")) {
-			// TODO : do the right side here.
+			if (positionEnum == PositionEnum.RIGHT) {
+				autoRally = new AutonomousRightToRightRally();
+			} else if (positionEnum == PositionEnum.MIDDLE_RIGHT) {
+				autoRally = new AutonomousMiddleRightToRightRally();
+			} else if (positionEnum == PositionEnum.MIDDLE) {
+				autoRally = new AutonomousMiddleToRightRally();
+			} else if (positionEnum == PositionEnum.MIDDLE_LEFT) {
+				autoRally = new AutonomousMiddleLeftToRightRally();
+			} else {
+				autoRally = new AutonomousLeftToRightRally();
+			}
 		}
 
 		autonomousCommand = new AutonomousMaster(autoDef, autoRally, autoScore, beforeDefenseDelayValue, beforeRallyDelayValue, beforeScoringDelayValue,
