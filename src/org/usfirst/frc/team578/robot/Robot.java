@@ -196,7 +196,6 @@ public class Robot extends IterativeRobot {
 			} else {
 				autoRally = new AutonomousLeftToLeftRally();
 			}
-			// TODO : note that right to right should be a noop.
 		} else if (autoScore.getClass().getSimpleName().equals("AutonomousScoringRight")) {
 			if (positionEnum == PositionEnum.RIGHT) {
 				autoRally = new AutonomousRightToRightRally();
