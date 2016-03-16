@@ -8,11 +8,12 @@ import org.usfirst.frc.team578.robot.commands.autonomous.crossing.AutonomousCros
 import org.usfirst.frc.team578.robot.commands.autonomous.crossing.AutonomousCrossingRamparts;
 import org.usfirst.frc.team578.robot.commands.autonomous.crossing.AutonomousCrossingRockWall;
 import org.usfirst.frc.team578.robot.commands.autonomous.crossing.AutonomousCrossingRoughTerrain;
-import org.usfirst.frc.team578.robot.commands.autonomous.rally.AutonomousLeftToRally;
-import org.usfirst.frc.team578.robot.commands.autonomous.rally.AutonomousMidRightToRally;
-import org.usfirst.frc.team578.robot.commands.autonomous.rally.AutonomousMiddleLeftToRally;
-import org.usfirst.frc.team578.robot.commands.autonomous.rally.AutonomousMiddleToRally;
-import org.usfirst.frc.team578.robot.commands.autonomous.rally.AutonomousRightToRally;
+import org.usfirst.frc.team578.robot.commands.autonomous.dualrally.PositionEnum;
+import org.usfirst.frc.team578.robot.commands.autonomous.dualrally.left.AutonomousLeftToLeftRally;
+import org.usfirst.frc.team578.robot.commands.autonomous.dualrally.left.AutonomousMiddleLeftToLeftRally;
+import org.usfirst.frc.team578.robot.commands.autonomous.dualrally.left.AutonomousMiddleRightToLeftRally;
+import org.usfirst.frc.team578.robot.commands.autonomous.dualrally.left.AutonomousMiddleToLeftRally;
+import org.usfirst.frc.team578.robot.commands.autonomous.dualrally.left.AutonomousRightToLeftRally;
 import org.usfirst.frc.team578.robot.commands.autonomous.scoring.AutonomousAwayFromGoalLeft;
 import org.usfirst.frc.team578.robot.commands.autonomous.scoring.AutonomousAwayFromGoalRight;
 import org.usfirst.frc.team578.robot.commands.autonomous.scoring.AutonomousScoringLeft;
@@ -116,11 +117,11 @@ public class Robot extends IterativeRobot {
 	private void initializeStartingPositionChooser() {
 
 		startingPositionChooser = new SendableChooser();
-		startingPositionChooser.addDefault("1 Left", new AutonomousLeftToRally());
-		startingPositionChooser.addObject("2 Mid Left", new AutonomousMiddleLeftToRally());
-		startingPositionChooser.addObject("3 Center", new AutonomousMiddleToRally());
-		startingPositionChooser.addObject("4 Mid Right", new AutonomousMidRightToRally());
-		startingPositionChooser.addObject("5 Right", new AutonomousRightToRally());
+		startingPositionChooser.addDefault("1 Left", PositionEnum.LEFT);
+		startingPositionChooser.addObject("2 Mid Left", PositionEnum.MIDDLE_LEFT);
+		startingPositionChooser.addObject("3 Center", PositionEnum.MIDDLE);
+		startingPositionChooser.addObject("4 Mid Right", PositionEnum.MIDDLE_RIGHT);
+		startingPositionChooser.addObject("5 Right", PositionEnum.RIGHT);
 
 		SmartDashboard.putData("Starting Position", startingPositionChooser);
 	}
@@ -159,7 +160,7 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		// schedule the autonomous command (example)
 		Command autoDef = (Command) defenseChooser.getSelected();
-		Command autoRally = (Command) startingPositionChooser.getSelected();
+		PositionEnum positionEnum = (PositionEnum) startingPositionChooser.getSelected();
 		Command autoScore = (Command) scoringPositionChooser.getSelected();
 		Command autoBack = null;
 
@@ -174,6 +175,26 @@ public class Robot extends IterativeRobot {
 		Integer beforeDefenseDelayValue = SmartDashboard.getInt("beforeDefenseDelayValue", 0);
 		Integer beforeRallyDelayValue = SmartDashboard.getInt("beforeRallyDelayValue", 0);
 		Integer beforeScoringDelayValue = SmartDashboard.getInt("beforeScoringDelayValue", 0);
+
+		// Default
+		// TODO : Does this mean stop or noop?
+		Command autoRally = new AutonomousScoringNone();
+		if (autoScore.getClass().getSimpleName().equals("AutonomousScoringLeft")) {
+			if (positionEnum == PositionEnum.RIGHT) {
+				autoRally = new AutonomousRightToLeftRally();
+			} else if (positionEnum == PositionEnum.MIDDLE_RIGHT) {
+				autoRally = new AutonomousMiddleRightToLeftRally();
+			} else if (positionEnum == PositionEnum.MIDDLE) {
+				autoRally = new AutonomousMiddleToLeftRally();
+			} else if (positionEnum == PositionEnum.MIDDLE_LEFT) {
+				autoRally = new AutonomousMiddleLeftToLeftRally();
+			} else {
+				autoRally = new AutonomousLeftToLeftRally();
+			}
+			// TODO : note that right to right should be a noop.
+		} else if (autoScore.getClass().getSimpleName().equals("AutonomousScoringRight")) {
+			// TODO : do the right side here.
+		}
 
 		autonomousCommand = new AutonomousMaster(autoDef, autoRally, autoScore, beforeDefenseDelayValue, beforeRallyDelayValue, beforeScoringDelayValue,
 				autoBack);
