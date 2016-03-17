@@ -181,8 +181,7 @@ public class Robot extends IterativeRobot {
 		Integer beforeRallyDelayValue = SmartDashboard.getInt("beforeRallyDelayValue", 0);
 		Integer beforeScoringDelayValue = SmartDashboard.getInt("beforeScoringDelayValue", 0);
 
-		// Default
-		Command autoRally = new AutonomousScoringNone();
+		Command autoRally;
 
 		if (autoScore.getClass().getSimpleName().equals("AutonomousScoringLeft")) {
 			if (positionEnum == PositionEnum.RIGHT) {
@@ -208,6 +207,8 @@ public class Robot extends IterativeRobot {
 			} else {
 				autoRally = new AutonomousLeftToRightRally();
 			}
+		} else {
+			autoRally = new AutonomousScoringNone();
 		}
 
 		autonomousCommand = new AutonomousMaster(autoDef, autoRally, autoScore, beforeDefenseDelayValue, beforeRallyDelayValue, beforeScoringDelayValue,
