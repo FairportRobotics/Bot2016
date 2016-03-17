@@ -21,9 +21,9 @@ import org.usfirst.frc.team578.robot.commands.autonomous.dualrally.right.Autonom
 import org.usfirst.frc.team578.robot.commands.autonomous.dualrally.right.AutonomousRightToRightRally;
 import org.usfirst.frc.team578.robot.commands.autonomous.scoring.AutonomousAwayFromGoalLeft;
 import org.usfirst.frc.team578.robot.commands.autonomous.scoring.AutonomousAwayFromGoalRight;
-import org.usfirst.frc.team578.robot.commands.autonomous.scoring.AutonomousScoringLeft;
+import org.usfirst.frc.team578.robot.commands.autonomous.scoring.AutonomousLeftRallyScoringLeft;
+import org.usfirst.frc.team578.robot.commands.autonomous.scoring.AutonomousRightRallyScoringRight;
 import org.usfirst.frc.team578.robot.commands.autonomous.scoring.AutonomousScoringNone;
-import org.usfirst.frc.team578.robot.commands.autonomous.scoring.AutonomousScoringRight;
 import org.usfirst.frc.team578.robot.subsystems.ArmSubsystem;
 import org.usfirst.frc.team578.robot.subsystems.BallSensorSubsystem;
 import org.usfirst.frc.team578.robot.subsystems.DriveSubsystem;
@@ -145,8 +145,8 @@ public class Robot extends IterativeRobot {
 	private void initializeScoringPositionChooser() {
 
 		scoringPositionChooser = new SendableChooser();
-		scoringPositionChooser.addDefault("Left", new AutonomousScoringLeft());
-		scoringPositionChooser.addObject("Right", new AutonomousScoringRight());
+		scoringPositionChooser.addDefault("Left", new AutonomousLeftRallyScoringLeft());
+		scoringPositionChooser.addObject("Right", new AutonomousRightRallyScoringRight());
 		scoringPositionChooser.addObject("None", new AutonomousScoringNone());
 		SmartDashboard.putData("Scoring Position", scoringPositionChooser);
 
