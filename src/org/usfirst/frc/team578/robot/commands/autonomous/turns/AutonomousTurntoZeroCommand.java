@@ -37,13 +37,13 @@ public class AutonomousTurntoZeroCommand extends Command {
 		}
 
 		if (currentHeading > 355 && currentHeading <= 360 - error) {
-			leftTurnSpeed = .4;
-			rightTurnSpeed = .4;
+			leftTurnSpeed = .325;
+			rightTurnSpeed = .325;
 		}
 
 		if (currentHeading < 5 && currentHeading > error) {
-			leftTurnSpeed = .4;
-			rightTurnSpeed = .4;
+			leftTurnSpeed = .325;
+			rightTurnSpeed = .325;
 		}
 
 		if (currentHeading > MIN_LEFT_VAL || currentHeading < MIN_RIGHT_VAL) {
