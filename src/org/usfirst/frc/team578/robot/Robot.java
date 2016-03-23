@@ -29,7 +29,9 @@ import org.usfirst.frc.team578.robot.subsystems.BallSensorSubsystem;
 import org.usfirst.frc.team578.robot.subsystems.DriveSubsystem;
 import org.usfirst.frc.team578.robot.subsystems.IntakeSubsystem;
 import org.usfirst.frc.team578.robot.subsystems.LoggingSubsystem;
-import org.usfirst.frc.team578.robot.subsystems.WinchSubsystem;
+import org.usfirst.frc.team578.robot.subsystems.TapeSubsystem;
+import org.usfirst.frc.team578.robot.subsystems.WinchBackSubsystem;
+import org.usfirst.frc.team578.robot.subsystems.WinchFrontSubsystem;
 
 import com.kauailabs.navx.frc.AHRS;
 
@@ -53,7 +55,9 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static DriveSubsystem driveSubsystem;
 	public static IntakeSubsystem intakeSubsystem;
-	public static WinchSubsystem winchSubsystem;
+	public static WinchBackSubsystem winchBackSubsystem;
+	public static WinchFrontSubsystem winchFrontSubsystem;
+	public static TapeSubsystem tapeSubsystem;
 	public static LoggingSubsystem loggingSubsystem;
 	public static ArmSubsystem armSubsystem;
 	public static AHRS navx;
@@ -87,8 +91,14 @@ public class Robot extends IterativeRobot {
 		intakeSubsystem = new IntakeSubsystem();
 		intakeSubsystem.initialize();
 
-		winchSubsystem = new WinchSubsystem();
-		winchSubsystem.initialize();
+		winchFrontSubsystem = new WinchFrontSubsystem();
+		winchFrontSubsystem.initialize();
+
+		winchBackSubsystem = new WinchBackSubsystem();
+		winchBackSubsystem.initialize();
+
+		tapeSubsystem = new TapeSubsystem();
+		tapeSubsystem.initialize();
 
 		ballSensorSubsystem = new BallSensorSubsystem();
 		ballSensorSubsystem.initialize();

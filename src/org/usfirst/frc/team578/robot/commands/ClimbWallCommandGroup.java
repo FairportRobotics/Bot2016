@@ -4,10 +4,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class ClimbWallCommandGroup extends CommandGroup {
 	public ClimbWallCommandGroup() {
-		addSequential(new WinchExtendCommand());
-
+		addSequential(new TapeOutCommand());
+		addSequential(new TapeInCommand());
 		addSequential(new WinchRetractCommand());
-		addSequential(new WinchStopCommand());
 	}
 
 }

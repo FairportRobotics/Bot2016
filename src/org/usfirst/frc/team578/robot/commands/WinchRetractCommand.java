@@ -5,10 +5,17 @@ import org.usfirst.frc.team578.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class WinchRetractCommand extends Command {
-	private double time = 4.0;
+
+	public static final double BACK_RUN_TIME = 2.5; // seconds
+	public static final double BACK_RUN_POWER = .4; // power
+	public static boolean BACK_STOPPED = false;
+
+	public static double FRONT_RUN_TIME = 2.5;
+	public static double FRONT_RUN_POWER = .4;
+	public static boolean FRONT_STOPPED = false;
 
 	public WinchRetractCommand() {
-		requires(Robot.winchSubsystem);
+		requires(Robot.winchFrontSubsystem);
 	}
 
 	@Override
@@ -18,12 +25,30 @@ public class WinchRetractCommand extends Command {
 
 	@Override
 	protected void execute() {
-		Robot.winchSubsystem.retract();
+
+		if (!FRONT_STOPPED) {
+			if (timeSinceInitialized() < FRONT_RUN_TIME) {
+				Robot.winchFrontSubsystem.retract(FRONT_RUN_POWER);
+			} else {
+				Robot.winchFrontSubsystem.stop();
+				FRONT_STOPPED = true;
+			}
+		}
+
+		if (!BACK_STOPPED) {
+			if (timeSinceInitialized() < BACK_RUN_TIME) {
+				Robot.winchBackSubsystem.retract(BACK_RUN_POWER);
+			} else {
+				Robot.winchBackSubsystem.stop();
+				BACK_STOPPED = true;
+			}
+		}
+
 	}
 
 	@Override
 	protected boolean isFinished() {
-		return (timeSinceInitialized() >= time);
+		return (FRONT_STOPPED && BACK_STOPPED);
 	}
 
 	@Override
