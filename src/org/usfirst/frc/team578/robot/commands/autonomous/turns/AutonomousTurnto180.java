@@ -37,8 +37,8 @@ public class AutonomousTurnto180 extends Command {
 		}
 
 		if ((currentHeading < 185) && (currentHeading > 175)) {
-			leftTurnSpeed = .4;
-			rightTurnSpeed = .4;
+			leftTurnSpeed = .325;
+			rightTurnSpeed = .325;
 		}
 
 		if (currentHeading > MIN_LEFT_VAL && currentHeading < MIN_RIGHT_VAL) {

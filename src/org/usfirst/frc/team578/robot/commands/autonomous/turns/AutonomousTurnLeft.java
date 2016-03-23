@@ -36,8 +36,8 @@ public class AutonomousTurnLeft extends Command {
 		}
 
 		if ((currentHeading < 275) && (currentHeading > 265)) {
-			leftTurnSpeed = .4;
-			rightTurnSpeed = .4;
+			leftTurnSpeed = .325;
+			rightTurnSpeed = .325;
 		}
 
 		if (currentHeading > MIN_LEFT_VAL && currentHeading < MIN_RIGHT_VAL) {

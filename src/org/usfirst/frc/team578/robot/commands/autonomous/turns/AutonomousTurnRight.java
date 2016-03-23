@@ -40,8 +40,8 @@ public class AutonomousTurnRight extends Command {
 
 		// slow down in sweet spot
 		if ((currentHeading < 95) && (currentHeading > 85)) {
-			leftTurnSpeed = .4;
-			rightTurnSpeed = .4;
+			leftTurnSpeed = .325;
+			rightTurnSpeed = .325;
 		}
 
 		if (currentHeading > MIN_LEFT_VAL && currentHeading < MIN_RIGHT_VAL) {
