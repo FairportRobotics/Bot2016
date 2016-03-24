@@ -4,13 +4,13 @@ import org.usfirst.frc.team578.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class TapeInCommand extends Command {
+public class GrappleArmInCommand extends Command {
 
-	public static final double RUN_TIME = 3.6; // seconds
-	public static final double RUN_POWER = .2; // power
+	public static final double RUN_TIME = .1; // seconds
+	public static final double RUN_POWER = .3; // power
 	public static boolean RUN_STOPPED = false;
 
-	public TapeInCommand() {
+	public GrappleArmInCommand() {
 		requires(Robot.tapeSubsystem);
 	}
 

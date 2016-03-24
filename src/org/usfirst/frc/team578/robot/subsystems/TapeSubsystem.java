@@ -16,11 +16,11 @@ public class TapeSubsystem extends Subsystem {
 	}
 
 	public void forward(double value) {
-		tapeTalon.set(-value);
+		tapeTalon.set(value);
 	}
 
 	public void backwards(double value) {
-		tapeTalon.set(value);
+		tapeTalon.set(-value);
 	}
 
 	public void stop() {

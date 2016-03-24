@@ -7,11 +7,11 @@ import edu.wpi.first.wpilibj.command.Command;
 public class WinchRetractCommand extends Command {
 
 	public static final double BACK_RUN_TIME = 2.5; // seconds
-	public static final double BACK_RUN_POWER = .4; // power
+	public static final double BACK_RUN_POWER = .9; // power
 	public static boolean BACK_STOPPED = false;
 
 	public static double FRONT_RUN_TIME = 2.5;
-	public static double FRONT_RUN_POWER = .4;
+	public static double FRONT_RUN_POWER = .8;
 	public static boolean FRONT_STOPPED = false;
 
 	public WinchRetractCommand() {

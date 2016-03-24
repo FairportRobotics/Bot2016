@@ -46,13 +46,13 @@ public class AutonomousTurnTo240 extends Command {
 			zeroFound = true;
 
 		} else if (currentHeading > 60 && currentHeading < 240) {
-			Robot.driveSubsystem.drive(leftTurnSpeed, -rightTurnSpeed); // left
+			Robot.driveSubsystem.drive(-leftTurnSpeed, rightTurnSpeed); // left
 																		// turn
 																		// -
 																		// increase
 			// heading
 		} else {
-			Robot.driveSubsystem.drive(-leftTurnSpeed, rightTurnSpeed); // right
+			Robot.driveSubsystem.drive(leftTurnSpeed, -rightTurnSpeed); // right
 																		// turn
 																		// -
 																		// decrease
