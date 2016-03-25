@@ -9,6 +9,7 @@ import org.usfirst.frc.team578.robot.commands.autonomous.crossing.AutonomousCros
 import org.usfirst.frc.team578.robot.commands.autonomous.crossing.AutonomousCrossingRockWall;
 import org.usfirst.frc.team578.robot.commands.autonomous.crossing.AutonomousCrossingRoughTerrain;
 import org.usfirst.frc.team578.robot.commands.autonomous.dualrally.PositionEnum;
+import org.usfirst.frc.team578.robot.commands.autonomous.dualrally.ScoringEnum;
 import org.usfirst.frc.team578.robot.commands.autonomous.dualrally.left.AutonomousLeftToLeftRally;
 import org.usfirst.frc.team578.robot.commands.autonomous.dualrally.left.AutonomousMiddleLeftToLeftRally;
 import org.usfirst.frc.team578.robot.commands.autonomous.dualrally.left.AutonomousMiddleRightToLeftRally;
@@ -155,9 +156,9 @@ public class Robot extends IterativeRobot {
 	private void initializeScoringPositionChooser() {
 
 		scoringPositionChooser = new SendableChooser();
-		scoringPositionChooser.addDefault("Left", new AutonomousLeftRallyScoringLeft());
-		scoringPositionChooser.addObject("Right", new AutonomousRightRallyScoringRight());
-		scoringPositionChooser.addObject("None", new AutonomousScoringNone());
+		scoringPositionChooser.addDefault("Left", ScoringEnum.LEFT);
+		scoringPositionChooser.addObject("Right", ScoringEnum.RIGHT);
+		scoringPositionChooser.addObject("None", ScoringEnum.NONE);
 		SmartDashboard.putData("Scoring Position", scoringPositionChooser);
 
 	}
@@ -176,24 +177,35 @@ public class Robot extends IterativeRobot {
 		// schedule the autonomous command (example)
 		Command autoDef = (Command) defenseChooser.getSelected();
 		PositionEnum positionEnum = (PositionEnum) startingPositionChooser.getSelected();
-		Command autoScore = (Command) scoringPositionChooser.getSelected();
+		ScoringEnum scoringEnum = (ScoringEnum) scoringPositionChooser.getSelected();
 		Command autoBack = null;
 
 		if (SmartDashboard.getBoolean("backFromGoal")) {
-			if (autoScore.getClass().getSimpleName().equals("AutonomousLeftRallyScoringLeft")) {
+			if (scoringEnum == ScoringEnum.LEFT) {
 				autoBack = new AutonomousAwayFromGoalLeft();
-			} else if (autoScore.getClass().getSimpleName().equals("AutonomousRightRallyScoringRight")) {
+			} else if (scoringEnum == ScoringEnum.RIGHT) {
 				autoBack = new AutonomousAwayFromGoalRight();
 			}
+		}
+
+		// choose the rally to to scoring spot
+		// based on what was chosen
+		Command autoScore;
+		if (scoringEnum == ScoringEnum.LEFT) {
+			autoScore = new AutonomousLeftRallyScoringLeft();
+		} else if (scoringEnum == ScoringEnum.RIGHT) {
+			autoScore = new AutonomousRightRallyScoringRight();
+		} else {
+			autoScore = new AutonomousScoringNone();
 		}
 
 		Integer beforeDefenseDelayValue = SmartDashboard.getInt("beforeDefenseDelayValue", 0);
 		Integer beforeRallyDelayValue = SmartDashboard.getInt("beforeRallyDelayValue", 0);
 		Integer beforeScoringDelayValue = SmartDashboard.getInt("beforeScoringDelayValue", 0);
 
+		// Left and Right sides chosen based on scoring choice.
 		Command autoRally;
-
-		if (autoScore.getClass().getSimpleName().equals("AutonomousLeftRallyScoringLeft")) {
+		if (scoringEnum == ScoringEnum.LEFT) {
 			if (positionEnum == PositionEnum.RIGHT) {
 				autoRally = new AutonomousRightToLeftRally();
 			} else if (positionEnum == PositionEnum.MIDDLE_RIGHT) {
@@ -205,7 +217,7 @@ public class Robot extends IterativeRobot {
 			} else {
 				autoRally = new AutonomousLeftToLeftRally();
 			}
-		} else if (autoScore.getClass().getSimpleName().equals("AutonomousRightRallyScoringRight")) {
+		} else if (scoringEnum == ScoringEnum.RIGHT) {
 			if (positionEnum == PositionEnum.RIGHT) {
 				autoRally = new AutonomousRightToRightRally();
 			} else if (positionEnum == PositionEnum.MIDDLE_RIGHT) {
