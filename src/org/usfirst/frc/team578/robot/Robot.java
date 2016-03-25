@@ -180,9 +180,9 @@ public class Robot extends IterativeRobot {
 		Command autoBack = null;
 
 		if (SmartDashboard.getBoolean("backFromGoal")) {
-			if (autoScore.getClass().getSimpleName().equals("AutonomousScoringLeft")) {
+			if (autoScore.getClass().getSimpleName().equals("AutonomousLeftRallyScoringLeft")) {
 				autoBack = new AutonomousAwayFromGoalLeft();
-			} else if (autoScore.getClass().getSimpleName().equals("AutonomousScoringRight")) {
+			} else if (autoScore.getClass().getSimpleName().equals("AutonomousRightRallyScoringRight")) {
 				autoBack = new AutonomousAwayFromGoalRight();
 			}
 		}
@@ -193,7 +193,7 @@ public class Robot extends IterativeRobot {
 
 		Command autoRally;
 
-		if (autoScore.getClass().getSimpleName().equals("AutonomousScoringLeft")) {
+		if (autoScore.getClass().getSimpleName().equals("AutonomousLeftRallyScoringLeft")) {
 			if (positionEnum == PositionEnum.RIGHT) {
 				autoRally = new AutonomousRightToLeftRally();
 			} else if (positionEnum == PositionEnum.MIDDLE_RIGHT) {
@@ -205,7 +205,7 @@ public class Robot extends IterativeRobot {
 			} else {
 				autoRally = new AutonomousLeftToLeftRally();
 			}
-		} else if (autoScore.getClass().getSimpleName().equals("AutonomousScoringRight")) {
+		} else if (autoScore.getClass().getSimpleName().equals("AutonomousRightRallyScoringRight")) {
 			if (positionEnum == PositionEnum.RIGHT) {
 				autoRally = new AutonomousRightToRightRally();
 			} else if (positionEnum == PositionEnum.MIDDLE_RIGHT) {
