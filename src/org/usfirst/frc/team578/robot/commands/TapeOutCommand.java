@@ -8,7 +8,7 @@ public class TapeOutCommand extends Command {
 
 	public static final double RUN_TIME_1 = 1.4; // seconds
 	public static final double RUN_POWER_1 = .6; // power
-	public static final double RUN_TIME_2 = .5; // seconds
+	public static final double RUN_TIME_2 = 1.1; // seconds
 	public static final double RUN_POWER_2 = .2; // power
 	public static final double SETTLE = 1;
 	public static boolean RUN_STOPPED = false;

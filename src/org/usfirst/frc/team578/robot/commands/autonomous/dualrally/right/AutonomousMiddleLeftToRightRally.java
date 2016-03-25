@@ -12,7 +12,7 @@ public class AutonomousMiddleLeftToRightRally extends CommandGroup {
 	public AutonomousMiddleLeftToRightRally() {
 		addSequential(new AutonomousTurnRight(RobotMap.DEFAULT_LEFT_WHEEL_TURN_SPEED, RobotMap.DEFAULT_RIGHT_WHEEL_TURN_SPEED));
 
-		addSequential(new AutonomousDriveCommand(1, 1, 1.54));
+		addSequential(new AutonomousDriveCommand(1, 1, 1.29));
 
 		addSequential(new AutonomousTurntoZeroCommand(RobotMap.DEFAULT_LEFT_WHEEL_TURN_SPEED, RobotMap.DEFAULT_RIGHT_WHEEL_TURN_SPEED));
 	}

@@ -10,9 +10,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutonomousCrossingRockWall extends CommandGroup {
 
 	// DONE
+	
 	public AutonomousCrossingRockWall() {
 		// moves until flat detected [down]
-		addSequential(new AutonomousDriveToPitchZero(.3, .3));
+		addSequential(new AutonomousDriveToPitchZero(.35, .35));
 		// moves from edge of O.W. to Alignment Line [down]
 		// Resets robot to face zero
 		addSequential(new AutonomousTurntoZeroCommand(RobotMap.DEFAULT_LEFT_WHEEL_TURN_SPEED, RobotMap.DEFAULT_RIGHT_WHEEL_TURN_SPEED));

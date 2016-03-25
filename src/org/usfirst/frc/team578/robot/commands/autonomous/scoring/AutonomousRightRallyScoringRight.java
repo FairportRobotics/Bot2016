@@ -11,13 +11,13 @@ public class AutonomousRightRallyScoringRight extends CommandGroup {
 
 	public AutonomousRightRallyScoringRight() {
 
-		addSequential(new AutonomousDriveCommand(1, 1, .88));// forward 7.54
+		addSequential(new AutonomousDriveCommand(1, 1, 1.13));// forward 7.54
 																// feet
 		addSequential(new AutonomousTurnTo120(RobotMap.DEFAULT_LEFT_WHEEL_TURN_SPEED, RobotMap.DEFAULT_RIGHT_WHEEL_TURN_SPEED));// turn
 		// left
 		// 60
 		// degrees
-		addSequential(new AutonomousDriveCommand(-1, -1, .47));// forward 4 feet
+		addSequential(new AutonomousDriveCommand(-1, -1, .37));// forward 4 feet
 		addSequential(new AutonomousOutputCommand());// shoots out the ball
 	}
 
