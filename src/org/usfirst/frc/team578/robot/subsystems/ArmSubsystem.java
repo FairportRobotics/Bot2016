@@ -18,7 +18,7 @@ public class ArmSubsystem extends Subsystem {
 	public void initialize() {
 		armTalon = new CANTalon(RobotMap.ARM_TALON);
 		armTalon.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
-		armTalon.ConfigFwdLimitSwitchNormallyOpen(true);
+		armTalon.ConfigFwdLimitSwitchNormallyOpen(false);
 		armTalon.ConfigRevLimitSwitchNormallyOpen(true);
 		armTalon.enable();
 
