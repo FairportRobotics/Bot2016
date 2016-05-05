@@ -6,12 +6,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class TapeOutCommand extends Command {
 
-	public static final double RUN_TIME_1 = 1.05; // seconds
-	public static final double RUN_POWER_1 = .6; // power
-	public static final double RUN_TIME_2 = 2; // seconds
-	public static final double RUN_POWER_2 = .2; // power
-	public static final double SETTLE = 1;
-	public static boolean RUN_STOPPED = false;
+	public static final double RUN_POWER = .2;
 
 	public TapeOutCommand() {
 		requires(Robot.tapeSubsystem);
@@ -24,28 +19,12 @@ public class TapeOutCommand extends Command {
 
 	@Override
 	protected void execute() {
-
-		if (!RUN_STOPPED) {
-			if (timeSinceInitialized() < RUN_TIME_1) {
-				Robot.tapeSubsystem.backwards(RUN_POWER_1);
-			} else {
-				// second phase
-				if (timeSinceInitialized() < (RUN_TIME_1 + RUN_TIME_2)) {
-					Robot.tapeSubsystem.backwards(RUN_POWER_2);
-				} else {
-					Robot.tapeSubsystem.stop();
-					if (timeSinceInitialized() >= (RUN_TIME_1 + RUN_TIME_2 + SETTLE)) {
-						RUN_STOPPED = true;
-					}
-
-				}
-			}
-		}
+		Robot.tapeSubsystem.backwards(RUN_POWER);
 	}
 
 	@Override
 	protected boolean isFinished() {
-		return RUN_STOPPED;
+		return false;
 	}
 
 	@Override
@@ -55,5 +34,6 @@ public class TapeOutCommand extends Command {
 
 	@Override
 	protected void interrupted() {
+		Robot.tapeSubsystem.stop();
 	}
 }

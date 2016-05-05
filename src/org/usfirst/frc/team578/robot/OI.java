@@ -1,8 +1,9 @@
 package org.usfirst.frc.team578.robot;
 
-import org.usfirst.frc.team578.robot.commands.ClimbWallCommandGroup;
 import org.usfirst.frc.team578.robot.commands.IntakeCommand;
 import org.usfirst.frc.team578.robot.commands.OutputCommand;
+import org.usfirst.frc.team578.robot.commands.TapeInCommand;
+import org.usfirst.frc.team578.robot.commands.TapeOutCommand;
 
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.Joystick;
@@ -79,7 +80,8 @@ public class OI {
 	public void initialize() {
 		buttonFive.whileHeld(new OutputCommand());
 		buttonSix.whileHeld(new IntakeCommand());
-		buttonFour.whenPressed(new ClimbWallCommandGroup());
+		buttonFour.whileHeld(new TapeOutCommand());
+		buttonTwo.whileHeld(new TapeInCommand());
 	}
 
 	public boolean getHighSpeed() {
