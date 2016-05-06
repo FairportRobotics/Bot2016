@@ -4,6 +4,7 @@ import org.usfirst.frc.team578.robot.commands.IntakeCommand;
 import org.usfirst.frc.team578.robot.commands.OutputCommand;
 import org.usfirst.frc.team578.robot.commands.TapeInCommand;
 import org.usfirst.frc.team578.robot.commands.TapeOutCommand;
+import org.usfirst.frc.team578.robot.commands.WinchRetractCommand;
 
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.Joystick;
@@ -69,19 +70,12 @@ public class OI {
 		return rightJoystick.getY();
 	}
 
-	public boolean getForwardCamera() {
-		return buttonSeven.get();
-	}
-
-	public boolean getBackwardCamera() {
-		return buttonEight.get();
-	}
-
 	public void initialize() {
 		buttonFive.whileHeld(new OutputCommand());
 		buttonSix.whileHeld(new IntakeCommand());
 		buttonFour.whileHeld(new TapeOutCommand());
 		buttonTwo.whileHeld(new TapeInCommand());
+		buttonSeven.whileHeld(new WinchRetractCommand());
 	}
 
 	public boolean getHighSpeed() {

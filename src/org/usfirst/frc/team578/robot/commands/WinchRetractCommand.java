@@ -6,16 +6,12 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class WinchRetractCommand extends Command {
 
-	public static final double BACK_RUN_TIME = 2.5; // seconds
-	public static final double BACK_RUN_POWER = .9; // power
-	public static boolean BACK_STOPPED = false;
-
-	public static double FRONT_RUN_TIME = 2.5;
-	public static double FRONT_RUN_POWER = .8;
-	public static boolean FRONT_STOPPED = false;
+	public static final double BACK_RUN_POWER = .45; // power
+	public static double FRONT_RUN_POWER = .4;
 
 	public WinchRetractCommand() {
 		requires(Robot.winchFrontSubsystem);
+		requires(Robot.winchBackSubsystem);
 	}
 
 	@Override
@@ -25,30 +21,13 @@ public class WinchRetractCommand extends Command {
 
 	@Override
 	protected void execute() {
-
-		if (!FRONT_STOPPED) {
-			if (timeSinceInitialized() < FRONT_RUN_TIME) {
-				Robot.winchFrontSubsystem.retract(FRONT_RUN_POWER);
-			} else {
-				Robot.winchFrontSubsystem.stop();
-				FRONT_STOPPED = true;
-			}
-		}
-
-		if (!BACK_STOPPED) {
-			if (timeSinceInitialized() < BACK_RUN_TIME) {
-				Robot.winchBackSubsystem.retract(BACK_RUN_POWER);
-			} else {
-				Robot.winchBackSubsystem.stop();
-				BACK_STOPPED = true;
-			}
-		}
-
+		Robot.winchFrontSubsystem.retract(FRONT_RUN_POWER);
+		Robot.winchBackSubsystem.retract(BACK_RUN_POWER);
 	}
 
 	@Override
 	protected boolean isFinished() {
-		return (FRONT_STOPPED && BACK_STOPPED);
+		return false;
 	}
 
 	@Override
@@ -59,8 +38,8 @@ public class WinchRetractCommand extends Command {
 
 	@Override
 	protected void interrupted() {
-		// TODO Auto-generated method stub
-
+		Robot.winchBackSubsystem.stop();
+		Robot.winchFrontSubsystem.stop();
 	}
 
 }

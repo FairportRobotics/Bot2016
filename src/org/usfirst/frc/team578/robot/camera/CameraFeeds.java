@@ -1,6 +1,5 @@
 package org.usfirst.frc.team578.robot.camera;
 
-import org.usfirst.frc.team578.robot.Robot;
 import org.usfirst.frc.team578.robot.RobotMap;
 
 import com.ni.vision.NIVision;
@@ -35,13 +34,7 @@ public class CameraFeeds {
 	}
 
 	public void run() {
-		if (Robot.oi.getForwardCamera())
-			changeCam(camForward);
 
-		if (Robot.oi.getBackwardCamera())
-			changeCam(camBackward);
-
-		updateCam();
 	}
 
 	/**
