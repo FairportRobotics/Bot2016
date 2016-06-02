@@ -11,44 +11,75 @@ import edu.wpi.first.wpilibj.CameraServer;
 /** Graciously borrowed from team 955. **/
 
 public class CameraFeeds {
-	private final int camForward;
-	private final int camBackward;
+	private int camForward;
+	private int camBackward;
 	private int curCam;
 	private Image frame;
 	private CameraServer server;
+	private boolean cameraFail = false;
 
 	public CameraFeeds() {
-		// Get camera ids by supplying camera name ex 'cam0', found on roborio
-		// web interface
-		camForward = NIVision.IMAQdxOpenCamera(RobotMap.camNameForward, NIVision.IMAQdxCameraControlMode.CameraControlModeController);
-		camBackward = NIVision.IMAQdxOpenCamera(RobotMap.camNameBackward, NIVision.IMAQdxCameraControlMode.CameraControlModeController);
-		curCam = camForward;
-		// Img that will contain camera img
-		frame = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
-		// Server that we'll give the img to
-		server = CameraServer.getInstance();
-		server.setQuality(RobotMap.imgQuality);
+
+		try {
+			// Get camera ids by supplying camera name ex 'cam0', found on
+			// roborio
+			// web interface
+			camForward = NIVision.IMAQdxOpenCamera(RobotMap.camNameForward, NIVision.IMAQdxCameraControlMode.CameraControlModeController);
+			camBackward = NIVision.IMAQdxOpenCamera(RobotMap.camNameBackward, NIVision.IMAQdxCameraControlMode.CameraControlModeController);
+			curCam = camForward;
+			// Img that will contain camera img
+			frame = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
+			// Server that we'll give the img to
+			server = CameraServer.getInstance();
+			server.setQuality(RobotMap.imgQuality);
+		} catch (Exception e) {
+			cameraFail = true;
+		}
 	}
 
 	public void init() {
-		changeCam(camForward);
+		if (cameraFail) {
+			return;
+		}
+
+		try {
+			changeCam(camForward);
+		} catch (Exception e) {
+			cameraFail = true;
+		}
 	}
 
 	public void run() {
-		if (Robot.oi.getForwardCamera())
-			changeCam(camForward);
+		if (cameraFail) {
+			return;
+		}
 
-		if (Robot.oi.getBackwardCamera())
-			changeCam(camBackward);
+		try {
+			if (Robot.oi.getForwardCamera())
+				changeCam(camForward);
 
-		updateCam();
+			if (Robot.oi.getBackwardCamera())
+				changeCam(camBackward);
+
+			updateCam();
+		} catch (Exception e) {
+			cameraFail = true;
+		}
 	}
 
 	/**
 	 * Stop aka close camera stream
 	 */
 	public void end() {
-		NIVision.IMAQdxStopAcquisition(curCam);
+		if (cameraFail) {
+			return;
+		}
+
+		try {
+			NIVision.IMAQdxStopAcquisition(curCam);
+		} catch (Exception e) {
+			cameraFail = true;
+		}
 	}
 
 	/**
@@ -58,17 +89,35 @@ public class CameraFeeds {
 	 *            for camera
 	 */
 	public void changeCam(int newId) {
-		NIVision.IMAQdxStopAcquisition(curCam);
-		NIVision.IMAQdxConfigureGrab(newId);
-		NIVision.IMAQdxStartAcquisition(newId);
-		curCam = newId;
+
+		if (cameraFail) {
+			return;
+		}
+
+		try {
+			NIVision.IMAQdxStopAcquisition(curCam);
+			NIVision.IMAQdxConfigureGrab(newId);
+			NIVision.IMAQdxStartAcquisition(newId);
+			curCam = newId;
+		} catch (Exception e) {
+			cameraFail = true;
+		}
 	}
 
 	/**
 	 * Get the img from current camera and give it to the server
 	 */
 	public void updateCam() {
-		NIVision.IMAQdxGrab(curCam, frame, 1);
-		server.setImage(frame);
+
+		if (cameraFail) {
+			return;
+		}
+
+		try {
+			NIVision.IMAQdxGrab(curCam, frame, 1);
+			server.setImage(frame);
+		} catch (Exception e) {
+			cameraFail = true;
+		}
 	}
 }
