@@ -1,6 +1,7 @@
 package org.usfirst.frc.team578.robot.subsystems;
 
 import org.usfirst.frc.team578.robot.RobotMap;
+import org.usfirst.frc.team578.robot.commands.ManualTapeCommand;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -29,6 +30,7 @@ public class TapeSubsystem extends Subsystem {
 
 	@Override
 	protected void initDefaultCommand() {
+		setDefaultCommand(new ManualTapeCommand());
 	}
 
 }
