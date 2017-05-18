@@ -4,7 +4,8 @@ import org.usfirst.frc.team578.robot.Robot;
 import org.usfirst.frc.team578.robot.RobotMap;
 import org.usfirst.frc.team578.robot.commands.ArmCommand;
 
-import edu.wpi.first.wpilibj.CANTalon;
+import com.ctre.CANTalon;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class ArmSubsystem extends Subsystem {
