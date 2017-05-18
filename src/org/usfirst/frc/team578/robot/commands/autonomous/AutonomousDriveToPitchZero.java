@@ -32,7 +32,7 @@ public class AutonomousDriveToPitchZero extends Command {
 
 	@Override
 	protected void execute() {
-		System.err.println("Pitch: " + Robot.navx.getPitch());
+		// System.err.println("Pitch: " + Robot.navx.getPitch());
 		System.err.println("floor detected: " + floorDetected);
 		System.err.println("offrampDetected: " + offrampDetected);
 		// This is a catchall...it should already be set
@@ -51,13 +51,13 @@ public class AutonomousDriveToPitchZero extends Command {
 			Robot.driveSubsystem.drive(left, right);
 
 			// Check for offramp
-			if (Robot.navx.getPitch() > (2 * ZERO_PITCH_DEADZONE)) {
-				// found a possible offramp point
-				offrampDetections++;
-			} else {
-				// if we're facing up, we're not on a down ramp
-				offrampDetections = 0;
-			}
+			// if (Robot.navx.getPitch() > (2 * ZERO_PITCH_DEADZONE)) {
+			// found a possible offramp point
+			// offrampDetections++;
+			// } else {
+			// if we're facing up, we're not on a down ramp
+			// offrampDetections = 0;
+			// }
 
 			// We found enough indications that we're on the offramp
 			if (offrampDetections > OFFRAMP_DETECTIONS_REQUIRED) {
@@ -66,13 +66,14 @@ public class AutonomousDriveToPitchZero extends Command {
 		} else {
 
 			// found the offramp, look for floor
-			if ((Robot.navx.getPitch() > -ZERO_PITCH_DEADZONE) && (Robot.navx.getPitch() < ZERO_PITCH_DEADZONE)) {
-				floorDetected = true;
-				Robot.driveSubsystem.drive(0, 0);
-			} else {
-				// floor not detected, keep driving
-				Robot.driveSubsystem.drive(left, right);
-			}
+			// if ((Robot.navx.getPitch() > -ZERO_PITCH_DEADZONE) &&
+			// (Robot.navx.getPitch() < ZERO_PITCH_DEADZONE)) {
+			floorDetected = true;
+			Robot.driveSubsystem.drive(0, 0);
+			// } else {
+			// floor not detected, keep driving
+			Robot.driveSubsystem.drive(left, right);
+			// }
 		}
 
 	}

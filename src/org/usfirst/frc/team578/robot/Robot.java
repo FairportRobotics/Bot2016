@@ -1,6 +1,5 @@
 package org.usfirst.frc.team578.robot;
 
-import org.usfirst.frc.team578.robot.camera.CameraFeeds;
 import org.usfirst.frc.team578.robot.commands.DriveCommand;
 import org.usfirst.frc.team578.robot.commands.autonomous.AutonomousMaster;
 import org.usfirst.frc.team578.robot.commands.autonomous.crossing.AutonomousCrossingLowBar;
@@ -37,7 +36,6 @@ import org.usfirst.frc.team578.robot.subsystems.WinchFrontSubsystem;
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -63,7 +61,7 @@ public class Robot extends IterativeRobot {
 	public static ArmSubsystem armSubsystem;
 	public static AHRS navx;
 	public static BallSensorSubsystem ballSensorSubsystem;
-	CameraFeeds cameraFeeds;
+	// CameraFeeds cameraFeeds;
 
 	private SendableChooser startingPositionChooser;
 	private SendableChooser defenseChooser;
@@ -104,9 +102,9 @@ public class Robot extends IterativeRobot {
 		ballSensorSubsystem = new BallSensorSubsystem();
 		ballSensorSubsystem.initialize();
 
-		navx = new AHRS(SPI.Port.kMXP);
+		// navx = new AHRS(SPI.Port.kMXP);
 
-		cameraFeeds = new CameraFeeds();
+		// cameraFeeds = new CameraFeeds();
 
 		// These need to happen after
 		// the subsystems are initialized
@@ -170,7 +168,7 @@ public class Robot extends IterativeRobot {
 
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
-		navx.zeroYaw();
+		// navx.zeroYaw();
 	}
 
 	public void autonomousInit() {
@@ -245,7 +243,7 @@ public class Robot extends IterativeRobot {
 	 */
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
-		SmartDashboard.putBoolean("navxConnected", navx.isConnected());
+		// SmartDashboard.putBoolean("navxConnected", navx.isConnected());
 
 		boolean beforeDefenseDelay = SmartDashboard.getBoolean("beforeDefenseDelay");
 		boolean beforeRallyDelay = SmartDashboard.getBoolean("beforeRallyDelay");
@@ -267,7 +265,7 @@ public class Robot extends IterativeRobot {
 			System.err.println("beforeScoringDelay : " + beforeScoringDelayValue);
 		}
 
-		System.err.println("HEADING : " + navx.getFusedHeading());
+		// System.err.println("HEADING : " + navx.getFusedHeading());
 	}
 
 	public void teleopInit() {
@@ -278,7 +276,7 @@ public class Robot extends IterativeRobot {
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 
-		cameraFeeds.init();
+		// cameraFeeds.init();
 	}
 
 	/**
@@ -287,7 +285,7 @@ public class Robot extends IterativeRobot {
 	 */
 	public void disabledInit() {
 
-		cameraFeeds.end();
+		// cameraFeeds.end();
 
 	}
 
@@ -299,7 +297,7 @@ public class Robot extends IterativeRobot {
 		driveCommand.start();
 		Scheduler.getInstance().run();
 
-		cameraFeeds.run();
+		// cameraFeeds.run();
 	}
 
 	/**

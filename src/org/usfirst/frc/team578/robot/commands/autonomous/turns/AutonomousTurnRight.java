@@ -27,7 +27,7 @@ public class AutonomousTurnRight extends Command {
 	@Override
 	protected void execute() {
 
-		double currentHeading = Robot.navx.getFusedHeading();
+		double currentHeading = 0;// Robot.navx.getFusedHeading();
 		double MIN_LEFT_VAL = 90 - error;
 		double MIN_RIGHT_VAL = 90 + error;
 

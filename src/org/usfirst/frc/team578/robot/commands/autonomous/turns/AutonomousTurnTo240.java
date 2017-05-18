@@ -25,7 +25,7 @@ public class AutonomousTurnTo240 extends Command {
 	@Override
 	protected void execute() {
 
-		double currentHeading = Robot.navx.getFusedHeading();
+		double currentHeading = 0; // Robot.navx.getFusedHeading();
 		double MIN_LEFT_VAL = 240 - error;
 		double MIN_RIGHT_VAL = 240 + error;
 

@@ -25,7 +25,7 @@ public class AutonomousTurnto180 extends Command {
 	@Override
 	protected void execute() {
 
-		double currentHeading = Robot.navx.getFusedHeading();
+		double currentHeading = 0; // Robot.navx.getFusedHeading();
 		double MIN_LEFT_VAL = 180 - error;
 		double MIN_RIGHT_VAL = 180 + error;
 
