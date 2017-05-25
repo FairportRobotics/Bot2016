@@ -32,15 +32,13 @@ import org.usfirst.frc.team578.robot.subsystems.LoggingSubsystem;
 import org.usfirst.frc.team578.robot.subsystems.TapeSubsystem;
 import org.usfirst.frc.team578.robot.subsystems.WinchBackSubsystem;
 import org.usfirst.frc.team578.robot.subsystems.WinchFrontSubsystem;
-
-import com.kauailabs.navx.frc.AHRS;
-
-import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.Scheduler;
+//import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.IterativeRobot;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -59,7 +57,7 @@ public class Robot extends IterativeRobot {
 	public static TapeSubsystem tapeSubsystem;
 	public static LoggingSubsystem loggingSubsystem;
 	public static ArmSubsystem armSubsystem;
-	public static AHRS navx;
+	// public static AHRS navx;
 	public static BallSensorSubsystem ballSensorSubsystem;
 	// CameraFeeds cameraFeeds;
 
@@ -132,9 +130,11 @@ public class Robot extends IterativeRobot {
 
 		startingPositionChooser = new SendableChooser();
 		startingPositionChooser.addDefault("1 Left", PositionEnum.LEFT);
-		startingPositionChooser.addObject("2 Mid Left", PositionEnum.MIDDLE_LEFT);
+		startingPositionChooser.addObject("2 Mid Left",
+				PositionEnum.MIDDLE_LEFT);
 		startingPositionChooser.addObject("3 Center", PositionEnum.MIDDLE);
-		startingPositionChooser.addObject("4 Mid Right", PositionEnum.MIDDLE_RIGHT);
+		startingPositionChooser.addObject("4 Mid Right",
+				PositionEnum.MIDDLE_RIGHT);
 		startingPositionChooser.addObject("5 Right", PositionEnum.RIGHT);
 
 		SmartDashboard.putData("Starting Position", startingPositionChooser);
@@ -147,7 +147,8 @@ public class Robot extends IterativeRobot {
 		defenseChooser.addObject("Moat", new AutonomousCrossingMoat());
 		defenseChooser.addObject("Ramparts", new AutonomousCrossingRamparts());
 		defenseChooser.addObject("Rock Wall", new AutonomousCrossingRockWall());
-		defenseChooser.addObject("Rough Terrain", new AutonomousCrossingRoughTerrain());
+		defenseChooser.addObject("Rough Terrain",
+				new AutonomousCrossingRoughTerrain());
 		SmartDashboard.putData("Defense Chooser", defenseChooser);
 	}
 
@@ -174,8 +175,10 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		// schedule the autonomous command (example)
 		Command autoDef = (Command) defenseChooser.getSelected();
-		PositionEnum positionEnum = (PositionEnum) startingPositionChooser.getSelected();
-		ScoringEnum scoringEnum = (ScoringEnum) scoringPositionChooser.getSelected();
+		PositionEnum positionEnum = (PositionEnum) startingPositionChooser
+				.getSelected();
+		ScoringEnum scoringEnum = (ScoringEnum) scoringPositionChooser
+				.getSelected();
 		Command autoBack = null;
 
 		if (SmartDashboard.getBoolean("backFromGoal")) {
@@ -197,9 +200,12 @@ public class Robot extends IterativeRobot {
 			autoScore = new AutonomousScoringNone();
 		}
 
-		Integer beforeDefenseDelayValue = SmartDashboard.getInt("beforeDefenseDelayValue", 0);
-		Integer beforeRallyDelayValue = SmartDashboard.getInt("beforeRallyDelayValue", 0);
-		Integer beforeScoringDelayValue = SmartDashboard.getInt("beforeScoringDelayValue", 0);
+		Integer beforeDefenseDelayValue = SmartDashboard.getInt(
+				"beforeDefenseDelayValue", 0);
+		Integer beforeRallyDelayValue = SmartDashboard.getInt(
+				"beforeRallyDelayValue", 0);
+		Integer beforeScoringDelayValue = SmartDashboard.getInt(
+				"beforeScoringDelayValue", 0);
 
 		// Left and Right sides chosen based on scoring choice.
 		Command autoRally;
@@ -231,8 +237,9 @@ public class Robot extends IterativeRobot {
 			autoRally = new AutonomousScoringNone();
 		}
 
-		autonomousCommand = new AutonomousMaster(autoDef, autoRally, autoScore, beforeDefenseDelayValue, beforeRallyDelayValue, beforeScoringDelayValue,
-				autoBack);
+		autonomousCommand = new AutonomousMaster(autoDef, autoRally, autoScore,
+				beforeDefenseDelayValue, beforeRallyDelayValue,
+				beforeScoringDelayValue, autoBack);
 
 		if (autonomousCommand != null)
 			autonomousCommand.start();
@@ -245,16 +252,23 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().run();
 		// SmartDashboard.putBoolean("navxConnected", navx.isConnected());
 
-		boolean beforeDefenseDelay = SmartDashboard.getBoolean("beforeDefenseDelay");
-		boolean beforeRallyDelay = SmartDashboard.getBoolean("beforeRallyDelay");
-		boolean beforeScoringDelay = SmartDashboard.getBoolean("beforeScoringDelay");
+		boolean beforeDefenseDelay = SmartDashboard
+				.getBoolean("beforeDefenseDelay");
+		boolean beforeRallyDelay = SmartDashboard
+				.getBoolean("beforeRallyDelay");
+		boolean beforeScoringDelay = SmartDashboard
+				.getBoolean("beforeScoringDelay");
 
-		int beforeDefenseDelayValue = SmartDashboard.getInt("beforeDefenseDelayValue");
-		int beforeRallyDelayValue = SmartDashboard.getInt("beforeRallyDelayValue");
-		int beforeScoringDelayValue = SmartDashboard.getInt("beforeScoringDelayValue");
+		int beforeDefenseDelayValue = SmartDashboard
+				.getInt("beforeDefenseDelayValue");
+		int beforeRallyDelayValue = SmartDashboard
+				.getInt("beforeRallyDelayValue");
+		int beforeScoringDelayValue = SmartDashboard
+				.getInt("beforeScoringDelayValue");
 
 		if (beforeDefenseDelay) {
-			System.err.println("beforeDefenseDelayValue : " + beforeDefenseDelayValue);
+			System.err.println("beforeDefenseDelayValue : "
+					+ beforeDefenseDelayValue);
 		}
 
 		if (beforeRallyDelay) {
@@ -262,7 +276,8 @@ public class Robot extends IterativeRobot {
 		}
 
 		if (beforeScoringDelay) {
-			System.err.println("beforeScoringDelay : " + beforeScoringDelayValue);
+			System.err.println("beforeScoringDelay : "
+					+ beforeScoringDelayValue);
 		}
 
 		// System.err.println("HEADING : " + navx.getFusedHeading());
